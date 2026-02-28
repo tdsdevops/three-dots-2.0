@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/threedots.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&&display=swap"
+      rel="stylesheet"
+    />
+    <title>Three Dots Software Development</title>
+    <style>
+      .dot-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #01091c;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+
+      /* Hide loader when React is loaded */
+      .dot-container.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      .dot1 {
+        background-color: #0d6eb7;
+        animation: move1 2.5s infinite;
+      }
+
+      .dot2 {
+        background-color: #ed1c24;
+        animation: move2 2.5s infinite;
+      }
+
+      .dot3 {
+        background-color: #ffde16;
+        animation: move3 2.5s infinite;
+      }
+
+      @keyframes move1 {
+        0% {
+          transform: translate(0px, -20px);
+        }
+        33.33% {
+          transform: translate(17.3px, 10px);
+        }
+        66.66% {
+          transform: translate(-17.3px, 10px);
+        }
+        100% {
+          transform: translate(0px, -20px);
+        }
+      }
+
+      @keyframes move2 {
+        0% {
+          transform: translate(17.3px, 10px);
+        }
+        33.33% {
+          transform: translate(-17.3px, 10px);
+        }
+        66.66% {
+          transform: translate(0px, -20px);
+        }
+        100% {
+          transform: translate(17.3px, 10px);
+        }
+      }
+
+      @keyframes move3 {
+        0% {
+          transform: translate(-17.3px, 10px);
+        }
+        33.33% {
+          transform: translate(0px, -20px);
+        }
+        66.66% {
+          transform: translate(17.3px, 10px);
+        }
+        100% {
+          transform: translate(-17.3px, 10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dot-container" id="loader">
+      <div>
+        <div class="dot dot1"></div>
+        <div class="dot dot2"></div>
+        <div class="dot dot3"></div>
+      </div>
+    </div>
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

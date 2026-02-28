@@ -1,0 +1,63 @@
+@import url("./custom-color.css");
+.requote.MuiButton-root {
+  background-color: var(--tertiary);
+  color: #ffffff;
+  text-transform: capitalize;
+  font-family: "Poppins-Regular";
+  transition: 0.3s;
+  width: 192px;
+  height: 42px;
+}
+.requote-border.MuiButton-root {
+  background-color: transparent;
+  border: solid var(--tertiary);
+  color: #ffffff;
+  text-transform: capitalize;
+  font-family: "Poppins-Regular";
+  transition: 0.3s;
+  width: 192px;
+  height: 42px;
+}
+.contact-us.MuiButton-root {
+  background-color: #ffffff;
+  color: #2563eb;
+  text-transform: capitalize;
+  transition: 0.3s;
+  width: 165px;
+  height: 48px;
+}
+.contact-us.MuiButton-root:hover {
+  background-color: #e5e7eb;
+}
+.requote.MuiButton-root:hover,
+.requote-border.MuiButton-root:hover {
+  background-color: #063a63;
+}
+
+.flex {
+  display: flex;
+}
+.flex-jus-sp-bt {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-jus-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+.flex-col-jus-center,
+.flex-col-jus-center.MuiBox-root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.h-w-100.MuiBox-root {
+  height: 100%;
+  width: 100%;
+}

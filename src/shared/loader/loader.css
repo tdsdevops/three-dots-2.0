@@ -1,0 +1,77 @@
+@import url("../../shared/css/custom-color.css");
+.dot-container.MuiBox-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--primary);
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.dot1 {
+  background-color: var(--tertiary);
+
+  animation: move1 2.5s infinite;
+}
+
+.dot2 {
+  background-color: #ed1c24;
+
+  animation: move2 2.5s infinite;
+}
+
+.dot3 {
+  background-color: #ffde16;
+
+  animation: move3 2.5s infinite;
+}
+@keyframes move1 {
+  0% {
+    transform: translate(0px, -20px);
+  } /* Top point */
+  33.33% {
+    transform: translate(17.3px, 10px);
+  } /* Bottom right */
+  66.66% {
+    transform: translate(-17.3px, 10px);
+  } /* Bottom left */
+  100% {
+    transform: translate(0px, -20px);
+  } /* Back to Top */
+}
+
+@keyframes move2 {
+  0% {
+    transform: translate(17.3px, 10px);
+  } /* Bottom right */
+  33.33% {
+    transform: translate(-17.3px, 10px);
+  } /* Bottom left */
+  66.66% {
+    transform: translate(0px, -20px);
+  } /* Top */
+  100% {
+    transform: translate(17.3px, 10px);
+  } /* Back to Bottom right */
+}
+
+@keyframes move3 {
+  0% {
+    transform: translate(-17.3px, 10px);
+  } /* Bottom left */
+  33.33% {
+    transform: translate(0px, -20px);
+  } /* Top */
+  66.66% {
+    transform: translate(17.3px, 10px);
+  } /* Bottom right */
+  100% {
+    transform: translate(-17.3px, 10px);
+  } /* Back to Bottom left */
+}
