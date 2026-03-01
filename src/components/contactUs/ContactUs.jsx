@@ -23,6 +23,8 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { ThemeContext } from "../../appConstant";
 import FaqSection from "../../shared/components/FaqSection";
 import CtaBanner from "../../shared/components/CtaBanner";
+import AppButton from "../../shared/AppButton";
+import AppDivider from "../../shared/components/AppDivider";
 
 /* ─── Theme ─────────────────────────────────────────────────── */
 
@@ -43,43 +45,61 @@ function InfoCard({
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay }}
       sx={{
-        border: "1px solid rgba(255,255,255,0.1)",
-        borderRadius: "16px",
-        p: { xs: 2.5, md: 3 },
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: "22px",
+        p: { xs: "7.5px", md: "10px" },
         bgcolor: "rgba(255,255,255,0.03)",
-        backdropFilter: "blur(8px)",
+        backdropFilter: "blur(2px)",
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1.5 }}>
-        <Box sx={{ color: "rgba(255,255,255,0.6)", display: "flex" }}>
-          {icon}
-        </Box>
-        <Typography
+      <Box
+        sx={{
+          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: "22px",
+          p: { xs: "7.5px", md: "10px" },
+        }}
+      >
+        <Box
           sx={{
-            color: "rgba(255,255,255,0.7)",
-            fontWeight: 600,
-            fontSize: "0.9rem",
+            padding: "30px 36px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "left",
+            alignItems: "left",
+            gap: 1,
           }}
         >
-          {label}
-        </Typography>
-        {badge && (
-          <Chip
-            label={badge}
-            size="small"
-            sx={{
-              bgcolor: badgeColor,
-              color: "#fff",
-              fontWeight: 700,
-              fontSize: "0.65rem",
-              height: 20,
-              borderRadius: "8px",
-              ml: 0.5,
-            }}
-          />
-        )}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
+            <Box sx={{ color: "#fff", display: "flex" }}>{icon}</Box>
+            <Typography
+              sx={{
+                color: "#fff",
+                fontWeight: 600,
+                fontSize: "0.9rem",
+              }}
+            >
+              {label}
+            </Typography>
+            {badge && (
+              <Chip
+                label={badge}
+                size="small"
+                sx={{
+                  bgcolor: badgeColor,
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: "0.65rem",
+                  height: 20,
+                  borderRadius: "8px",
+                  ml: 0.5,
+                }}
+              />
+            )}
+          </Box>
+          <AppDivider />
+          {children}
+        </Box>
       </Box>
-      {children}
     </MotionBox>
   );
 }
@@ -94,7 +114,7 @@ export default function ContactUs() {
     email: "",
     message: "",
   });
-  const { bgVdo } = useContext(ThemeContext);
+  const { bgVdo, theme } = useContext(ThemeContext);
   const handleChange = (e) =>
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
 
@@ -129,7 +149,7 @@ export default function ContactUs() {
         sx={{
           position: "relative",
           overflow: "hidden",
-          pt: { xs: 8, md: 12 },
+          pt: { xs: 12, md: 14 },
           pb: { xs: 8, md: 12 },
         }}
       >
@@ -140,7 +160,7 @@ export default function ContactUs() {
             top: 0,
             left: 0,
             right: 0,
-            height: "50%",
+            height: "60%",
             overflow: "hidden",
             zIndex: 0,
             pointerEvents: "none",
@@ -168,6 +188,7 @@ export default function ContactUs() {
               left: 0,
               right: 0,
               height: "65%",
+              background: "linear-gradient(180deg, transparent 0%, #000 100%)",
             }}
           />
           {/* top fade */}
@@ -182,32 +203,6 @@ export default function ContactUs() {
           />
         </Box>
 
-        {/* ── Blue glow blobs ── */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: "5%",
-            left: "-8%",
-            width: { xs: "280px", md: "480px" },
-            height: { xs: "280px", md: "480px" },
-            borderRadius: "50%",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        />
-        <Box
-          sx={{
-            position: "absolute",
-            top: "18%",
-            right: "-4%",
-            width: { xs: "180px", md: "320px" },
-            height: { xs: "180px", md: "320px" },
-            borderRadius: "50%",
-            pointerEvents: "none",
-            zIndex: 1,
-          }}
-        />
-
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
           {/* Badge */}
           <MotionBox
@@ -220,7 +215,7 @@ export default function ContactUs() {
               <Chip
                 label="24/7"
                 sx={{
-                  bgcolor: "#2563EB",
+                  bgcolor: theme.palette.primary.main,
                   color: "#fff",
                   fontWeight: 800,
                   fontSize: "0.7rem",
@@ -301,279 +296,273 @@ export default function ContactUs() {
               mb: { xs: 7, md: 10 },
             }}
           >
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                bgcolor: "#2563EB",
-                px: 4,
-                py: 1.5,
-                fontSize: "0.9rem",
-                "&:hover": { bgcolor: "#1d4ed8" },
-              }}
-            >
-              Fill The Form Out!
-            </Button>
+            <AppButton btnText={"Fill The Form Out!"} />
           </MotionBox>
 
           {/* ── Form + Info Cards ── */}
-          <Grid container spacing={{ xs: 3, md: 4 }} alignItems="flex-start">
-            {/* Contact Form */}
-            <Grid item xs={12} lg={8}>
-              <MotionBox
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.45 }}
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", lg: "row" },
+              gap: { xs: 3, md: 4 },
+              width: "100%",
+              opacity: 1,
+            }}
+          >
+            <Box
+              sx={{
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "22px",
+                p: { xs: "7.5px", md: "10px" },
+                bgcolor: "#080808",
+                width: "100%",
+              }}
+            >
+              <Box
                 sx={{
                   border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "20px",
-                  p: { xs: 3, md: 4 },
-                  bgcolor: "rgba(10,10,20,0.7)",
-                  backdropFilter: "blur(20px)",
+                  borderRadius: "22px",
+                  p: { xs: "7.5px", md: "10px" },
                 }}
               >
-                {/* Row 1: First + Last name */}
-                <Grid container spacing={2} sx={{ mb: 2.5 }}>
-                  <Grid item xs={12} sm={6}>
-                    <Typography
-                      sx={{
-                        color: "rgba(255,255,255,0.5)",
-                        fontSize: "0.78rem",
-                        mb: 1,
-                        fontWeight: 500,
-                      }}
-                    >
-                      First name*
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      name="firstName"
-                      placeholder="Jane"
-                      value={form.firstName}
-                      onChange={handleChange}
-                      variant="outlined"
-                      size="small"
-                      sx={inputSx}
-                      inputProps={{ style: { color: "#fff" } }}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <Typography
-                      sx={{
-                        color: "rgba(255,255,255,0.5)",
-                        fontSize: "0.78rem",
-                        mb: 1,
-                        fontWeight: 500,
-                      }}
-                    >
-                      Last Name*
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      name="lastName"
-                      placeholder="Smith"
-                      value={form.lastName}
-                      onChange={handleChange}
-                      variant="outlined"
-                      size="small"
-                      sx={inputSx}
-                      inputProps={{ style: { color: "#fff" } }}
-                    />
-                  </Grid>
-                </Grid>
-
-                {/* Row 2: Email */}
-                <Box sx={{ mb: 2.5 }}>
-                  <Typography
-                    sx={{
-                      color: "rgba(255,255,255,0.5)",
-                      fontSize: "0.78rem",
-                      mb: 1,
-                      fontWeight: 500,
-                    }}
-                  >
-                    How can we reach you?*
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    name="email"
-                    placeholder="jane@framer.com"
-                    value={form.email}
-                    onChange={handleChange}
-                    variant="outlined"
-                    size="small"
-                    sx={inputSx}
-                    inputProps={{ style: { color: "#fff" } }}
-                  />
-                </Box>
-
-                {/* Row 3: Country + Category */}
-                <Grid container spacing={2} sx={{ mb: 2.5 }}>
-                  <Grid item xs={12} sm={6}>
-                    <Typography
-                      sx={{
-                        color: "rgba(255,255,255,0.5)",
-                        fontSize: "0.78rem",
-                        mb: 1,
-                        fontWeight: 500,
-                      }}
-                    >
-                      Where Are you from?*
-                    </Typography>
-                    <Select
-                      fullWidth
-                      displayEmpty
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
-                      size="small"
-                      sx={selectSx}
-                      MenuProps={{
-                        PaperProps: {
-                          sx: {
-                            bgcolor: "#111",
-                            border: "1px solid rgba(255,255,255,0.1)",
-                            borderRadius: "12px",
-                          },
-                        },
-                      }}
-                    >
-                      <MenuItem
-                        value=""
-                        disabled
-                        sx={{ color: "rgba(255,255,255,0.3)" }}
-                      >
-                        Select your country...
-                      </MenuItem>
-                      {[
-                        "United States",
-                        "United Kingdom",
-                        "India",
-                        "Germany",
-                        "Australia",
-                        "Canada",
-                        "Other",
-                      ].map((c) => (
-                        <MenuItem
-                          key={c}
-                          value={c}
-                          sx={{
-                            color: "#fff",
-                            bgcolor: "#111",
-                            "&:hover": { bgcolor: "#1a1a2e" },
-                          }}
-                        >
-                          {c}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <Typography
-                      sx={{
-                        color: "rgba(255,255,255,0.5)",
-                        fontSize: "0.78rem",
-                        mb: 1,
-                        fontWeight: 500,
-                      }}
-                    >
-                      What's the type of your company?*
-                    </Typography>
-                    <Select
-                      fullWidth
-                      displayEmpty
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
-                      size="small"
-                      sx={selectSx}
-                      MenuProps={{
-                        PaperProps: {
-                          sx: {
-                            bgcolor: "#111",
-                            border: "1px solid rgba(255,255,255,0.1)",
-                            borderRadius: "12px",
-                          },
-                        },
-                      }}
-                    >
-                      <MenuItem
-                        value=""
-                        disabled
-                        sx={{ color: "rgba(255,255,255,0.3)" }}
-                      >
-                        Select Category
-                      </MenuItem>
-                      {[
-                        "Startup",
-                        "SME",
-                        "Enterprise",
-                        "Agency",
-                        "Freelancer",
-                        "Non-profit",
-                      ].map((c) => (
-                        <MenuItem
-                          key={c}
-                          value={c}
-                          sx={{
-                            color: "#fff",
-                            bgcolor: "#111",
-                            "&:hover": { bgcolor: "#1a1a2e" },
-                          }}
-                        >
-                          {c}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </Grid>
-                </Grid>
-
-                {/* Row 4: Message */}
-                <Box sx={{ mb: 3 }}>
-                  <Typography
-                    sx={{
-                      color: "rgba(255,255,255,0.5)",
-                      fontSize: "0.78rem",
-                      mb: 1,
-                      fontWeight: 500,
-                    }}
-                  >
-                    Message*
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    name="message"
-                    placeholder="Type your message..."
-                    value={form.message}
-                    onChange={handleChange}
-                    variant="outlined"
-                    multiline
-                    rows={4}
-                    sx={inputSx}
-                    inputProps={{ style: { color: "#fff" } }}
-                  />
-                </Box>
-
-                {/* Submit */}
-                <Button
-                  fullWidth
-                  variant="contained"
-                  size="large"
+                {/* Contact Form */}
+                <MotionBox
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.45 }}
                   sx={{
-                    bgcolor: "#2563EB",
-                    borderRadius: "12px",
-                    py: 1.8,
-                    fontSize: "0.95rem",
-                    fontWeight: 700,
-                    letterSpacing: "-0.01em",
-                    "&:hover": { bgcolor: "#1d4ed8" },
+                    p: { xs: 3, md: 4 },
+                    width: "100%",
                   }}
                 >
-                  Submit Now
-                </Button>
-              </MotionBox>
-            </Grid>
+                  {/* Row 1: First + Last name */}
+                  <Grid container spacing={2} sx={{ mb: 2.5 }}>
+                    <Grid item xs={12} sm={6}>
+                      <Typography
+                        sx={{
+                          color: "rgba(255,255,255,0.5)",
+                          fontSize: "0.78rem",
+                          mb: 1,
+                          fontWeight: 500,
+                        }}
+                      >
+                        First name*
+                      </Typography>
+                      <TextField
+                        fullWidth
+                        name="firstName"
+                        placeholder="Jane"
+                        value={form.firstName}
+                        onChange={handleChange}
+                        variant="outlined"
+                        size="small"
+                        sx={inputSx}
+                        inputProps={{ style: { color: "#fff" } }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Typography
+                        sx={{
+                          color: "rgba(255,255,255,0.5)",
+                          fontSize: "0.78rem",
+                          mb: 1,
+                          fontWeight: 500,
+                        }}
+                      >
+                        Last Name*
+                      </Typography>
+                      <TextField
+                        fullWidth
+                        name="lastName"
+                        placeholder="Smith"
+                        value={form.lastName}
+                        onChange={handleChange}
+                        variant="outlined"
+                        size="small"
+                        sx={inputSx}
+                        inputProps={{ style: { color: "#fff" } }}
+                      />
+                    </Grid>
+                  </Grid>
 
+                  {/* Row 2: Email */}
+                  <Box sx={{ mb: 2.5 }}>
+                    <Typography
+                      sx={{
+                        color: "rgba(255,255,255,0.5)",
+                        fontSize: "0.78rem",
+                        mb: 1,
+                        fontWeight: 500,
+                      }}
+                    >
+                      How can we reach you?*
+                    </Typography>
+                    <TextField
+                      fullWidth
+                      name="email"
+                      placeholder="jane@framer.com"
+                      value={form.email}
+                      onChange={handleChange}
+                      variant="outlined"
+                      size="small"
+                      sx={inputSx}
+                      inputProps={{ style: { color: "#fff" } }}
+                    />
+                  </Box>
+
+                  {/* Row 3: Country + Category */}
+                  <Grid container spacing={2} sx={{ mb: 2.5 }}>
+                    <Grid item xs={12} sm={6}>
+                      <Typography
+                        sx={{
+                          color: "rgba(255,255,255,0.5)",
+                          fontSize: "0.78rem",
+                          mb: 1,
+                          fontWeight: 500,
+                        }}
+                      >
+                        Where Are you from?*
+                      </Typography>
+                      <Select
+                        fullWidth
+                        displayEmpty
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        size="small"
+                        sx={selectSx}
+                        MenuProps={{
+                          PaperProps: {
+                            sx: {
+                              bgcolor: "#111",
+                              border: "1px solid rgba(255,255,255,0.1)",
+                              borderRadius: "12px",
+                            },
+                          },
+                        }}
+                      >
+                        <MenuItem
+                          value=""
+                          disabled
+                          sx={{ color: "rgba(255,255,255,0.3)" }}
+                        >
+                          Select your country...
+                        </MenuItem>
+                        {[
+                          "United States",
+                          "United Kingdom",
+                          "India",
+                          "Germany",
+                          "Australia",
+                          "Canada",
+                          "Other",
+                        ].map((c) => (
+                          <MenuItem
+                            key={c}
+                            value={c}
+                            sx={{
+                              color: "#fff",
+                              bgcolor: "#111",
+                              "&:hover": { bgcolor: "#1a1a2e" },
+                            }}
+                          >
+                            {c}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Typography
+                        sx={{
+                          color: "rgba(255,255,255,0.5)",
+                          fontSize: "0.78rem",
+                          mb: 1,
+                          fontWeight: 500,
+                        }}
+                      >
+                        What's the type of your company?*
+                      </Typography>
+                      <Select
+                        fullWidth
+                        displayEmpty
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        size="small"
+                        sx={selectSx}
+                        MenuProps={{
+                          PaperProps: {
+                            sx: {
+                              bgcolor: "#111",
+                              border: "1px solid rgba(255,255,255,0.1)",
+                              borderRadius: "12px",
+                            },
+                          },
+                        }}
+                      >
+                        <MenuItem
+                          value=""
+                          disabled
+                          sx={{ color: "rgba(255,255,255,0.3)" }}
+                        >
+                          Select Category
+                        </MenuItem>
+                        {[
+                          "Startup",
+                          "SME",
+                          "Enterprise",
+                          "Agency",
+                          "Freelancer",
+                          "Non-profit",
+                        ].map((c) => (
+                          <MenuItem
+                            key={c}
+                            value={c}
+                            sx={{
+                              color: "#fff",
+                              bgcolor: "#111",
+                              "&:hover": { bgcolor: "#1a1a2e" },
+                            }}
+                          >
+                            {c}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Grid>
+                  </Grid>
+
+                  {/* Row 4: Message */}
+                  <Box sx={{ mb: 3 }}>
+                    <Typography
+                      sx={{
+                        color: "rgba(255,255,255,0.5)",
+                        fontSize: "0.78rem",
+                        mb: 1,
+                        fontWeight: 500,
+                      }}
+                    >
+                      Message*
+                    </Typography>
+                    <TextField
+                      fullWidth
+                      name="message"
+                      placeholder="Type your message..."
+                      value={form.message}
+                      onChange={handleChange}
+                      variant="outlined"
+                      multiline
+                      rows={4}
+                      sx={inputSx}
+                      inputProps={{ style: { color: "#fff" } }}
+                    />
+                  </Box>
+
+                  {/* Submit */}
+                  <AppButton btnText={"Submit Now"} width={"100%"} />
+                </MotionBox>
+              </Box>
+            </Box>
             {/* Info Cards */}
-            <Grid item xs={12} lg={4}>
+            <Box>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 <InfoCard
                   icon={<EmailOutlinedIcon fontSize="small" />}
@@ -631,8 +620,8 @@ export default function ContactUs() {
                   </Typography>
                 </InfoCard>
               </Box>
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
         </Container>
       </Box>
 

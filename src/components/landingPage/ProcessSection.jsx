@@ -2,6 +2,9 @@ import { useContext, useRef } from "react";
 import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
 import { motion, useInView, useTransform } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
+import AppButton from "../../shared/AppButton";
+import LinkButton from "../../shared/LinkButton";
+import BookAppointmentButton from "../../shared/buttons/BookAppointmentButton";
 // ─── Process / How We Work Section ────────────────────────────────────────────
 const STAGES = [
   {
@@ -177,7 +180,8 @@ function ProcessSection() {
 
   const imageY = useTransform(scrollY, (v) => {
     if (!sectionRef.current) return 0;
-    const progress = v / (document.body.scrollHeight - window.innerHeight || 1);
+    const progress =
+      v / (document.body.scrollHeight - globalThis.innerHeight || 1);
     return (progress - 0.5) * 60;
   });
 
@@ -304,26 +308,7 @@ function ProcessSection() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <Box sx={{ mt: 4 }}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    px: 3.5,
-                    py: 1.5,
-                    fontSize: 14,
-                    fontWeight: 700,
-                    background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    boxShadow:
-                      "0 4px 20px rgba(59,110,248,0.35), inset 0 1px 0 rgba(255,255,255,0.18)",
-                    borderRadius: 2.5,
-                    "&:hover": {
-                      background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)",
-                      boxShadow: "0 6px 28px rgba(59,110,248,0.5)",
-                    },
-                  }}
-                >
-                  Book an Appointment
-                </Button>
+                <BookAppointmentButton />
               </Box>
             </motion.div>
           </Box>
@@ -416,7 +401,7 @@ function ProcessSection() {
                     <Typography
                       sx={{
                         fontSize: 20,
-                        
+
                         fontWeight: 800,
                         color: "#fff",
                       }}

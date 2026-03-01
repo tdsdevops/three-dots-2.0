@@ -16,6 +16,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../../shared/components/Logo";
 import { Link, useLocation, useNavigate } from "react-router";
+import LinkButton from "../../shared/LinkButton";
+import AppButton from "../../shared/AppButton";
+import AppDivider from "../../shared/components/AppDivider";
 
 function Header() {
   const context = useContext(ThemeContext);
@@ -43,7 +46,7 @@ function Header() {
   useEffect(() => {
     if (mobileOpen) {
       const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
+        globalThis.innerWidth - document.documentElement.clientWidth;
       const currentScrollY = scrollY?.get() ?? 0;
       document.body.style.position = "fixed";
       document.body.style.top = `-${currentScrollY}px`;
@@ -57,7 +60,7 @@ function Header() {
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.paddingRight = "";
-      if (top) window.scrollTo(0, parseInt(top || "0") * -1);
+      if (top) globalThis.scrollTo(0, parseInt(top || "0") * -1);
     }
     return () => {
       document.body.style.position = "";
@@ -225,22 +228,10 @@ function Header() {
                   }}
                 >
                   {!isMobile && (
-                    <Button
-                      component={Link}
+                    <LinkButton
+                      element={<AppButton btnText="Get In Touch" />}
                       to="/contact"
-                      variant="contained"
-                      size="small"
-                      sx={{
-                        px: 2.5,
-                        py: 1,
-                        fontSize: 13.5,
-                        background: "#3B6EF8",
-                        "&:hover": { background: "#2a5ce8" },
-                        textDecoration: "none",
-                      }}
-                    >
-                      Get In Touch
-                    </Button>
+                    />
                   )}
                   {isMobile && (
                     <IconButton
@@ -349,6 +340,7 @@ function Header() {
                   position: "relative",
                   zIndex: 1,
                 }}
+                width={"100%"}
               >
                 <Logo />
                 <IconButton
@@ -368,16 +360,19 @@ function Header() {
                 </IconButton>
               </Box>
 
-              <Box
-                sx={{
-                  mx: 2.5,
-                  height: "1px",
-                  background: "rgba(255,255,255,0.07)",
-                }}
-              />
+              <AppDivider />
 
               <Box
-                sx={{ px: 2.5, pt: 1, pb: 1, position: "relative", zIndex: 1 }}
+                sx={{
+                  px: 2.5,
+                  pt: 1,
+                  pb: 1,
+                  position: "relative",
+                  zIndex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                }}
               >
                 {links.map((l, i) => (
                   <motion.div
@@ -390,72 +385,60 @@ function Header() {
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   >
-                    <Button
-                      component={Link}
+                    <Link
+                      key={l}
                       to={`/${l.toLowerCase()}`}
-                      fullWidth
-                      onClick={() => setMobileOpen(false)}
                       sx={{
-                        justifyContent: "flex-start",
-                        color: l === "Home" ? "#fff" : "rgba(255,255,255,0.6)",
-                        fontSize: 17,
-                        
-                        fontWeight: 700,
-                        py: 1.5,
-                        px: 1,
-                        borderRadius: 1.5,
+                        alignItems: "center",
+                        cursor: "pointer",
+                        display: "flex",
+                        flexFlow: "row",
+                        gap: "10px",
+                        height: "min-content",
+                        overflow: "visible",
+                        padding: "0px",
+                        position: "relative",
                         textDecoration: "none",
-                        "&:hover": {
-                          color: "#fff",
-                          background: "rgba(255,255,255,0.06)",
-                        },
+                        width: "min-content",
                       }}
                     >
-                      {l}
-                    </Button>
+                      <span
+                        style={{
+                          opacity:
+                            location.pathname === `/${l.toLowerCase()}`
+                              ? 1
+                              : 0.6,
+
+                          display: "inline-block",
+                          backgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundImage:
+                            "linear-gradient(90deg, var(--token-59e77027-930e-45f7-94aa-a8ffadf9e382, rgb(255, 255, 255)) 0%, var(--token-69ff14d1-f0d2-4345-baec-a0ff0f57f0ca, rgba(153, 153, 153, 0)) 409.99999999999994%)",
+                        }}
+                      >
+                        {l}
+                      </span>
+                    </Link>
                   </motion.div>
                 ))}
               </Box>
-
-              <Box
-                sx={{
-                  mx: 2.5,
-                  height: "1px",
-                  background: "rgba(255,255,255,0.07)",
-                }}
-              />
 
               <motion.div
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.38, duration: 0.35 }}
+                width={"100%"}
               >
-                <Box sx={{ px: 2.5, py: 2, position: "relative", zIndex: 1 }}>
-                  <Button
-                    component={Link}
+                <Box
+                  sx={{ px: 2.5, py: 2, position: "relative", zIndex: 1 }}
+                  width={"100%"}
+                >
+                  <LinkButton
+                    element={
+                      <AppButton btnText="Get In Touch" width={"100%"} />
+                    }
                     to="/contact"
-                    fullWidth
-                    variant="contained"
-                    onClick={() => setMobileOpen(false)}
-                    sx={{
-                      py: 1.5,
-                      fontSize: 14.5,
-                      fontWeight: 700,
-                      background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
-                      borderRadius: 2,
-                      border: "1px solid rgba(255,255,255,0.16)",
-                      boxShadow:
-                        "0 4px 20px rgba(59,110,248,0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
-                      textDecoration: "none",
-                      "&:hover": {
-                        background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)",
-                        boxShadow:
-                          "0 6px 28px rgba(59,110,248,0.55), inset 0 1px 0 rgba(255,255,255,0.2)",
-                      },
-                    }}
-                  >
-                    Get In Touch
-                  </Button>
+                  />
                 </Box>
               </motion.div>
             </motion.div>

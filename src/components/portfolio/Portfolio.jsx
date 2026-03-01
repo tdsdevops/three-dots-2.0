@@ -15,6 +15,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ThemeContext } from "../../appConstant";
 import CtaBanner from "../../shared/components/CtaBanner";
 import FaqSection from "../../shared/components/FaqSection";
+import LinkButton from "../../shared/LinkButton";
+import AppButton from "../../shared/AppButton";
 
 const portfolioItems = [
   {
@@ -261,7 +263,7 @@ export default function Portfolio() {
           position: "relative",
           overflow: "hidden",
           backdropFilter: "blur(10px)",
-          pt: { xs: 8, md: 12 },
+          pt: { xs: 12, md: 14 },
           pb: { xs: 10, md: 14 },
         }}
       >
@@ -425,19 +427,10 @@ export default function Portfolio() {
               mb: { xs: 6, md: 8 },
             }}
           >
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                bgcolor: "#2563EB",
-                px: 4,
-                py: 1.5,
-                fontSize: "0.9rem",
-                "&:hover": { bgcolor: "#1d4ed8" },
-              }}
-            >
-              Build Your Product
-            </Button>
+            <LinkButton
+              element={<AppButton btnText={"Build Your Product"} />}
+              to={"/contact"}
+            />
           </MotionBox>
 
           {/* Portfolio Grid */}
@@ -458,7 +451,7 @@ export default function Portfolio() {
         </Container>
       </Box>
 
-      <FaqSection/>
+      <FaqSection />
 
       <CtaBanner />
     </Box>

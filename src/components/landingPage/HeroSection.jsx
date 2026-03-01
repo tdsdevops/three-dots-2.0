@@ -4,6 +4,10 @@ import bgVdo from "../../assets/bgVdo.mp4";
 import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
+import ConnectWithUsButton from "../../shared/buttons/ConnectWithUsButton";
+import AppButton from "../../shared/AppButton";
+import { Link } from "react-router";
+import LinkButton from "../../shared/LinkButton";
 
 function HeroSection() {
   const videoRef = useRef(null);
@@ -180,36 +184,18 @@ function HeroSection() {
                 spacing={2}
                 gap={1.5}
               >
-                <Button
-                  variant="outlined"
-                  sx={{
-                    borderColor: "rgba(255,255,255,0.3)",
-                    color: "#fff",
-                    px: { xs: 2.5, md: 3 },
-                    py: 1.2,
-                    fontSize: 14,
-                    "&:hover": {
-                      borderColor: "#fff",
-                      background: "rgba(255,255,255,0.06)",
-                    },
-                  }}
-                >
-                  Connect With Us
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{
-                    background: "rgba(59,110,248,0.18)",
-                    border: "1px solid rgba(59,110,248,0.4)",
-                    color: "#7da4ff",
-                    px: { xs: 2.5, md: 3 },
-                    py: 1.2,
-                    fontSize: 14,
-                    "&:hover": { background: "rgba(59,110,248,0.3)" },
-                  }}
-                >
-                  What is Landin?
-                </Button>
+                <ConnectWithUsButton />
+                <LinkButton
+                  to="/about"
+                  element={
+                    <AppButton
+                      btnText="What is Three Dots?"
+                      bgColor={"#ffffff26"}
+                      color="#ffffff"
+                      showBoxShadow={false}
+                    />
+                  }
+                />
               </Stack>
             </motion.div>
           </Box>

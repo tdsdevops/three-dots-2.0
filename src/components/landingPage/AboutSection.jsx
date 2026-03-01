@@ -1,8 +1,9 @@
-import {useRef} from 'react'
-import { Box, Button, Container, Stack, Typography } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { motion, useInView } from 'framer-motion';
-
+import { useRef } from "react";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { motion, useInView } from "framer-motion";
+import AppButton from "../../shared/AppButton";
+import LinkButton from "../../shared/LinkButton";
 
 function AboutSection() {
   const ref = useRef(null);
@@ -95,7 +96,7 @@ function AboutSection() {
                 <Typography
                   sx={{
                     fontSize: 22,
-                    
+
                     fontWeight: 800,
                     color: "#fff",
                   }}
@@ -217,19 +218,10 @@ function AboutSection() {
                 spacing={3}
                 alignItems={{ sm: "center" }}
               >
-                <Button
-                  variant="contained"
-                  sx={{
-                    px: 3,
-                    py: 1.4,
-                    fontSize: 14,
-                    background: "#3B6EF8",
-                    "&:hover": { background: "#2a5ce8" },
-                    alignSelf: "flex-start",
-                  }}
-                >
-                  View About Threedots
-                </Button>
+                <LinkButton
+                  to="/about"
+                  element={<AppButton btnText="View About Threedots" />}
+                />
               </Stack>
             </motion.div>
           </Box>
@@ -239,4 +231,4 @@ function AboutSection() {
   );
 }
 
-export default AboutSection
+export default AboutSection;

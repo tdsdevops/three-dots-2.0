@@ -14,6 +14,11 @@ import {
 import { motion } from "framer-motion";
 import bgVdo from "../../assets/bgVdo.mp4";
 import CtaBanner from "../../shared/components/CtaBanner";
+import ConnectWithUsButton from "../../shared/buttons/ConnectWithUsButton";
+import LinkButton from "../../shared/LinkButton";
+import AppButton from "../../shared/AppButton";
+import BookAppointmentButton from "../../shared/buttons/BookAppointmentButton";
+import FaqSection from "../../shared/components/FaqSection";
 
 const darkTheme = createTheme({
   palette: {
@@ -55,7 +60,6 @@ function SectionHeader({ badge, title, titleGray, subtitle, cta, ctaLabel }) {
       <M {...fadeUp(0.1)}>
         <Typography
           sx={{
-            
             fontWeight: 800,
             fontSize: {
               xs: "2rem",
@@ -100,24 +104,7 @@ function SectionHeader({ badge, title, titleGray, subtitle, cta, ctaLabel }) {
             whileTap={{ scale: 0.97 }}
             style={{ display: "inline-block" }}
           >
-            <Button
-              variant="contained"
-              sx={{
-                bgcolor: "#2563EB",
-                color: "#fff",
-                fontFamily: "DM Sans",
-                fontWeight: 700,
-                px: { xs: 3, md: 4 },
-                py: 1.4,
-                borderRadius: 2.5,
-                textTransform: "none",
-                fontSize: { xs: "0.875rem", md: "0.95rem" },
-                boxShadow: "0 0 24px rgba(37,99,235,0.45)",
-                "&:hover": { bgcolor: "#1d4ed8" },
-              }}
-            >
-              {ctaLabel}
-            </Button>
+            <AppButton btnText={ctaLabel} />
           </M>
         </M>
       )}
@@ -158,81 +145,6 @@ function CornerDeco() {
           clipPath: "polygon(45% 0, 100% 0, 100% 100%, 0 100%)",
         }}
       />
-    </Box>
-  );
-}
-
-/* ── NAVBAR ── */
-function Navbar() {
-  const theme = useTheme();
-  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
-  return (
-    <Box
-      component="nav"
-      sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        px: { xs: 2, sm: 3, md: 5 },
-        py: 2,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        backdropFilter: "blur(14px)",
-        bgcolor: "rgba(0,0,0,0.65)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-      }}
-    >
-      <Typography
-        sx={{
-          
-          fontWeight: 800,
-          fontSize: { xs: "1.2rem", md: "1.4rem" },
-          color: "#fff",
-          letterSpacing: "-0.02em",
-        }}
-      >
-        Landin
-      </Typography>
-      {!isSm && (
-        <Box sx={{ display: "flex", gap: { md: 3, lg: 4 } }}>
-          {["Home", "About", "Team", "Tools", "Contact"].map((item) => (
-            <Typography
-              key={item}
-              sx={{
-                fontFamily: "DM Sans",
-                color: "#9ca3af",
-                fontSize: "0.88rem",
-                cursor: "pointer",
-                transition: "color .2s",
-                "&:hover": { color: "#fff" },
-              }}
-            >
-              {item}
-            </Typography>
-          ))}
-        </Box>
-      )}
-      <Button
-        variant="contained"
-        size="small"
-        sx={{
-          bgcolor: "#2563EB",
-          color: "#fff",
-          fontFamily: "DM Sans",
-          fontWeight: 600,
-          textTransform: "none",
-          borderRadius: 2,
-          px: { xs: 2, md: 2.5 },
-          fontSize: { xs: "0.78rem", md: "0.875rem" },
-          boxShadow: "none",
-          "&:hover": { bgcolor: "#1d4ed8" },
-        }}
-      >
-        Get Started
-      </Button>
     </Box>
   );
 }
@@ -334,7 +246,6 @@ function HeroSection() {
         >
           <Typography
             sx={{
-              
               fontWeight: 800,
               fontSize: {
                 xs: "2.2rem",
@@ -348,7 +259,7 @@ function HeroSection() {
               mb: 3,
             }}
           >
-            Learn More About Landin
+            Learn More About ThreeDots
             <Box component="span" sx={{ display: "block" }}>
               Let's Deep Dive!
             </Box>
@@ -364,7 +275,7 @@ function HeroSection() {
               lineHeight: 1.7,
             }}
           >
-            Landin is your go-to agency for creative thinking and marketing
+            ThreeDots is your go-to agency for creative thinking and marketing
             ideas. We specialize in digital business solutions.
           </Typography>
           <Box
@@ -376,50 +287,20 @@ function HeroSection() {
             }}
           >
             <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Button
-                variant="outlined"
-                sx={{
-                  borderColor: "#fff",
-                  color: "#fff",
-                  fontFamily: "DM Sans",
-                  fontWeight: 600,
-                  px: { xs: 2.5, md: 3 },
-                  py: 1,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: { xs: "0.85rem", md: "0.95rem" },
-                  backdropFilter: "blur(6px)",
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  "&:hover": {
-                    borderColor: "#2563EB",
-                    bgcolor: "rgba(37,99,235,0.12)",
-                  },
-                }}
-              >
-                Connect With Us
-              </Button>
+              <ConnectWithUsButton />
             </M>
             <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: "rgba(10,10,20,0.7)",
-                  color: "#fff",
-                  fontFamily: "DM Sans",
-                  fontWeight: 600,
-                  px: { xs: 2.5, md: 3 },
-                  py: 1,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: { xs: "0.85rem", md: "0.95rem" },
-                  border: "1px solid rgba(255,255,255,0.18)",
-                  boxShadow: "none",
-                  backdropFilter: "blur(6px)",
-                  "&:hover": { bgcolor: "rgba(20,20,40,0.8)" },
-                }}
-              >
-                What is Landin?
-              </Button>
+              <LinkButton
+                to="/about"
+                element={
+                  <AppButton
+                    btnText="What is Three Dots?"
+                    bgColor={"#ffffff26"}
+                    color="#ffffff"
+                    showBoxShadow={false}
+                  />
+                }
+              />
             </M>
           </Box>
         </M>
@@ -595,7 +476,7 @@ function AboutBlock({
       sx={{ flex: 1, order: { xs: 2, md: imageRight ? 1 : 2 } }}
     >
       <Chip
-        label="● About Landin"
+        label="● About ThreeDots"
         sx={{
           bgcolor: "#111",
           color: "#fff",
@@ -607,7 +488,6 @@ function AboutBlock({
       />
       <Typography
         sx={{
-          
           fontWeight: 800,
           fontSize: {
             xs: "1.9rem",
@@ -661,24 +541,7 @@ function AboutBlock({
         }}
       >
         <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#2563EB",
-              color: "#fff",
-              fontFamily: "DM Sans",
-              fontWeight: 700,
-              px: { xs: 3, md: 4 },
-              py: { xs: 1.2, md: 1.5 },
-              borderRadius: 2.5,
-              textTransform: "none",
-              fontSize: { xs: "0.875rem", md: "1rem" },
-              boxShadow: "0 0 24px rgba(37,99,235,0.4)",
-              "&:hover": { bgcolor: "#1d4ed8" },
-            }}
-          >
-            Book an Appointment
-          </Button>
+          <BookAppointmentButton />
         </M>
         <StarRating count={ratingCount} />
       </Box>
@@ -970,7 +833,7 @@ function ToolCard({ tool, index }) {
           alignItems: "center",
           justifyContent: "center",
           mb: 2.5,
-          
+
           fontWeight: 800,
           fontSize: "1rem",
           color: tool.textColor,
@@ -1085,10 +948,8 @@ function ToolsSection() {
   );
 }
 
-
-
 /* ── APP ── */
-export default function App() {
+export default function About() {
   return (
     <>
       <HeroSection />
@@ -1098,11 +959,11 @@ export default function App() {
         points={[
           {
             title: "Your Success, Our Priority",
-            body: "At Landin, we believe in empowering our clients to achieve their goals. Our team works closely with you.",
+            body: "At ThreeDots, we believe in empowering our clients to achieve their goals. Our team works closely with you.",
           },
           {
             title: "Partners You Can Rely On",
-            body: "Landin is here to ensure your success with expert guidance and collaborative teamwork.",
+            body: "ThreeDots is here to ensure your success with expert guidance and collaborative teamwork.",
           },
         ]}
         ratingCount="200+ Agencies Rated"
@@ -1118,13 +979,14 @@ export default function App() {
           },
           {
             title: "Support Beyond Delivery",
-            body: "Our commitment doesn't end at launch—Landin is here to support you with ongoing updates and expertise whenever you need it.",
+            body: "Our commitment doesn't end at launch—ThreeDots is here to support you with ongoing updates and expertise whenever you need it.",
           },
         ]}
         ratingCount="900+ People Rated"
       />
       <TeamSection />
       <ToolsSection />
+      <FaqSection />
       <CtaBanner />
     </>
   );

@@ -8,7 +8,7 @@ import bgVdo from "../../assets/bgVdo.mp4";
 const theme = createTheme({
   palette: {
     mode: "dark",
-    primary: { main: "#3B6EF8" },
+    primary: { main: "#0055ff" },
     background: { default: "#020718", paper: "#060d24" },
     text: { primary: "#ffffff", secondary: "rgba(255,255,255,0.55)" },
   },
@@ -27,18 +27,7 @@ const theme = createTheme({
     h2: { fontFamily: "'DM Sans', sans-serif", fontWeight: 800 },
     h3: { fontFamily: "'DM Sans', sans-serif", fontWeight: 700 },
   },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-          textTransform: "none",
-          fontWeight: 600,
-          letterSpacing: 0.3,
-        },
-      },
-    },
-  },
+  components: {},
 });
 function useSmoothScroll() {
   const contentRef = useRef(null); // the motion.div with transform
@@ -54,7 +43,8 @@ function useSmoothScroll() {
     const proxy = proxyRef.current;
     if (!content || !proxy) return;
 
-    const getMax = () => Math.max(0, content.scrollHeight - window.innerHeight);
+    const getMax = () =>
+      Math.max(0, content.scrollHeight - globalThis.innerHeight);
 
     // Keep the proxy inner spacer height = content height
     // so the proxy's scrollbar range exactly matches scrollable area
@@ -102,7 +92,7 @@ function useSmoothScroll() {
     // ── Keyboard ──
     const onKeyDown = (e) => {
       const step = 80;
-      const pageStep = window.innerHeight * 0.85;
+      const pageStep = globalThis.innerHeight * 0.85;
       const map = {
         ArrowDown: step,
         ArrowUp: -step,
@@ -133,18 +123,18 @@ function useSmoothScroll() {
       rafId.current = requestAnimationFrame(tick);
     };
 
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("keydown", onKeyDown);
+    globalThis.addEventListener("wheel", onWheel, { passive: false });
+    globalThis.addEventListener("touchstart", onTouchStart, { passive: true });
+    globalThis.addEventListener("touchmove", onTouchMove, { passive: true });
+    globalThis.addEventListener("keydown", onKeyDown);
     proxy.addEventListener("scroll", onProxyScroll, { passive: true });
     rafId.current = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("keydown", onKeyDown);
+      globalThis.removeEventListener("wheel", onWheel);
+      globalThis.removeEventListener("touchstart", onTouchStart);
+      globalThis.removeEventListener("touchmove", onTouchMove);
+      globalThis.removeEventListener("keydown", onKeyDown);
       proxy.removeEventListener("scroll", onProxyScroll);
       cancelAnimationFrame(rafId.current);
       ro.disconnect();
@@ -162,10 +152,9 @@ function Cursor() {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
+    globalThis.addEventListener("mousemove", move);
+    return () => globalThis.removeEventListener("mousemove", move);
   }, []);
-
 
   return (
     <motion.div
@@ -183,12 +172,11 @@ function Cursor() {
         y: cursorY,
         translateX: "-50%",
         translateY: "-50%",
-        mixBlendMode: "difference",
       }}
     />
   );
 }
-  // // ─── Motion variants ──────────────────────────────────────────────────────────
+// // ─── Motion variants ──────────────────────────────────────────────────────────
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (i = 0) => ({
@@ -209,7 +197,16 @@ function ThemeContextProvider({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider
-        value={{ scrollY, contentRef, proxyRef, theme, contentY ,fadeUp, stagger, bgVdo}}
+        value={{
+          scrollY,
+          contentRef,
+          proxyRef,
+          theme,
+          contentY,
+          fadeUp,
+          stagger,
+          bgVdo,
+        }}
       >
         <Cursor />
 

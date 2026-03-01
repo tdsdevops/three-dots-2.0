@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Box, Button, Container, Typography, Stack, Chip } from "@mui/material";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import BookAppointmentButton from "../../shared/buttons/BookAppointmentButton";
 
 // ─── Services Data ─────────────────────────────────────────────────────────────
 const SERVICES = [
@@ -227,7 +228,6 @@ function ServiceCard({ service, index }) {
           >
             <Typography
               sx={{
-                
                 fontWeight: 800,
                 fontSize: 15,
                 color: "#fff",
@@ -290,27 +290,7 @@ function ServiceCard({ service, index }) {
             whileTap={{ scale: 0.98 }}
             style={{ position: "relative", zIndex: 1, display: "inline-block" }}
           >
-            <Button
-              variant="contained"
-              sx={{
-                px: 3,
-                py: 1.2,
-                fontSize: 13.5,
-                fontWeight: 700,
-                background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
-                borderRadius: "10px",
-                border: "1px solid rgba(255,255,255,0.14)",
-                textTransform: "none",
-                boxShadow:
-                  "0 4px 18px rgba(59,110,248,0.38), inset 0 1px 0 rgba(255,255,255,0.18)",
-                "&:hover": {
-                  background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)",
-                  boxShadow: "0 6px 26px rgba(59,110,248,0.52)",
-                },
-              }}
-            >
-              Book an Appointment
-            </Button>
+            <BookAppointmentButton />
           </motion.div>
         )}
       </Box>
@@ -553,7 +533,6 @@ export default function ServicesSection() {
                     </Typography>
                     <Typography
                       sx={{
-                        
                         fontWeight: 800,
                         fontSize: 20,
                         color: "#fff",

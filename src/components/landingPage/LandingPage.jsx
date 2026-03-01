@@ -9,6 +9,8 @@ import ProcessSection from "./ProcessSection";
 import Footer from "../home/Footer";
 import DynamicSmoothScrolling from "../../shared/components/DynamicSmoothScrolling";
 import TestimonialsSection from "./TestimonialsSection";
+import FaqSection from "../../shared/components/FaqSection";
+import CtaBanner from "../../shared/components/CtaBanner";
 
 function LandingPage() {
   const { proxyRef, contentRef, contentY } = useContext(ThemeContext);
@@ -21,6 +23,8 @@ function LandingPage() {
       <ServicesSection />
       <BenefitsSection />
       <TestimonialsSection />
+      <FaqSection />
+      <CtaBanner />
       {/* </DynamicSmoothScrolling> */}
       {/* </motion.div>
       </Box> */}
