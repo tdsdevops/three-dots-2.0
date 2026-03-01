@@ -81,7 +81,6 @@ function CtaBanner() {
               />
               <Typography
                 sx={{
-                  fontFamily: "Syne",
                   fontWeight: 800,
                   fontSize: {
                     xs: "1.8rem",

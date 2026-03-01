@@ -416,7 +416,7 @@ function ProcessSection() {
                     <Typography
                       sx={{
                         fontSize: 20,
-                        fontFamily: "Syne",
+                        
                         fontWeight: 800,
                         color: "#fff",
                       }}

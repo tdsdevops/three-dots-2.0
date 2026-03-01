@@ -22,10 +22,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Plus Jakarta Sans', 'Syne', sans-serif",
-    h1: { fontFamily: "'Syne', sans-serif", fontWeight: 800 },
-    h2: { fontFamily: "'Syne', sans-serif", fontWeight: 800 },
-    h3: { fontFamily: "'Syne', sans-serif", fontWeight: 700 },
+    fontFamily: "'DM Sans', sans-serif",
+    h1: { fontFamily: "'DM Sans', sans-serif", fontWeight: 800 },
+    h2: { fontFamily: "'DM Sans', sans-serif", fontWeight: 800 },
+    h3: { fontFamily: "'DM Sans', sans-serif", fontWeight: 700 },
   },
   components: {
     MuiButton: {

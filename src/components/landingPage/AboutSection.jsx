@@ -95,7 +95,7 @@ function AboutSection() {
                 <Typography
                   sx={{
                     fontSize: 22,
-                    fontFamily: "Syne",
+                    
                     fontWeight: 800,
                     color: "#fff",
                   }}

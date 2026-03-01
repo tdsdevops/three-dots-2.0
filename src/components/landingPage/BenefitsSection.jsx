@@ -145,14 +145,14 @@ export default function BenefitsSection() {
 
         <motion.div initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.65, delay: 0.08 }}>
           <Typography sx={{
-            fontFamily: "Syne", fontWeight: 800,
+            
             fontSize: { xs: "2rem", sm: "2.6rem", md: "3rem", xl: "3.5rem" },
             color: "#fff", lineHeight: 1.1, mb: 0.5,
           }}>
             We Just Don't Design, We Build.
           </Typography>
           <Typography sx={{
-            fontFamily: "Syne", fontWeight: 800,
+            
             fontSize: { xs: "2rem", sm: "2.6rem", md: "3rem", xl: "3.5rem" },
             color: "#fff", lineHeight: 1.1, mb: 4,
           }}>
@@ -224,7 +224,7 @@ export default function BenefitsSection() {
                 display: "flex", alignItems: "center", justifyContent: "center",
               }}>
                 <Box sx={{
-                  fontSize: { xs: 40, md: 52 }, fontFamily: "Syne", fontWeight: 900,
+                  fontSize: { xs: 40, md: 52 }, fontWeight: 900,
                   color: "rgba(255,255,255,0.12)",
                   textShadow: "0 0 60px rgba(59,110,248,0.8)",
                   letterSpacing: -2,
@@ -235,7 +235,7 @@ export default function BenefitsSection() {
             </Box>
 
             <Box sx={{ p: 3 }}>
-              <Typography sx={{ fontFamily: "Syne", fontWeight: 700, fontSize: { xs: "1.1rem", md: "1.2rem" }, color: "#fff", mb: 1.2 }}>
+              <Typography sx={{  fontWeight: 700, fontSize: { xs: "1.1rem", md: "1.2rem" }, color: "#fff", mb: 1.2 }}>
                 Submit Unlimited Requests
               </Typography>
               <Typography sx={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, mb: 3 }}>
@@ -283,7 +283,7 @@ export default function BenefitsSection() {
                         background: `linear-gradient(135deg, ${color}cc, ${color}66)`,
                         border: "1px solid rgba(255,255,255,0.15)",
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: 20, fontFamily: "Syne", fontWeight: 900, color: "#fff",
+                        fontSize: 20, fontWeight: 900, color: "#fff",
                         boxShadow: `0 4px 18px ${color}44`,
                         mb: 0.5,
                       }}>{letter}</Box>
@@ -294,7 +294,7 @@ export default function BenefitsSection() {
               </Box>
               <Box sx={{ flex: 1 }}>
                 <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1.2 }}>
-                  <Typography sx={{ fontFamily: "Syne", fontWeight: 700, fontSize: "1.05rem", color: "#fff" }}>
+                  <Typography sx={{  fontWeight: 700, fontSize: "1.05rem", color: "#fff" }}>
                     Requests & Revisions
                   </Typography>
                   <GlowBadge />
@@ -316,7 +316,7 @@ export default function BenefitsSection() {
               />
               <Box sx={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <Typography sx={{
-                  fontFamily: "Syne", fontWeight: 900, fontSize: 36, color: "rgba(255,255,255,0.9)",
+                   fontWeight: 900, fontSize: 36, color: "rgba(255,255,255,0.9)",
                   textShadow: "0 0 30px rgba(59,110,248,0.6)",
                   letterSpacing: -1,
                 }}>100,000</Typography>
@@ -325,7 +325,7 @@ export default function BenefitsSection() {
             </Box>
             <Box sx={{ p: 2.5 }}>
               <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
-                <Typography sx={{ fontFamily: "Syne", fontWeight: 700, fontSize: "1rem", color: "#fff" }}>
+                <Typography sx={{  fontWeight: 700, fontSize: "1rem", color: "#fff" }}>
                   Quick Turnaround
                 </Typography>
                 <GlowBadge />
@@ -357,7 +357,7 @@ export default function BenefitsSection() {
               </Box>
             </Box>
             <Box sx={{ p: 2.5 }}>
-              <Typography sx={{ fontFamily: "Syne", fontWeight: 700, fontSize: "1rem", color: "#fff", mb: 1 }}>
+              <Typography sx={{  fontWeight: 700, fontSize: "1rem", color: "#fff", mb: 1 }}>
                 Publish in Seconds
               </Typography>
               <Typography sx={{ fontSize: 12.5, color: "rgba(255,255,255,0.5)", lineHeight: 1.7 }}>
@@ -412,7 +412,7 @@ export default function BenefitsSection() {
               </Box>
 
               <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1.2 }}>
-                <Typography sx={{ fontFamily: "Syne", fontWeight: 700, fontSize: "1rem", color: "#fff" }}>
+                <Typography sx={{  fontWeight: 700, fontSize: "1rem", color: "#fff" }}>
                   Worry-Free Pricing
                 </Typography>
                 <GlowBadge color="#8B5CF6" />

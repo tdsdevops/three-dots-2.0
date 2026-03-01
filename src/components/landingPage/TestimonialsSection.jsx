@@ -86,7 +86,7 @@ function TestimonialCard({ t, index }) {
         {/* Author */}
         <Box sx={{ position: "relative", zIndex: 1 }}>
           <Stack direction="row" spacing={0.8} alignItems="center">
-            <Typography sx={{ fontFamily: "Syne", fontWeight: 700, fontSize: 13.5, color: "#fff" }}>
+            <Typography sx={{  fontWeight: 700, fontSize: 13.5, color: "#fff" }}>
               {t.name}
             </Typography>
             <Box sx={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(255,255,255,0.3)" }} />
@@ -207,14 +207,12 @@ const BRANDS = ["IPSUM", "∞∞", "GOGO", "AMEX"];
 
           <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.65, delay: 0.08 }}>
             <Typography sx={{
-              fontFamily: "Syne", fontWeight: 800,
               fontSize: { xs: "1.9rem", sm: "2.5rem", md: "3rem", lg: "3.4rem" },
               color: "#fff", lineHeight: 1.15, mb: 0.5,
             }}>
               Customer Reviews About
             </Typography>
             <Typography sx={{
-              fontFamily: "Syne", fontWeight: 800,
               fontSize: { xs: "1.9rem", sm: "2.5rem", md: "3rem", lg: "3.4rem" },
               color: "rgba(255,255,255,0.75)", lineHeight: 1.15, mb: 2.5,
             }}>

@@ -11,7 +11,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<HomeLayout />}>
-          <Route index path="home" element={<LandingPage />} />
+          <Route index element={<LandingPage />} />
           <Route path="about" element={<About />} />
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="contact" element={<ContactUs />} />

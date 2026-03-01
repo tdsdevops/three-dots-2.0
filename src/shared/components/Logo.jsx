@@ -4,13 +4,19 @@ import ThreeDotsLogo from "../../assets/threedots.svg";
 // ─── Logo ─────────────────────────────────────────────────────────────────────
 export default function Logo({ width = "50px" }) {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+    <Box
+      sx={{
+        flex: "0 0 auto",
+        overflow: "hidden",
+        position: "relative",
+        textDecoration: "none",
+      }}
+    >
       <Box
         component="span"
         sx={{
           fontSize: 22,
           color: "primary.main",
-          fontFamily: "Syne",
           fontWeight: 900,
           letterSpacing: -1,
         }}

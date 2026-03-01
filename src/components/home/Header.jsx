@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../../shared/components/Logo";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 function Header() {
   const context = useContext(ThemeContext);
@@ -109,84 +109,173 @@ function Header() {
               disableGutters
               sx={{ py: { xs: 1.2, md: 1.5 }, justifyContent: "space-between" }}
             >
-              <Logo />
-              {!isMobile && (
-                <Stack
-                  direction="row"
-                  spacing={0.5}
+              <Box
+                sx={{
+                  alignItems: "center",
+                  display: "flex",
+                  flex: "1 0 0px",
+                  flexFlow: "row",
+                  height: "min-content",
+                  overflow: "visible",
+                  position: "relative",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <Box
                   sx={{
-                    position: "absolute",
-                    left: "50%",
-                    transform: "translateX(-50%)",
+                    alignItems: "center",
+                    display: "flex",
+                    flex: "0 0 auto",
+                    flexFlow: "row",
+                    gap: "40px",
+                    height: "min-content",
+                    overflow: "hidden",
+                    padding: "0px",
+                    position: "relative",
+                    width: "min-content",
                   }}
                 >
-                  {links.map((l) => (
+                  <Logo />
+                  {!isMobile && (
+                    <>
+                      <div
+                        style={{
+                          background:
+                            "linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%)",
+                          opacity: 1,
+                          flex: "0 0 auto",
+                          height: "40px",
+                          overflow: "hidden",
+                          position: "relative",
+                          width: "1px",
+                        }}
+                      ></div>
+                      <Stack
+                        direction="row"
+                        spacing={0.5}
+                        sx={{
+                          flex: "0 0 auto",
+                          height: "auto",
+                          position: "relative",
+                          width: "auto",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            alignItems: "flex-start",
+                            display: "flex",
+                            flexDirection: "row",
+                            flexWrap: "nowrap",
+                            gap: "38px",
+                            height: "min-content",
+                            overflow: "hidden",
+                            padding: "0px",
+                            position: "relative",
+                            width: "min-content",
+                          }}
+                        >
+                          {links.map((l) => (
+                            <Link
+                              key={l}
+                              to={`/${l.toLowerCase()}`}
+                              sx={{
+                                alignItems: "center",
+                                cursor: "pointer",
+                                display: "flex",
+                                flexFlow: "row",
+                                gap: "10px",
+                                height: "min-content",
+                                overflow: "visible",
+                                padding: "0px",
+                                position: "relative",
+                                textDecoration: "none",
+                                width: "min-content",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  opacity:
+                                    location.pathname === `/${l.toLowerCase()}`
+                                      ? 1
+                                      : 0.6,
+
+                                  display: "inline-block",
+                                  backgroundClip: "text",
+                                  WebkitTextFillColor: "transparent",
+                                  backgroundImage:
+                                    "linear-gradient(90deg, var(--token-59e77027-930e-45f7-94aa-a8ffadf9e382, rgb(255, 255, 255)) 0%, var(--token-69ff14d1-f0d2-4345-baec-a0ff0f57f0ca, rgba(153, 153, 153, 0)) 409.99999999999994%)",
+                                }}
+                              >
+                                {l}
+                              </span>
+                            </Link>
+                          ))}
+                        </Box>
+                      </Stack>
+                    </>
+                  )}
+                </Box>
+                <Box
+                  sx={{
+                    flex: "0 0 auto",
+                    height: "auto",
+                    position: "relative",
+                    width: "auto",
+                  }}
+                >
+                  {!isMobile && (
                     <Button
-                      key={l}
+                      component={Link}
+                      to="/contact"
+                      variant="contained"
+                      size="small"
                       sx={{
-                        color:
-                          l.toLowerCase() === location.pathname.slice(1)
-                            ? "#fff"
-                            : "text.secondary",
+                        px: 2.5,
+                        py: 1,
                         fontSize: 13.5,
-                        px: 1.5,
-                        "&:hover": { color: "#fff" },
-                      }}
-                      onClick={() => {
-                        if (l === location.pathname.slice(1)) return;
-                        navigate(`/${l.toLowerCase()}`);
+                        background: "#3B6EF8",
+                        "&:hover": { background: "#2a5ce8" },
+                        textDecoration: "none",
                       }}
                     >
-                      {l}
+                      Get In Touch
                     </Button>
-                  ))}
-                </Stack>
-              )}
-              <Stack direction="row" spacing={1} alignItems="center">
-                {!isMobile && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    sx={{
-                      px: 2.5,
-                      py: 1,
-                      fontSize: 13.5,
-                      background: "#3B6EF8",
-                      "&:hover": { background: "#2a5ce8" },
-                    }}
-                  >
-                    Get In Touch
-                  </Button>
-                )}
-                {isMobile && (
-                  <IconButton
-                    onClick={() => setMobileOpen(true)}
-                    sx={{ color: "#fff", p: 0.5 }}
-                    aria-label="Open menu"
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "5px",
-                        width: 22,
-                      }}
+                  )}
+                  {isMobile && (
+                    <IconButton
+                      onClick={() => setMobileOpen(true)}
+                      sx={{ color: "#fff", p: 0.5 }}
+                      aria-label="Open menu"
                     >
-                      <Box
-                        sx={{ height: 2, background: "#fff", borderRadius: 1 }}
-                      />
                       <Box
                         sx={{
-                          height: 2,
-                          background: "#fff",
-                          borderRadius: 1,
-                          width: "70%",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "5px",
+                          width: 22,
                         }}
-                      />
-                    </Box>
-                  </IconButton>
-                )}
-              </Stack>
+                      >
+                        <Box
+                          sx={{
+                            height: 2,
+                            background: "#fff",
+                            borderRadius: 1,
+                          }}
+                        />
+                        <Box
+                          sx={{
+                            height: 2,
+                            background: "#fff",
+                            borderRadius: 1,
+                            width: "70%",
+                          }}
+                        />
+                      </Box>
+                    </IconButton>
+                  )}
+                </Box>
+              </Box>
             </Toolbar>
           </Container>
         </AppBar>
@@ -227,7 +316,7 @@ function Header() {
                 borderBottom: "1px solid rgba(255,255,255,0.10)",
                 boxShadow:
                   "0 24px 60px rgba(0,0,30,0.55), inset 0 -1px 0 rgba(255,255,255,0.06)",
-                overflow: "clip", // FIX: clip not hidden — hidden blocks middle-mouse + zoom
+                overflow: "clip",
               }}
             >
               <div
@@ -302,17 +391,20 @@ function Header() {
                     }}
                   >
                     <Button
+                      component={Link}
+                      to={`/${l.toLowerCase()}`}
                       fullWidth
                       onClick={() => setMobileOpen(false)}
                       sx={{
                         justifyContent: "flex-start",
                         color: l === "Home" ? "#fff" : "rgba(255,255,255,0.6)",
                         fontSize: 17,
-                        fontFamily: "Syne",
+                        
                         fontWeight: 700,
                         py: 1.5,
                         px: 1,
                         borderRadius: 1.5,
+                        textDecoration: "none",
                         "&:hover": {
                           color: "#fff",
                           background: "rgba(255,255,255,0.06)",
@@ -340,8 +432,11 @@ function Header() {
               >
                 <Box sx={{ px: 2.5, py: 2, position: "relative", zIndex: 1 }}>
                   <Button
+                    component={Link}
+                    to="/contact"
                     fullWidth
                     variant="contained"
+                    onClick={() => setMobileOpen(false)}
                     sx={{
                       py: 1.5,
                       fontSize: 14.5,
@@ -351,6 +446,7 @@ function Header() {
                       border: "1px solid rgba(255,255,255,0.16)",
                       boxShadow:
                         "0 4px 20px rgba(59,110,248,0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
+                      textDecoration: "none",
                       "&:hover": {
                         background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)",
                         boxShadow:
