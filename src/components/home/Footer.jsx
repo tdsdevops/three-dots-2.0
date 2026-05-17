@@ -18,6 +18,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import footerBg from "../../assets/footerBg.avif";
 import Logo from "../../shared/components/Logo";
 import generalInfo from "../../data/generalInfo.json";
+import { Link as RouterLink } from "react-router";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -277,8 +278,8 @@ export default function Footer() {
                     {templatePages.map((page) => (
                       <MotionTypography
                         key={page}
-                        component="a"
-                        href="#"
+                        component={RouterLink}
+                        to={page === "Home" ? "/" : page === "FAQ" ? "/contact" : `/${page.toLowerCase()}`}
                         whileHover={linkHover}
                         sx={{
                           color: "text.secondary",
@@ -319,25 +320,38 @@ export default function Footer() {
                       gap: 1.4,
                     }}
                   >
-                    {socialLinks.map((social) => (
-                      <MotionTypography
-                        key={social}
-                        component="a"
-                        href="#"
-                        whileHover={linkHover}
-                        sx={{
-                          color: "text.secondary",
-                          fontSize: { xs: "0.82rem", md: "0.87rem" },
-                          textDecoration: "none",
-                          display: "inline-block",
-                          cursor: "pointer",
-                          "&:hover": { color: "text.primary" },
-                          transition: "color 0.2s",
-                        }}
-                      >
-                        {social}
-                      </MotionTypography>
-                    ))}
+                    {socialLinks.map((social) => {
+                      const getSocialUrl = (name) => {
+                        const low = name.toLowerCase();
+                        if (low.includes("twitter") || low.includes("x")) return "https://x.com/Three_Dots_tech";
+                        if (low.includes("instagram")) return "https://www.instagram.com/three_dots_softwaredevelopment/";
+                        if (low.includes("youtube")) return "https://www.youtube.com/@threedotssoftwaredevelopment";
+                        if (low.includes("Linkedin")) return "https://www.linkedin.com/company/three-dots-software-development";
+                        return "#";
+                      };
+
+                      return (
+                        <MotionTypography
+                          key={social}
+                          component="a"
+                          href={getSocialUrl(social)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={linkHover}
+                          sx={{
+                            color: "text.secondary",
+                            fontSize: { xs: "0.82rem", md: "0.87rem" },
+                            textDecoration: "none",
+                            display: "inline-block",
+                            cursor: "pointer",
+                            "&:hover": { color: "text.primary" },
+                            transition: "color 0.2s",
+                          }}
+                        >
+                          {social}
+                        </MotionTypography>
+                      );
+                    })}
                   </Box>
                 </MotionBox>
               </Grid>
@@ -370,14 +384,14 @@ export default function Footer() {
                         letterSpacing: "-0.01em",
                       }}
                     >
-                      Sales –{" "}
+                      Contact Us
                       <motion.span
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.6, duration: 0.4 }}
                         style={{ color: "#e2e8f0" }}
                       >
-                        7,360,109
+                 
                       </motion.span>
                     </Typography>
                   </MotionBox>

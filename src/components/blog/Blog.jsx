@@ -119,9 +119,13 @@ export default function Blog() {
           </MotionBox>
 
           {/* Grid */}
-          <Grid container spacing={{ xs: 3, md: 4 }}>
+          <Grid container sx={{
+            display:"grid",
+            gridTemplateColumns:"1fr 1fr",
+            gap:"40px"
+          }}  spacing={{ xs: 3, md: 4 }}>
             {blogs.map((post, i) => (
-              <Grid item xs={12} md={4} key={post.id}>
+              <Grid h item xs={12} md={4} key={post.id}>
                 <Box component={Link} to={`/blog/${post.id}`} sx={{ textDecoration: "none" }}>
                   <MotionBox
                   initial={{ opacity: 0, y: 30 }}

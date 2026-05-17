@@ -11,7 +11,6 @@ function AboutSection() {
   return (
     <Box
       sx={{
-        background: "#000000",
         position: "relative",
         overflow: "clip",
         py: { xs: 8, md: 14 },
@@ -56,8 +55,8 @@ function AboutSection() {
             >
               <Box
                 component="img"
-                src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&auto=format&fit=crop&q=80"
-                alt="Creative professional"
+                src="about_halftone_human.png"
+                alt="Blue halftone tech illustration with human network"
                 sx={{
                   width: "100%",
                   borderRadius: 3,
@@ -219,8 +218,9 @@ function AboutSection() {
               >
                 <Button
                   variant="contained"
+                  href="about"
                   sx={{
-                    px: 3,
+                    px: 4,
                     py: 1.4,
                     fontSize: 14,
                     background: "#3B6EF8",
@@ -228,7 +228,7 @@ function AboutSection() {
                     alignSelf: "flex-start",
                   }}
                 >
-                  View About Threedots
+                  View more
                 </Button>
               </Stack>
             </motion.div>

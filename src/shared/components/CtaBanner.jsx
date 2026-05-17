@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Container, Typography } from "@mui/material";
+import { Box, Button, Chip, Container, Typography, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import bgVdo from "../../assets/bgVdo.mp4";
 import { useAppointment } from "../../context/AppointmentContext";
@@ -83,6 +83,7 @@ function CtaBanner() {
               />
               <Typography
                 sx={{
+                  fontFamily: "'Syne', sans-serif",
                   fontWeight: 800,
                   fontSize: {
                     xs: "1.8rem",
@@ -92,59 +93,93 @@ function CtaBanner() {
                   },
                   lineHeight: 1.15,
                   color: "#fff",
-                  mb: 2,
+                  mb: 2.5,
                 }}
               >
-                Each Project we Undertake{" "}
+                Ready to Build <br />
                 <Box
                   component="span"
-                  sx={{ color: "#cbd5e1", display: "block" }}
+                  sx={{ color: "#3B6EF8", display: "inline" }}
                 >
-                  is a Unique Opportunity.
+                  Something That Lasts?
                 </Box>
               </Typography>
               <Typography
                 sx={{
-                  color: "#cbd5e1",
-                  fontFamily: "DM Sans",
+                  color: "rgba(255,255,255,0.65)",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: { xs: "0.875rem", md: "1rem" },
-                  maxWidth: 400,
+                  maxWidth: 580,
                   mx: "auto",
                   lineHeight: 1.7,
-                  mb: 4,
+                  mb: 4.5,
                 }}
               >
-                Ready to take the next step? Join us now and start transforming
-                your vision into reality with expert support.
+                Tell us what you're working on. We'll review your project requirements and get back to you within one business day with an honest assessment — no sales pitch, no obligation.
               </Typography>
-              <M
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                style={{ display: "inline-block" }}
+              <Stack
+              
+                direction={{ xs: "column", sm: "row" }}
+                spacing={2}
+                justifyContent="center"
+                alignItems="center"
               >
-                <Button
-                  variant="contained"
-                  onClick={openDialog}
-                  sx={{
-                    bgcolor: "#2563EB",
-                    color: "#fff",
-                    fontFamily: "DM Sans",
-                    fontWeight: 700,
-                    px: { xs: 3.5, md: 5 },
-                    py: { xs: 1.3, md: 1.6 },
-                    borderRadius: 3,
-                    textTransform: "none",
-                    fontSize: { xs: "0.9rem", md: "1rem" },
-                    boxShadow: "0 0 30px rgba(37,99,235,0.55)",
-                    "&:hover": {
-                      bgcolor: "#1d4ed8",
-                      boxShadow: "0 0 40px rgba(37,99,235,0.75)",
-                    },
-                  }}
+                <M
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{ display: "inline-block" }}
                 >
-                  Book an Appointment
-                </Button>
-              </M>
+                  <Button
+                    variant="contained"
+                    onClick={openDialog}
+                    sx={{
+                      background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
+                      color: "#fff",
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      fontWeight: 700,
+                      px: { xs: 3.5, md: 4.5 },
+                      py: { xs: 1.4, md: 1.7 },
+                      borderRadius: 2.5,
+                      textTransform: "none",
+                      fontSize: { xs: "0.9rem", md: "0.95rem" },
+                      boxShadow: "0 4px 20px rgba(59,110,248,0.35)",
+                      "&:hover": {
+                        background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)",
+                        boxShadow: "0 6px 26px rgba(59,110,248,0.5)",
+                      },
+                    }}
+                  >
+                    Book a free consultation
+                  </Button>
+                </M>
+                <M
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{ display: "inline-block" }}
+                >
+                  <Button
+                    variant="outlined"
+                    href="mailto:threedotssoftwaredevelopment@gmail.com"
+                    sx={{
+                      borderColor: "rgba(255,255,255,0.2)",
+                      color: "#fff",
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      fontWeight: 600,
+                      px: { xs: 3.5, md: 4.5 },
+                      py: { xs: 1.4, md: 1.7 },
+                      borderRadius: 2.5,
+                      textTransform: "none",
+                      fontSize: { xs: "0.9rem", md: "0.95rem" },
+                      "&:hover": {
+                        borderColor: "#fff",
+                        background: "rgba(255,255,255,0.06)",
+                      },
+                    }}
+                  >
+                    Email us
+                  </Button>
+                </M>
+              </Stack>
             </Box>
           </Box>
         </M>

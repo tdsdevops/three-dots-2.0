@@ -5,6 +5,7 @@ import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
 import LiquidEther from "../../reactbits/LiquidEther";
+import { useAppointment } from "../../context/AppointmentContext";
 
 // Stylized vector-based brands in monochrome white
 const BRANDS = [
@@ -31,10 +32,18 @@ const BRANDS = [
 ];
 
 function HeroSection() {
+  const { openDialog } = useAppointment();
   const videoRef = useRef(null);
   const { scrollY, fadeUp } = useContext(ThemeContext);
   const videoOpacity = useTransform(scrollY, [0, 600], [1, 0]);
   const videoScale = useTransform(scrollY, [0, 600], [1, 1.08]);
+
+  const handleScrollToQuote = () => {
+    const el = document.getElementById("request-quote");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <Box
@@ -42,7 +51,6 @@ function HeroSection() {
         position: "relative",
         minHeight: "100vh",
         overflow: "clip",
-        background: "#000000",
       }}
     >
       <motion.div
@@ -164,23 +172,21 @@ function HeroSection() {
                 variant="h1"
                 sx={{
                   fontSize: {
-                    xs: "2.6rem",
-                    sm: "3.5rem",
-                    md: "4.5rem",
-                    xl: "5.5rem",
+                    xs: "2.2rem",
+                    sm: "3.2rem",
+                    md: "4rem",
+                    xl: "4.8rem",
                   },
-                  lineHeight: 1.08,
+                  lineHeight: 1.15,
                   mb: 2.5,
                   color: "#fff",
                   textShadow: "0 0 80px rgba(59,110,248,0.3)",
-                  fontWeight: 400,
-                  fontFamily: "DM Sans",
+                  fontWeight: 700,
+                  fontFamily: "Plus Jakarta Sans, sans-serif",
                   textAlign: "center",  
                 }}
               >
-                Build Better.
-                <br />
-                Grow Smarter.
+                We Build Software That Works — Exactly as Intended
               </Typography>
             </motion.div>
             <motion.div
@@ -191,19 +197,18 @@ function HeroSection() {
             >
               <Typography
                 sx={{
-                  fontSize: { xs: 14, md: 15.5 },
+                  fontSize: { xs: 14, md: 16 },
                   color: "text.secondary",
-                  maxWidth: 400,
+                  maxWidth: 720,
                   lineHeight: 1.7,
                   mb: 4,
                   fontWeight: 400,
-                  fontFamily: "DM Sans",
+                  fontFamily: "Plus Jakarta Sans, sans-serif",
                   textAlign:"center"  ,
                   margin:"auto"
                 }}
               >
-                We help businesses launch reliable websites, powerful software,
-                and scalable online stores — all under one roof.
+                Three Dots is a product-focused software development company helping startups and growing businesses ship reliable, scalable digital products — on time and without the guesswork.
               </Typography>
             </motion.div>
             <motion.div
@@ -219,34 +224,36 @@ function HeroSection() {
                 justifyContent={"center"}
               >
                 <Button
+                  variant="contained"
+                  onClick={handleScrollToQuote}
+                  sx={{
+                    background: "rgba(59,110,248,0.18)",
+                    border: "1px solid rgba(59,110,248,0.4)",
+                    color: "#7da4ff",
+                    px: { xs: 3.5, md: 4 },
+                    py: 1.4,
+                    fontSize: 14.5,
+                    "&:hover": { background: "rgba(59,110,248,0.3)" },
+                  }}
+                >
+                  Request a quote
+                </Button>
+                <Button
                   variant="outlined"
+                  onClick={openDialog}
                   sx={{
                     borderColor: "rgba(255,255,255,0.3)",
                     color: "#fff",
-                    px: { xs: 2.5, md: 3 },
-                    py: 1.2,
-                    fontSize: 14,
+                    px: { xs: 3.5, md: 4 },
+                    py: 1.4,
+                    fontSize: 14.5,
                     "&:hover": {
                       borderColor: "#fff",
                       background: "rgba(255,255,255,0.06)",
                     },
                   }}
                 >
-                  Connect With Us
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{
-                    background: "rgba(59,110,248,0.18)",
-                    border: "1px solid rgba(59,110,248,0.4)",
-                    color: "#7da4ff",
-                    px: { xs: 2.5, md: 3 },
-                    py: 1.2,
-                    fontSize: 14,
-                    "&:hover": { background: "rgba(59,110,248,0.3)" },
-                  }}
-                >
-                  What is Landin?
+                  Book free consultation
                 </Button>
               </Stack>
             </motion.div>

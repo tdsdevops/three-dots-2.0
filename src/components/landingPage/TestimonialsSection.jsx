@@ -144,7 +144,7 @@ const TESTIMONIALS = [
   }
 ];
 
-const BRANDS = ["IPSUM", "∞∞", "GOGO", "AMEX"];
+const BRANDS = ["MSI", "Smatal", "BrandmicMedia", "Velaivendum.com"];
   return (
     <Box
       ref={sectionRef}
