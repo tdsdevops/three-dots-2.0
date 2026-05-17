@@ -10,11 +10,11 @@ import LiquidEther from "../../reactbits/LiquidEther";
 const BRANDS = [
   {
     name: "MS industries",
-    logo: "/msi_logo.png"
+    logo: "msi_logo.png"
   },
   {
     name: "Smatal",
-    logo: "/smatalLogo.svg"
+    logo: "smatalLogo.svg"
   },
   {
     name: "velaivendum",
@@ -22,11 +22,11 @@ const BRANDS = [
   },
   {
     name: "Brandmicmedia",
-    logo: "/brandmicmedialogo.png"
+    logo: "brandmicmedialogo.png"
   },
   {
     name:"three dots",
-    logo:"/TTM_Black Letter-b0a3f4ec.svg"
+    logo:"TTM_Black Letter-b0a3f4ec.svg"
   }
 ];
 

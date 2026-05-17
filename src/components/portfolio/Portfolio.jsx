@@ -21,28 +21,28 @@ const portfolioItems = [
     id: 1,
     title: "MS Industries WMS",
     year: "2024",
-    image: "/msindustries.png",
+    image: "msindustries.png",
     span: { xs: 12, md: 6, lg: 6 },
   },
   {
     id: 2,
     title: "Smatal Franchise Portal",
     year: "2025",
-    image: "/smatal.png",
+    image: "smatal.png",
     span: { xs: 12, md: 6, lg: 6 },
   },
   {
     id: 3,
     title: "Velai Vendum Portal",
     year: "2026",
-    image: "/velaivendum.png",
+    image: "velaivendum.png",
     span: { xs: 12, md: 6, lg: 6 },
   },
   {
     id: 4,
     title: "Brand Mic Media Website",
     year: "2026",
-    image: "/brandmicmedia.png",
+    image: "brandmicmedia.png",
     span: { xs: 12, md: 6, lg: 6 },
   }
 ];
