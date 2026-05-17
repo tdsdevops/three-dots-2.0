@@ -205,7 +205,7 @@ function HeroSection() {
                   fontWeight: 400,
                   fontFamily: "Plus Jakarta Sans, sans-serif",
                   textAlign:"center"  ,
-                  margin:"auto"
+                  margin:"1rem auto"
                 }}
               >
                 Three Dots is a product-focused software development company helping startups and growing businesses ship reliable, scalable digital products — on time and without the guesswork.
