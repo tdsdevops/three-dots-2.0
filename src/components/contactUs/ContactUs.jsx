@@ -23,6 +23,9 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { ThemeContext } from "../../appConstant";
 import FaqSection from "../../shared/components/FaqSection";
 import CtaBanner from "../../shared/components/CtaBanner";
+import { sendEmail } from "../../utils/sendEmail";
+import { getContactEmailTemplate } from "../../utils/emailTemplates";
+import generalInfo from "../../data/generalInfo.json";
 
 /* ─── Theme ─────────────────────────────────────────────────── */
 
@@ -98,6 +101,42 @@ export default function ContactUs() {
   const handleChange = (e) =>
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
 
+  const handleSubmit = async () => {
+    if (!form.firstName || !form.email || !form.message) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    try {
+      const payload = {
+        to: import.meta.env.VITE_CONTACT_EMAIL,
+        from: import.meta.env.VITE_FROM_EMAIL,
+        subject: `New Contact Inquiry from ${form.firstName} ${form.lastName}`,
+        html: getContactEmailTemplate({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          country,
+          category,
+          message: form.message,
+        })
+      };
+
+      const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
+      const res = await sendEmail(functionName, payload);
+      console.log("Email sent successfully", res);
+      alert("Message sent successfully!");
+      
+      // Reset form
+      setForm({ firstName: "", lastName: "", email: "", message: "" });
+      setCountry("");
+      setCategory("");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Failed to send message. Please try again later.");
+    }
+  };
+
   /* shared input sx */
   const inputSx = {
     "& .MuiOutlinedInput-root": {
@@ -140,7 +179,6 @@ export default function ContactUs() {
             top: 0,
             left: 0,
             right: 0,
-            height: "50%",
             overflow: "hidden",
             zIndex: 0,
             pointerEvents: "none",
@@ -557,6 +595,7 @@ export default function ContactUs() {
                   fullWidth
                   variant="contained"
                   size="large"
+                  onClick={handleSubmit}
                   sx={{
                     bgcolor: "#2563EB",
                     borderRadius: "12px",
@@ -588,7 +627,7 @@ export default function ContactUs() {
                       mt: 0.5,
                     }}
                   >
-                    help[at]Landlin.com
+                    {generalInfo.email}
                   </Typography>
                 </InfoCard>
 
@@ -604,7 +643,7 @@ export default function ContactUs() {
                       mt: 0.5,
                     }}
                   >
-                    +1 (717) 550-1875
+                    {generalInfo.phone}
                   </Typography>
                 </InfoCard>
 
@@ -623,11 +662,11 @@ export default function ContactUs() {
                       lineHeight: 1.7,
                     }}
                   >
-                    California (CA), 90011
+                    {generalInfo.address.line1}
                     <br />
-                    49th St. Los Angeles
+                    {generalInfo.address.line2}
                     <br />
-                    United States
+                    {generalInfo.address.country}
                   </Typography>
                 </InfoCard>
               </Box>

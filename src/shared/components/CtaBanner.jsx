@@ -1,8 +1,10 @@
 import { Box, Button, Chip, Container, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import bgVdo from "../../assets/bgVdo.mp4";
+import { useAppointment } from "../../context/AppointmentContext";
 
 function CtaBanner() {
+  const { openDialog } = useAppointment();
   const M = motion(Box);
   const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: 30 },
@@ -122,6 +124,7 @@ function CtaBanner() {
               >
                 <Button
                   variant="contained"
+                  onClick={openDialog}
                   sx={{
                     bgcolor: "#2563EB",
                     color: "#fff",

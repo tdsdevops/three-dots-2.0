@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 import bgVdo from "../../assets/bgVdo.mp4";
 import CtaBanner from "../../shared/components/CtaBanner";
+import { useAppointment } from "../../context/AppointmentContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -37,6 +38,7 @@ const fadeUp = (delay = 0) => ({
 
 /* ── Shared: Section header ── */
 function SectionHeader({ badge, title, titleGray, subtitle, cta, ctaLabel }) {
+  const { openDialog } = useAppointment();
   return (
     <Box sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}>
       <M {...fadeUp(0)}>
@@ -102,6 +104,7 @@ function SectionHeader({ badge, title, titleGray, subtitle, cta, ctaLabel }) {
           >
             <Button
               variant="contained"
+              onClick={openDialog}
               sx={{
                 bgcolor: "#2563EB",
                 color: "#fff",
@@ -545,6 +548,7 @@ function AboutBlock({
   points,
   ratingCount,
 }) {
+  const { openDialog } = useAppointment();
   const imgEl = (
     <M
       {...fadeUp(0)}
@@ -663,6 +667,7 @@ function AboutBlock({
         <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
           <Button
             variant="contained"
+            onClick={openDialog}
             sx={{
               bgcolor: "#2563EB",
               color: "#fff",
@@ -713,16 +718,13 @@ function AboutBlock({
 
 /* ── SECTION 4: Team ── */
 const team = [
-  { name: "Daniel Reed", role: "Co-Founder, CEO", color: "#7c5c3a" },
-  { name: "James Turner", role: "Developer, Tech Lead", color: "#3a5c7c" },
-  { name: "Michael Carter", role: "Marketing, Organizer", color: "#4a5c4a" },
-  { name: "William Scott", role: "Designer, Art Lead", color: "#3a4a5c" },
-  { name: "Ethan Mitchell", role: "UX/UI Specialist", color: "#5c4a3a" },
-  {
-    name: "Isabella Hughes",
-    role: "Content Creator, Writer",
-    color: "#5c3a4a",
-  },
+  { name: "Sairam Srinivasan", role: "Founder, Software Engineer", color: "#7c5c3a" },
+  { name: "Lokesh S", role: "Developer, Tech Lead", color: "#3a5c7c" },
+  { name: "Krithika R", role: "UX/UI Specialist", color: "#5c4a3a" },
+  { name: "Balavignesh E", role: "QA lead, Software Engineer", color: "#3a4a5c" },
+  { name: "Ashok Kumar S", role: "Content Creator, Writer", color: "#5c3a4a" },
+  { name: "Abiniya Sri", role: "Marketing, Organizer", color: "#4a5c4a" },
+
 ];
 
 function TeamCard({ member, index }) {
@@ -874,6 +876,70 @@ function TeamSection() {
 
 /* ── SECTION 5: Tools ── */
 const tools = [
+  {
+    name: "MongoDB",
+    category: "Database",
+    desc: "A powerful, flexible, and scalable NoSQL database for modern applications.",
+    color: "#47A248",
+    icon: "Mo",
+    textColor: "#fff",
+  },
+  {
+    name: "Express.js",
+    category: "Backend",
+    desc: "Fast, unopinionated, minimalist web framework for Node.js.",
+    color: "#252525",
+    icon: "Ex",
+    textColor: "#fff",
+  },
+  {
+    name: "React",
+    category: "Frontend",
+    desc: "A JavaScript library for building dynamic user interfaces.",
+    color: "#61DAFB",
+    icon: "Re",
+    textColor: "#000",
+  },
+  {
+    name: "Node.js",
+    category: "Backend",
+    desc: "A JavaScript runtime built for scalable network applications.",
+    color: "#339933",
+    icon: "No",
+    textColor: "#fff",
+  },
+  {
+    name: "Next.js",
+    category: "Framework",
+    desc: "The React framework for production with powerful server rendering capabilities.",
+    color: "#000000",
+    icon: "Nx",
+    textColor: "#fff",
+  },
+  {
+    name: "Shopify",
+    category: "E-commerce",
+    desc: "A complete commerce platform that lets you start, grow, and manage a business.",
+    color: "#96bf48",
+    icon: "Sh",
+    textColor: "#fff",
+  },
+  {
+    name: "Razorpay",
+    category: "Payments",
+    desc: "A frictionless payment gateway to accept, process and disburse payments.",
+    color: "#02042b",
+    icon: "Rz",
+    textColor: "#fff",
+  },
+  {
+    name: "Wati",
+    category: "Communication",
+    desc: "A comprehensive WhatsApp API solution for customer engagement and support.",
+    color: "#25D366",
+    icon: "Wa",
+    textColor: "#fff",
+  },
   {
     name: "Zapier",
     category: "Automation",

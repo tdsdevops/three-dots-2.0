@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Box, Button, Container, Typography, Stack, Chip } from "@mui/material";
 import { motion, useInView } from "framer-motion";
+import { useAppointment } from "../../context/AppointmentContext";
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 const TAGS_ROW1 = ["Enhanced UX", "Boosted Conversions", "Fast Loading", "SEO Optimized", "Customisable", "Scalable"];
@@ -121,6 +122,7 @@ function GlassCard({ children, sx = {}, glowColor = "#3B6EF8", delay = 0, inView
 
 // ─── BenefitsSection ──────────────────────────────────────────────────────────
 export default function BenefitsSection() {
+  const { openDialog } = useAppointment();
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
 
@@ -243,13 +245,23 @@ export default function BenefitsSection() {
               </Typography>
               <Stack direction="row" spacing={1.5}>
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <Button variant="contained" size="small" sx={{
-                    px: 2.5, py: 1, fontSize: 13, fontWeight: 700, textTransform: "none",
-                    background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
-                    borderRadius: "9px", border: "1px solid rgba(255,255,255,0.14)",
-                    boxShadow: "0 4px 16px rgba(59,110,248,0.38)",
-                    "&:hover": { background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)" },
-                  }}>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={openDialog}
+                    sx={{
+                      px: 2.5,
+                      py: 1,
+                      fontSize: 13,
+                      fontWeight: 700,
+                      textTransform: "none",
+                      background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
+                      borderRadius: "9px",
+                      border: "1px solid rgba(255,255,255,0.14)",
+                      boxShadow: "0 4px 16px rgba(59,110,248,0.38)",
+                      "&:hover": { background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)" },
+                    }}
+                  >
                     Book an Appointment
                   </Button>
                 </motion.div>

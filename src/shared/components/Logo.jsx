@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import ThreeDotsLogo from "../../assets/threedots.svg";
 
 // ─── Logo ─────────────────────────────────────────────────────────────────────
-export default function Logo({ width = "50px" }) {
+export default function Logo({ width = "auto" }) {
   return (
     <Box
       sx={{

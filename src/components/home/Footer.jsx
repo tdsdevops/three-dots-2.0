@@ -17,6 +17,7 @@ import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import footerBg from "../../assets/footerBg.avif";
 import Logo from "../../shared/components/Logo";
+import generalInfo from "../../data/generalInfo.json";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -76,8 +77,8 @@ const linkHover = {
   transition: { duration: 0.2 },
 };
 
-const templatePages = ["Home", "About", "Portfolio", "Contact", "FAQ"];
-const socialLinks = ["Twitter (X)", "Instagram", "Youtube", "Framer"];
+const templatePages = generalInfo.templatePages;
+const socialLinks = generalInfo.socialLinks;
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -164,8 +165,7 @@ export default function Footer() {
                         mx: 0.3,
                       }}
                     />{" "}
-                    and passion
-                    <br />– Westhill Studio.
+                    <br />– {generalInfo.studioName}
                   </Typography>
 
                   {/* Email Subscribe */}
@@ -517,11 +517,11 @@ export default function Footer() {
                   fontSize: { xs: "0.78rem", sm: "0.82rem" },
                 }}
               >
-                © {new Date().getFullYear()} ThreeDots
+                © {new Date().getFullYear()} {generalInfo.companyName}
               </Typography>
 
               <Box sx={{ display: "flex", gap: { xs: 2.5, sm: 4 } }}>
-                {["Terms & Conditions", "Privacy Policy"].map((item) => (
+                {generalInfo.footerLinks.map((item) => (
                   <MotionTypography
                     key={item}
                     component="a"

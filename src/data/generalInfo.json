@@ -1,0 +1,29 @@
+{
+  "email": "contactus@three-dots.in",
+  "phone": "+91 97518 13050",
+  "address": {
+    "line1": "padappai, Tamil Nadu, 601301",
+    "line2": "49th St. Los Angeles",
+    "country": "India"
+  },
+  "socialLinks": [
+    "Twitter (X)",
+    "Instagram",
+    "Youtube",
+    "Framer"
+  ],
+  "templatePages": [
+    "Home",
+    "About",
+    "Portfolio",
+    "Blog",
+    "Contact",
+    "FAQ"
+  ],
+  "footerLinks": [
+    "Terms & Conditions",
+    "Privacy Policy"
+  ],
+  "companyName": "ThreeDots",
+  "studioName": "ThreeDots software solutions"
+}

@@ -2,6 +2,7 @@ import { useContext, useRef } from "react";
 import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
 import { motion, useInView, useTransform } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
+import { useAppointment } from "../../context/AppointmentContext";
 // ─── Process / How We Work Section ────────────────────────────────────────────
 const STAGES = [
   {
@@ -170,6 +171,7 @@ function StageCard({ stage, index }) {
   );
 }
 function ProcessSection() {
+  const { openDialog } = useAppointment();
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: "-80px" });
@@ -306,6 +308,7 @@ function ProcessSection() {
               <Box sx={{ mt: 4 }}>
                 <Button
                   variant="contained"
+                  onClick={openDialog}
                   sx={{
                     px: 3.5,
                     py: 1.5,

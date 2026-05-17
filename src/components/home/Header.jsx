@@ -16,6 +16,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../../shared/components/Logo";
 import { Link, useLocation, useNavigate } from "react-router";
+import generalInfo from "../../data/generalInfo.json";
 
 function Header() {
   const context = useContext(ThemeContext);
@@ -68,7 +69,7 @@ function Header() {
     };
   }, [mobileOpen]);
 
-  const links = ["Home", "About", "Portfolio", "Contact", "FAQ"];
+  const links = generalInfo.templatePages;
   const navigate = useNavigate();
   const location = useLocation();
   return (

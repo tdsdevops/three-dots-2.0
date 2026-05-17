@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { Box, Button, Container, Typography, Stack, Chip } from "@mui/material";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { ThemeContext } from "../../appConstant";
+import { useAppointment } from "../../context/AppointmentContext";
 
 // ─── Services Data ─────────────────────────────────────────────────────────────
 const SERVICES = [
@@ -11,8 +13,6 @@ const SERVICES = [
     badgeColor: "#3B6EF8",
     title: "Website Development",
     desc: "High-performance websites that reflect your brand and convert users optimized for speed, security, and scalability.",
-    price: "$2500",
-    duration: "2–3",
     features: ["Design + Framer Development", "Interactive Elements"],
     cta: false,
   },
@@ -22,8 +22,6 @@ const SERVICES = [
     badgeColor: "#8B5CF6",
     title: "E-commerce Solutions",
     desc: "Robust online stores with seamless shopping experiences, custom features, and backend systems built to grow with your business.",
-    price: "$4500",
-    duration: "3–4",
     features: ["Files + Branding Assets", "Easy to Edit and Access"],
     cta: false,
   },
@@ -33,8 +31,6 @@ const SERVICES = [
     badgeColor: "#8B5CF6",
     title: "CMS & SaaS Platforms",
     desc: "End-to-end development of scalable platforms from content management tools to subscription-based SaaS products with multi-user access.",
-    price: "$4500",
-    duration: "3–4",
     features: ["Files + Branding Assets", "Easy to Edit and Access"],
     cta: false,
   },
@@ -44,8 +40,6 @@ const SERVICES = [
     badgeColor: "#8B5CF6",
     title: "ERP & Business Dashboards",
     desc: "Custom internal systems to track operations, visualize data, and support decision-making with real-time dashboards.",
-    price: "$4500",
-    duration: "3–4",
     features: ["Branding Assets", "User-Friendly Interface"],
     cta: false,
   },
@@ -55,8 +49,6 @@ const SERVICES = [
     badgeColor: "#8B5CF6",
     title: "Custom Web Applications",
     desc: "Fully tailored web apps aligned with your business logic from client portals to booking systems and workflow tools.",
-    price: "$4500",
-    duration: "3–4",
     features: ["Files + Branding Assets", "Easy to Edit and Access"],
     cta: false,
   },
@@ -66,15 +58,14 @@ const SERVICES = [
     badgeColor: "#3B6EF8",
     title: "UX/UI Design",
     desc: "User-first design that enhances functionality and builds trust every screen, flow, and detail crafted for clarity and experience.",
-    price: "$7500",
-    duration: "4–6",
     features: ["HTML + JavaScript + React Code", "Database and Back-End"],
-    cta: true,
+    cta: false,
   },
 ];
 
 // ─── Service Card ──────────────────────────────────────────────────────────────
 function ServiceCard({ service, index }) {
+  const { openDialog } = useAppointment();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const isPurple = service.badgeColor === "#8B5CF6";
@@ -213,7 +204,7 @@ function ServiceCard({ service, index }) {
           alignItems="center"
           sx={{ mb: 2.5, position: "relative", zIndex: 1 }}
         >
-          <Box
+        {service.price &&  <Box
             sx={{
               px: 2,
               py: 0.75,
@@ -227,7 +218,7 @@ function ServiceCard({ service, index }) {
           >
             <Typography
               sx={{
-                
+
                 fontWeight: 800,
                 fontSize: 15,
                 color: "#fff",
@@ -238,8 +229,8 @@ function ServiceCard({ service, index }) {
             <Typography sx={{ fontSize: 11, color: "rgba(255,255,255,0.4)" }}>
               / Project
             </Typography>
-          </Box>
-          <Box
+          </Box>}
+         {service.duration&& <Box
             sx={{
               px: 2,
               py: 0.75,
@@ -257,7 +248,7 @@ function ServiceCard({ service, index }) {
             >
               {service.duration} Week
             </Typography>
-          </Box>
+          </Box>}
         </Stack>
 
         {/* Feature list */}
@@ -292,6 +283,7 @@ function ServiceCard({ service, index }) {
           >
             <Button
               variant="contained"
+              onClick={openDialog}
               sx={{
                 px: 3,
                 py: 1.2,
@@ -336,13 +328,45 @@ export default function ServicesSection() {
     [1.04, 1, 1.04],
   );
 
+  const { scrollY } = useContext(ThemeContext);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const [layout, setLayout] = useState({ absoluteTop: 0, maxScroll: 0 });
+
+  useEffect(() => {
+    const updateMeasurements = () => {
+      const right = rightRef.current;
+      const left = leftRef.current;
+      if (!right || !left) return;
+      const rightRect = right.getBoundingClientRect();
+      const leftRect = left.getBoundingClientRect();
+
+      setLayout({
+        absoluteTop: rightRect.top + scrollY.get(),
+        maxScroll: Math.max(0, rightRect.height - leftRect.height)
+      });
+    };
+
+    setTimeout(updateMeasurements, 100);
+    window.addEventListener("resize", updateMeasurements);
+    return () => window.removeEventListener("resize", updateMeasurements);
+  }, [scrollY]);
+
+  // Framer Motion automatically batches this useTransform with the global smooth scroll update!
+  const stickyY = useTransform(scrollY, (currentScrollY) => {
+    if (layout.maxScroll === 0) return 0;
+    const topOffset = 0;
+    const scrolled = currentScrollY - layout.absoluteTop + topOffset;
+    return Math.max(0, Math.min(scrolled, layout.maxScroll));
+  });
+
   return (
     <Box
       ref={sectionRef}
       sx={{
         background: "#020718",
         position: "relative",
-        overflow: "hidden",
+        clipPath: "inset(0)", // replaces overflow: "hidden" to allow position: sticky
         py: { xs: 8, md: 14 },
       }}
     >
@@ -387,12 +411,14 @@ export default function ServicesSection() {
         >
           {/* ── Left: sticky image + copy ── */}
           <Box
+            component={motion.div}
+            ref={leftRef}
+            style={{ y: stickyY }}
             sx={{
               flex: "0 0 auto",
               width: { xs: "100%", lg: "42%", xl: "44%" },
-              // position: { lg: "sticky" },
-              top: { lg: 120 },
-              alignSelf: { lg: "flex-start" },
+              alignSelf: "flex-start",
+              willChange: "transform",
             }}
           >
             {/* Label */}
@@ -479,8 +505,7 @@ export default function ServicesSection() {
                   fontFamily: "DM Sans",
                 }}
               >
-                We help businesses launch, scale, and optimize with reliable,
-                modern technology from websites to complete platforms.
+              
               </Typography>
             </motion.div>
 
@@ -553,7 +578,7 @@ export default function ServicesSection() {
                     </Typography>
                     <Typography
                       sx={{
-                        
+
                         fontWeight: 800,
                         fontSize: 20,
                         color: "#fff",
@@ -568,7 +593,7 @@ export default function ServicesSection() {
           </Box>
 
           {/* ── Right: stacking cards ── */}
-          <Box>
+          <Box ref={rightRef} sx={{ flex: 1 }}>
             {SERVICES.map((service, i) => (
               <ServiceCard key={service.title} service={service} index={i} />
             ))}

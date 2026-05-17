@@ -15,72 +15,39 @@ import CloseIcon from "@mui/icons-material/Close";
 import { ThemeContext } from "../../appConstant";
 import CtaBanner from "../../shared/components/CtaBanner";
 import FaqSection from "../../shared/components/FaqSection";
-
+import faqs from "../../data/faqs.json";
 const portfolioItems = [
   {
     id: 1,
-    title: "Way Fields",
+    title: "MS Industries WMS",
     year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=600&q=80",
+    image: "/msindustries.png",
     span: { xs: 12, md: 6, lg: 6 },
   },
   {
     id: 2,
-    title: "Raven Studio",
+    title: "Smatal Franchise Portal",
     year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80",
+    image: "/smatal.png",
     span: { xs: 12, md: 6, lg: 6 },
   },
   {
     id: 3,
-    title: "White Stag",
-    year: "2024",
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    title: "Velai Vendum Portal",
+    year: "2026",
+    image: "/velaivendum.png",
     span: { xs: 12, md: 6, lg: 6 },
-  },
-];
-
-const faqs = [
-  {
-    id: 1,
-    question: "What do I need to get started?",
-    answer:
-      "To get started, simply share your project details and goals with us. We'll guide you through the process and provide the tools and support needed to bring your vision to life.",
-  },
-  {
-    id: 2,
-    question: "What kind of customization is available?",
-    answer:
-      "We offer full design and development customization including branding, UX flows, animations, and feature development tailored to your needs.",
-  },
-  {
-    id: 3,
-    question: "How easy is it to edit for beginners?",
-    answer:
-      "Our deliverables come with clean, documented code and a CMS setup that's beginner-friendly. We also offer onboarding sessions.",
   },
   {
     id: 4,
-    question: "Let me know more about moneyback guarantee?",
-    answer:
-      "We offer a 14-day money-back guarantee if you're not satisfied with our initial deliverables. No questions asked.",
-  },
-  {
-    id: 5,
-    question: "Do I need to know how to code?",
-    answer:
-      "Not at all. We handle all technical aspects. You just need to share your vision and feedback.",
-  },
-  {
-    id: 6,
-    question: "What will I get after purchasing the template?",
-    answer:
-      "You'll receive the full source code, design files, documentation, and 30 days of post-purchase support.",
-  },
+    title: "Brand Mic Media Website",
+    year: "2026",
+    image: "/brandmicmedia.png",
+    span: { xs: 12, md: 6, lg: 6 },
+  }
 ];
+
+
 
 const MotionBox = motion(Box);
 
@@ -101,6 +68,8 @@ function PortfolioCard({ item, index }) {
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       sx={{
+        width: { xs: "100%", md: "75%", lg: "65%" },
+        maxWidth: "900px",
         position: "relative",
         borderRadius: "16px",
         overflow: "hidden",
@@ -108,6 +77,9 @@ function PortfolioCard({ item, index }) {
         border: "1px solid rgba(255,255,255,0.08)",
         bgcolor: "#111",
         aspectRatio: { xs: "4/3", md: "16/10" },
+        boxShadow: hovered ? "0 0 40px rgba(37, 99, 235, 0.6), 0 0 10px rgba(37, 99, 235, 0.4)" : "0 10px 30px rgba(0,0,0,0.5)",
+        transition: "box-shadow 0.4s ease-in-out, transform 0.4s ease-in-out",
+        transform: hovered ? "translateY(-5px)" : "none",
       }}
     >
       <motion.img
@@ -117,6 +89,7 @@ function PortfolioCard({ item, index }) {
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          objectPosition: "top center",
           display: "block",
         }}
         animate={{ scale: hovered ? 1.05 : 1 }}
@@ -128,12 +101,14 @@ function PortfolioCard({ item, index }) {
           bottom: 0,
           left: 0,
           right: 0,
-          p: { xs: 2, md: 2.5 },
-          background:
-            "linear-gradient(to top, rgba(0,10,30,0.9) 0%, transparent 100%)",
+          p: { xs: 2.5, md: 3 },
+          background: "rgba(15, 35, 90, 0.45)", // Blue translucent color
+          backdropFilter: "blur(14px)", // Glassmorphism blur
+          WebkitBackdropFilter: "blur(14px)",
+          borderTop: "1px solid rgba(255,255,255,0.15)", // Premium glass edge
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "flex-end",
+          alignItems: "center",
         }}
       >
         <Typography

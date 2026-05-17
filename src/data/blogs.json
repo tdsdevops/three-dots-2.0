@@ -1,0 +1,29 @@
+[
+  {
+    "id": "future-of-web-dev",
+    "title": "The Future of Web Development in 2026",
+    "category": "Technology",
+    "date": "Oct 12, 2025",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80",
+    "excerpt": "Exploring the latest trends in React, Server Components, and AI-driven development.",
+    "content": "The landscape of web development is evolving at an unprecedented pace. As we head towards 2026, the lines between backend and frontend continue to blur. React Server Components are now the standard, allowing developers to build lightning-fast web applications with zero client-side JavaScript overhead.\n\nFurthermore, AI-driven development tools have shifted from being mere assistants to core orchestrators. Developers now spend more time architecting solutions and less time writing boilerplate. Accessibility and web performance remain top priorities, but the toolchains have become remarkably intuitive."
+  },
+  {
+    "id": "ui-ux-principles",
+    "title": "Mastering UI/UX Design Principles",
+    "category": "Design",
+    "date": "Sep 28, 2025",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
+    "excerpt": "A deep dive into creating intuitive, accessible, and beautiful user interfaces.",
+    "content": "Great design goes completely unnoticed. When a user interface works flawlessly, the user is immersed in the task, not the tool. This article explores the fundamental principles of UI/UX design that every developer and designer should master.\n\nWe start with visual hierarchy—guiding the user's eye to the most critical elements using scale, contrast, and whitespace. Next, we look at cognitive load. The best interfaces don't make the user think; they present clear, unambiguous choices. Finally, we discuss accessibility, ensuring that beautiful design is inclusive and usable by everyone, regardless of their abilities."
+  },
+  {
+    "id": "scale-tech-product",
+    "title": "How to Scale Your Tech Product",
+    "category": "Business",
+    "date": "Sep 15, 2025",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    "excerpt": "Actionable strategies for growing your startup and handling increased traffic.",
+    "content": "Scaling a tech product is a multifaceted challenge that requires a balance between technical architecture and business strategy. Early on, the focus is purely on product-market fit. But once traction hits, your systems need to handle the load.\n\nWe'll cover the transition from monolithic architectures to microservices, emphasizing when it's the right time to make the switch. We also dive into caching strategies, database optimization, and the importance of a robust DevOps culture. Scaling isn't just about servers; it's about scaling your team and processes to maintain agility without sacrificing stability."
+  }
+]

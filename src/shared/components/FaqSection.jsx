@@ -4,47 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { styled } from "@mui/system";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
+import faqs from "../../data/faqs.json";
 
 function FaqSection() {
   /* ─── FAQ Data ───────────────────────────────────────────────── */
-  const faqs = [
-    {
-      id: 1,
-      question: "What do I need to get started?",
-      answer:
-        "To get started, simply share your project details and goals with us. We'll guide you through the process and provide the tools and support needed to bring your vision to life.",
-    },
-    {
-      id: 2,
-      question: "What kind of customization is available?",
-      answer:
-        "We offer full design and development customization including branding, UX flows, animations, and feature development tailored to your needs.",
-    },
-    {
-      id: 3,
-      question: "How easy is it to edit for beginners?",
-      answer:
-        "Our deliverables come with clean, documented code and a CMS setup that's beginner-friendly. We also offer onboarding sessions.",
-    },
-    {
-      id: 4,
-      question: "Let me know more about moneyback guarantee?",
-      answer:
-        "We offer a 14-day money-back guarantee if you're not satisfied with our initial deliverables. No questions asked.",
-    },
-    {
-      id: 5,
-      question: "Do I need to know how to code?",
-      answer:
-        "Not at all. We handle all technical aspects. You just need to share your vision and feedback.",
-    },
-    {
-      id: 6,
-      question: "What will I get after purchasing the template?",
-      answer:
-        "You'll receive the full source code, design files, documentation, and 30 days of post-purchase support.",
-    },
-  ];
+  /* ─── FAQ Item ───────────────────────────────────────────────── */
   /* ─── FAQ Item ───────────────────────────────────────────────── */
   function FAQItem({ faq, index, isOpen, onToggle }) {
     return (

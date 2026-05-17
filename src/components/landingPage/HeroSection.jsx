@@ -4,6 +4,31 @@ import bgVdo from "../../assets/bgVdo.mp4";
 import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
+import LiquidEther from "../../reactbits/LiquidEther";
+
+// Stylized vector-based brands in monochrome white
+const BRANDS = [
+  {
+    name: "MS industries",
+    logo: "/msi_logo.png"
+  },
+  {
+    name: "Smatal",
+    logo: "/smatalLogo.svg"
+  },
+  {
+    name: "velaivendum",
+    logo: "velaivendumlogo.png"
+  },
+  {
+    name: "Brandmicmedia",
+    logo: "/brandmicmedialogo.png"
+  },
+  {
+    name:"three dots",
+    logo:"/TTM_Black Letter-b0a3f4ec.svg"
+  }
+];
 
 function HeroSection() {
   const videoRef = useRef(null);
@@ -29,16 +54,23 @@ function HeroSection() {
           zIndex: 0,
         }}
       >
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        >
-          <source src={bgVdo} type="video/mp4" />
-        </video>
+      <div style={{ width: '100%', height:"100%", position: 'relative' }}>
+        <LiquidEther
+          colors={[ '#5227FF', '#6366F1', '#6366F1' ]}
+          mouseForce={20}
+          cursorSize={100}
+          isViscous={false}
+          iterationsPoisson={16}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+        />
+      </div>
         <Box sx={{ position: "absolute", inset: 0 }} />
         <Box
           sx={{
@@ -93,12 +125,13 @@ function HeroSection() {
           sx={{
             display: "flex",
             flexDirection: { xs: "column", lg: "row" },
-            alignItems: { lg: "center" },
+            alignItems: { lg: "start" },
+            justifyContent: "center",
             gap: { xs: 6, lg: 4 },
             minHeight: "80vh",
           }}
         >
-          <Box sx={{ flex: 1, maxWidth: { lg: "55%" } }}>
+          <Box textAlign="center"  sx={{ flex: 1, maxWidth: { lg: "55%" } }}>
             <motion.div
               variants={fadeUp}
               custom={0}
@@ -117,6 +150,7 @@ function HeroSection() {
                   fontSize: 11,
                   letterSpacing: 0.5,
                   "& .MuiChip-label": { px: 1.5 },
+                    textAlign:"center"
                 }}
               />
             </motion.div>
@@ -141,6 +175,7 @@ function HeroSection() {
                   textShadow: "0 0 80px rgba(59,110,248,0.3)",
                   fontWeight: 400,
                   fontFamily: "DM Sans",
+                  textAlign: "center",  
                 }}
               >
                 Build Better.
@@ -163,6 +198,8 @@ function HeroSection() {
                   mb: 4,
                   fontWeight: 400,
                   fontFamily: "DM Sans",
+                  textAlign:"center"  ,
+                  margin:"auto"
                 }}
               >
                 We help businesses launch reliable websites, powerful software,
@@ -179,6 +216,7 @@ function HeroSection() {
                 direction={{ xs: "column", sm: "row" }}
                 spacing={2}
                 gap={1.5}
+                justifyContent={"center"}
               >
                 <Button
                   variant="outlined"
@@ -221,40 +259,75 @@ function HeroSection() {
           initial="hidden"
           animate="visible"
         >
-          <Stack
-            direction="row"
-            spacing={{ xs: 3, md: 6 }}
-            alignItems="center"
+          <Box
             sx={{
-              mt: { xs: 4, md: 2 },
-              pt: 3,
+              mt: { xs: 6, md: 4 },
+              pt: 4,
               borderTop: "1px solid rgba(255,255,255,0.07)",
-              flexWrap: "wrap",
-              gap: 2,
+              overflow: "hidden",
+              position: "relative",
+              width: "100%",
+              "&::before, &::after": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                bottom: 0,
+                width: { xs: "40px", md: "100px" },
+                zIndex: 2,
+                pointerEvents: "none",
+              },
+              "&::before": {
+                left: 0,
+                background: "linear-gradient(to right, #000000 10%, rgba(0,0,0,0) 100%)",
+              },
+              "&::after": {
+                right: 0,
+                background: "linear-gradient(to left, #000000 10%, rgba(0,0,0,0) 100%)",
+              },
             }}
           >
-            {["GOGO", "AMERICAN EXPRESS", "IPSUM"].map((brand) => (
-              <Typography
-                key={brand}
-                sx={{
-                  color: "rgba(255,255,255,0.2)",
-                  fontWeight: 700,
-                  fontSize: { xs: 10, md: 12 },
-                  letterSpacing: 2,
-                }}
-              >
-                {brand}
-              </Typography>
-            ))}
             <Box
               sx={{
-                flex: 1,
-                height: "1px",
-                background: "rgba(255,255,255,0.08)",
-                display: { xs: "none", md: "block" },
+                display: "flex",
+                width: "max-content",
+                gap: { xs: "60px", md: "100px" },
+                alignItems: "center",
+                animation: "marquee 25s linear infinite",
+                "&:hover": {
+                  animationPlayState: "paused",
+                },
+                "@keyframes marquee": {
+                  "0%": { transform: "translateX(0%)" },
+                  "100%": { transform: "translateX(-33.3333%)" },
+                },
               }}
-            />
-          </Stack>
+            >
+              {[...BRANDS, ...BRANDS, ...BRANDS].map((brand, idx) => (
+                <Box
+                  key={`${brand.name}-${idx}`}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    "& img": {
+                      height: { xs: "32px", md: "46px" },
+                      width: "auto",
+                      maxWidth: "180px",
+                      objectFit: "contain",
+                      filter: "grayscale(100%) brightness(0) invert(1) opacity(0.35)",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    },
+                    "&:hover img": {
+                      filter: "grayscale(100%) brightness(0) invert(1) opacity(0.95) drop-shadow(0 0 12px rgba(255,255,255,0.5))",
+                      transform: "scale(1.05) translateY(-2px)",
+                    },
+                  }}
+                >
+                  {brand?.logo && <img src={brand.logo} alt={brand.name} />}
+                </Box>
+              ))}
+            </Box>
+          </Box>
         </motion.div>
       </Container>
     </Box>

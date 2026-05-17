@@ -32,6 +32,10 @@ function TestimonialCard({ t, index }) {
             boxShadow: "0 12px 48px rgba(0,0,30,0.6), 0 0 0 1px rgba(59,110,248,0.15), inset 0 1px 0 rgba(255,255,255,0.07)",
             transform: "translateY(-3px)",
           },
+          display:"flex",
+          justifyContent:"space-between",
+          flexDirection:"column",
+       
         }}
       >
         {/* Subtle inner glow */}
@@ -42,12 +46,17 @@ function TestimonialCard({ t, index }) {
 
         {/* Top row: avatar + X icon */}
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2, position: "relative", zIndex: 1 }}>
-          <Box
-            component="img"
-            src={t.avatar}
-            alt={t.name}
-            sx={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(59,110,248,0.3)", objectFit: "cover" }}
-          />
+        {t.avatar ? <Box
+          component="img"
+          src={t.avatar}
+          alt={t.name}
+          sx={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(59,110,248,0.3)", objectFit: "cover" }}
+        />:<Box
+          component="img"
+          src={"https://cdn-icons-png.flaticon.com/512/8345/8345328.png?w=200&h=200&fit=crop"}
+          alt={t.name}
+          sx={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(59,110,248,0.3)", objectFit: "cover" }}
+        />}
           {/* X / Twitter icon */}
           <Box sx={{
             width: 28, height: 28, borderRadius: "6px",
@@ -110,53 +119,29 @@ function TestimonialsSection() {
 // ─── Testimonials Section ─────────────────────────────────────────────────────
 const TESTIMONIALS = [
   {
-    avatar: "https://i.pravatar.cc/48?img=11",
+    avatar: "",
     stars: 5,
-    quote: "They not only delivered a top-notch website but also provided strategic insights that helped us improve our overall digital presence.",
-    name: "John Smith",
-    role: "CEO",
-    company: "Innovate Solutions",
+    quote: "Much awaited and revolutionary change @msindustries.chennai . Thanks to BIM Automation, real-time stock updates & quicker turnarounds are now LIVE! 🛠️ Your orders just got a major upgrade. Amazing work by @threedotssoftwaredevelopment , delivering fast and smart design results"    ,
+    name: "Fatema Anjarwala",
+    role: "Director",
+    company: "MS Industries",
   },
   {
-    avatar: "https://i.pravatar.cc/48?img=47",
+    avatar: "",
     stars: 5,
-    quote: "The team understood our complex requirements and provided a user-friendly, high-performing website that stands out in the market.",
-    name: "Emily Davis",
-    role: "Product Manager",
-    company: "Nexus Digital",
+    quote: "The team understood our complex requirements and provided a user-friendly, high-performing franchise management system",
+    name: "Senthil Nathan",
+    role: "Director, CEO",
+    company: "Smatal Computer Academy",
   },
   {
-    avatar: "https://i.pravatar.cc/48?img=68",
+    avatar: "",
     stars: 5,
-    quote: "Their innovative solutions helped streamline our operations, and the website design and development is both functional and visually stunning.",
-    name: "David Lee",
-    role: "Founder",
-    company: "GreenLeaf Enterprises",
-  },
-  {
-    avatar: "https://i.pravatar.cc/48?img=15",
-    stars: 5,
-    quote: "We were blown away by the creative approach and attention to detail. The team took our ideas and turned them into a stunning websites.",
-    name: "Mark Thompson",
-    role: "Creative Director",
-    company: "PixelWorks Studio",
-  },
-  {
-    avatar: "https://i.pravatar.cc/48?img=32",
-    stars: 5,
-    quote: "They delivered a customized solution that addressed all of our business needs. The website is sleek, functional, and improved our customer experience.",
-    name: "Brian Clark",
-    role: "Team Lead",
-    company: "Mandro Designs",
-  },
-  {
-    avatar: "https://i.pravatar.cc/48?img=57",
-    stars: 5,
-    quote: "The team's dedication and attention to detail are unmatched. They delivered a beautifully designed website that perfectly reflects our brand.",
-    name: "Daniel Carter",
-    role: "Founder",
-    company: "Fusion Studios",
-  },
+    quote: "Three Dots transformed our digital presence with a sleek, user-friendly website that has enhanced customer engagement and streamlined our business operations.",
+    name: "Sachithanantham Santhosam",
+    role: "Founder & CEO",
+    company: "Velaivendum.com",
+  }
 ];
 
 const BRANDS = ["IPSUM", "∞∞", "GOGO", "AMEX"];
