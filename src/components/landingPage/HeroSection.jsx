@@ -222,18 +222,18 @@ function HeroSection() {
                 spacing={2}
                 gap={1.5}
                 justifyContent={"center"}
+                margin={"1rem 0"}
               >
                 <Button
                   variant="contained"
                   onClick={handleScrollToQuote}
-                  sx={{
-                    background: "rgba(59,110,248,0.18)",
-                    border: "1px solid rgba(59,110,248,0.4)",
-                    color: "#7da4ff",
-                    px: { xs: 3.5, md: 4 },
+                   sx={{
+                    px: 4,
                     py: 1.4,
-                    fontSize: 14.5,
-                    "&:hover": { background: "rgba(59,110,248,0.3)" },
+                    fontSize: 14,
+                    background: "#3B6EF8",
+                    "&:hover": { background: "#2a5ce8" },
+                    alignSelf: "flex-start",
                   }}
                 >
                   Request a quote
@@ -242,13 +242,13 @@ function HeroSection() {
                   variant="outlined"
                   onClick={openDialog}
                   sx={{
-                    borderColor: "rgba(255,255,255,0.3)",
-                    color: "#fff",
+                    borderColor: "#3B6EF8",
+                    color: "#3B6EF8",
                     px: { xs: 3.5, md: 4 },
                     py: 1.4,
                     fontSize: 14.5,
                     "&:hover": {
-                      borderColor: "#fff",
+                      borderColor: "#3B6EF8",
                       background: "rgba(255,255,255,0.06)",
                     },
                   }}
@@ -270,7 +270,6 @@ function HeroSection() {
             sx={{
               mt: { xs: 6, md: 4 },
               pt: 4,
-              borderTop: "1px solid rgba(255,255,255,0.07)",
               overflow: "hidden",
               position: "relative",
               width: "100%",

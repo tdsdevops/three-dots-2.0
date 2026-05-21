@@ -378,134 +378,11 @@ function HeroSection() {
               flexWrap: "wrap",
             }}
           >
-            <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Button
-                variant="outlined"
-                sx={{
-                  borderColor: "#fff",
-                  color: "#fff",
-                  fontFamily: "DM Sans",
-                  fontWeight: 600,
-                  px: { xs: 2.5, md: 3 },
-                  py: 1,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: { xs: "0.85rem", md: "0.95rem" },
-                  backdropFilter: "blur(6px)",
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  "&:hover": {
-                    borderColor: "#2563EB",
-                    bgcolor: "rgba(37,99,235,0.12)",
-                  },
-                }}
-              >
-                Connect With Us
-              </Button>
-            </M>
-            <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: "rgba(10,10,20,0.7)",
-                  color: "#fff",
-                  fontFamily: "DM Sans",
-                  fontWeight: 600,
-                  px: { xs: 2.5, md: 3 },
-                  py: 1,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: { xs: "0.85rem", md: "0.95rem" },
-                  border: "1px solid rgba(255,255,255,0.18)",
-                  boxShadow: "none",
-                  backdropFilter: "blur(6px)",
-                  "&:hover": { bgcolor: "rgba(20,20,40,0.8)" },
-                }}
-              >
-                What is Landin?
-              </Button>
-            </M>
+           
           </Box>
         </M>
 
-        <M
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          sx={{
-            mt: { xs: 5, md: 7 },
-            width: "100%",
-            maxWidth: { xs: "100%", sm: 580, md: 720, lg: 860, xl: 960 },
-            mx: "auto",
-          }}
-        >
-          <Box
-            sx={{
-              borderRadius: { xs: 3, md: 4 },
-              overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.1)",
-              boxShadow: "0 0 80px rgba(37,99,235,0.2)",
-              aspectRatio: "16/9",
-              position: "relative",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background:
-                "radial-gradient(ellipse at 60% 70%, #0d1a4a 0%, #050510 60%)",
-            }}
-          >
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "radial-gradient(ellipse 60% 40% at 40% 60%, rgba(37,99,235,0.3) 0%, transparent 70%)",
-              }}
-            />
-            <svg
-              width="160"
-              height="160"
-              viewBox="0 0 160 160"
-              style={{ position: "absolute", opacity: 0.85 }}
-            >
-              <defs>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              <polygon
-                points="80,15 95,60 145,60 105,88 120,130 80,103 40,130 55,88 15,60 65,60"
-                fill="none"
-                stroke="#3b82f6"
-                strokeWidth="2.5"
-                filter="url(#glow)"
-              />
-            </svg>
-            <M
-              whileHover={{ scale: 1.12 }}
-              style={{
-                zIndex: 2,
-                width: 52,
-                height: 52,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.12)",
-                backdropFilter: "blur(8px)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </M>
-          </Box>
-        </M>
+       
       </Box>
     </Box>
   );
@@ -1171,7 +1048,7 @@ export default function App() {
             body: "Landin is here to ensure your success with expert guidance and collaborative teamwork.",
           },
         ]}
-        ratingCount="200+ Agencies Rated"
+        ratingCount="Agencies Rated"
       />
       <AboutBlock
         imageRight
@@ -1187,7 +1064,7 @@ export default function App() {
             body: "Our commitment doesn't end at launch—Landin is here to support you with ongoing updates and expertise whenever you need it.",
           },
         ]}
-        ratingCount="900+ People Rated"
+        ratingCount="People Rated"
       />
       <TeamSection />
       <ToolsSection />

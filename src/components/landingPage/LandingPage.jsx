@@ -18,7 +18,6 @@ function LandingPage() {
       {/* <DynamicSmoothScrolling> */}
       <HeroSection />
       <AboutSection />
-      <ProcessSection />
       <ServicesSection />
       <RequestQuoteSection />
       <BenefitsSection />

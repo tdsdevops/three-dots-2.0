@@ -372,19 +372,13 @@ export default function RequestQuoteSection() {
                               variant="contained"
                               disabled={isSubmitting}
                               sx={{
-                                background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
-                                color: "#fff",
-                                borderRadius: "10px",
-                                py: 1.8,
-                                fontWeight: 700,
-                                fontSize: "1rem",
-                                textTransform: "none",
-                                boxShadow: "0 4px 20px rgba(59,110,248,0.35)",
-                                "&:hover": {
-                                  background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)",
-                                  boxShadow: "0 6px 26px rgba(59,110,248,0.5)",
-                                },
-                              }}
+                    px: 4,
+                    py: 1.4,
+                    fontSize: 14,
+                    background: "#3B6EF8",
+                    "&:hover": { background: "#2a5ce8" },
+                    alignSelf: "flex-start",
+                  }}
                             >
                               {isSubmitting ? (
                                 <CircularProgress size={24} sx={{ color: "#fff" }} />

@@ -144,7 +144,7 @@ const TESTIMONIALS = [
   }
 ];
 
-const BRANDS = ["MSI", "Smatal", "BrandmicMedia", "Velaivendum.com"];
+const BRANDS = ["MS Industries", "Smatal", "BrandmicMedia", "Velaivendum.com"];
   return (
     <Box
       ref={sectionRef}
@@ -243,19 +243,14 @@ const BRANDS = ["MSI", "Smatal", "BrandmicMedia", "Velaivendum.com"];
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} style={{ display: "inline-block" }}>
               <Button
                 variant="contained"
-                sx={{
-                  px: { xs: 3, md: 4 }, py: { xs: 1.2, md: 1.5 },
-                  fontSize: { xs: 13.5, md: 14.5 }, fontWeight: 700,
-                  background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
-                  borderRadius: "10px",
-                  textTransform: "none",
-                  border: "1px solid rgba(255,255,255,0.14)",
-                  boxShadow: "0 4px 20px rgba(59,110,248,0.38), inset 0 1px 0 rgba(255,255,255,0.18)",
-                  "&:hover": {
-                    background: "linear-gradient(135deg, #2a5ce8, #4a7ef0)",
-                    boxShadow: "0 6px 28px rgba(59,110,248,0.55)",
-                  },
-                }}
+                 sx={{
+                    px: 4,
+                    py: 1.4,
+                    fontSize: 14,
+                    background: "#3B6EF8",
+                    "&:hover": { background: "#2a5ce8" },
+                    alignSelf: "flex-start",
+                  }}
               >
                 View About Landin
               </Button>

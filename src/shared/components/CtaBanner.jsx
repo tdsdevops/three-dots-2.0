@@ -133,7 +133,7 @@ function CtaBanner() {
                     variant="contained"
                     onClick={openDialog}
                     sx={{
-                      background: "linear-gradient(135deg, #3B6EF8, #5b8fff)",
+                     background: "#3B6EF8",
                       color: "#fff",
                       fontFamily: "'Plus Jakarta Sans', sans-serif",
                       fontWeight: 700,

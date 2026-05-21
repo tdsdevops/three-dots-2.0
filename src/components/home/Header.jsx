@@ -134,7 +134,8 @@ function Header() {
                     overflow: "hidden",
                     padding: "0px",
                     position: "relative",
-                    width: "min-content",
+                    width: "100%",
+                    justifyContent: "space-between",
                   }}
                 >
                   <Logo />
@@ -160,20 +161,22 @@ function Header() {
                           height: "auto",
                           position: "relative",
                           width: "auto",
+                          gap: "40px",
                         }}
                       >
                         <Box
                           sx={{
-                            alignItems: "flex-start",
+                           
                             display: "flex",
                             flexDirection: "row",
                             flexWrap: "nowrap",
-                            gap: "38px",
-                            height: "min-content",
+                            gap: "1.5rem",
                             overflow: "hidden",
                             padding: "0px",
                             position: "relative",
                             width: "min-content",
+                            alignItems: "center",
+                           
                           }}
                         >
                           {links.map((l) => (
@@ -181,6 +184,7 @@ function Header() {
                               key={l}
                               to={`/${l.toLowerCase()}`}
                               sx={{
+                                
                                 alignItems: "center",
                                 cursor: "pointer",
                                 display: "flex",
@@ -213,19 +217,7 @@ function Header() {
                             </Link>
                           ))}
                         </Box>
-                      </Stack>
-                    </>
-                  )}
-                </Box>
-                <Box
-                  sx={{
-                    flex: "0 0 auto",
-                    height: "auto",
-                    position: "relative",
-                    width: "auto",
-                  }}
-                >
-                  {!isMobile && (
+                             {!isMobile && (
                     <Button
                       component={Link}
                       to="/contact"
@@ -240,9 +232,22 @@ function Header() {
                         textDecoration: "none",
                       }}
                     >
-                      Get In Touch
+                      Contact Us
                     </Button>
                   )}
+                      </Stack>
+                    </>
+                  )}
+                </Box>
+                <Box
+                  sx={{
+                    flex: "0 0 auto",
+                    height: "auto",
+                    position: "relative",
+                    width: "auto",
+                  }}
+                >
+             
                   {isMobile && (
                     <IconButton
                       onClick={() => setMobileOpen(true)}

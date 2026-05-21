@@ -355,7 +355,7 @@ export default function ContactUs() {
           </MotionBox>
 
           {/* ── Form + Info Cards ── */}
-          <Grid container spacing={{ xs: 3, md: 4 }} alignItems="flex-start">
+          <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center" alignItems="flex-start">
             {/* Contact Form */}
             <Grid item xs={12} lg={8}>
               <MotionBox

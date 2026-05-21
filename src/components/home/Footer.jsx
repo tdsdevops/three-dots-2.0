@@ -137,7 +137,7 @@ export default function Footer() {
                 <MotionBox variants={itemVariants}>
                   {/* Logo */}
                   <Box sx={{ mb: 2 }}>
-                    <Logo width="100px" />
+                    <Logo  />
                   </Box>
 
                   <Divider
@@ -157,7 +157,7 @@ export default function Footer() {
                       mb: 3,
                     }}
                   >
-                    Made remotely with{" "}
+                      Made with{" "}
                     <FavoriteIcon
                       sx={{
                         fontSize: "0.85rem",
@@ -170,7 +170,7 @@ export default function Footer() {
                   </Typography>
 
                   {/* Email Subscribe */}
-                  <Box
+                  {/* <Box
                     sx={{
                       display: "flex",
                       gap: 0,
@@ -240,7 +240,7 @@ export default function Footer() {
                         {subscribed ? "Subscribed!" : "Subscribe Us"}
                       </MotionButton>
                     </AnimatePresence>
-                  </Box>
+                  </Box> */}
                 </MotionBox>
               </Grid>
 
@@ -383,6 +383,7 @@ export default function Footer() {
                         fontSize: { xs: "0.82rem", sm: "0.87rem" },
                         letterSpacing: "-0.01em",
                       }}
+                      href="contact"
                     >
                       Contact Us
                       <motion.span
@@ -396,116 +397,7 @@ export default function Footer() {
                     </Typography>
                   </MotionBox>
 
-                  {/* Video Thumbnail */}
-                  <MotionBox
-                    onHoverStart={() => setVideoHovered(true)}
-                    onHoverEnd={() => setVideoHovered(false)}
-                    whileHover={{ scale: 1.025, y: -3 }}
-                    transition={{ duration: 0.3 }}
-                    sx={{
-                      position: "relative",
-                      borderRadius: "14px",
-                      overflow: "hidden",
-                      border: "1px solid rgba(255,255,255,0.1)",
-                      cursor: "pointer",
-                      maxWidth: { xs: "100%", sm: 340, md: "100%" },
-                      aspectRatio: "16/9",
-                      background:
-                        "radial-gradient(ellipse 70% 80% at 30% 60%, #0a1540 0%, #050810 100%)",
-                      boxShadow: videoHovered
-                        ? "0 20px 60px rgba(37,99,235,0.25), 0 0 0 1px rgba(37,99,235,0.2)"
-                        : "0 8px 32px rgba(0,0,0,0.5)",
-                      transition: "box-shadow 0.3s ease",
-                    }}
-                  >
-                    {/* Glowing star shape */}
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        inset: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <svg
-                        width="160"
-                        height="120"
-                        viewBox="0 0 160 120"
-                        fill="none"
-                        style={{ position: "absolute" }}
-                      >
-                        <ellipse
-                          cx="60"
-                          cy="80"
-                          rx="60"
-                          ry="20"
-                          fill="none"
-                          stroke="#3b82f6"
-                          strokeWidth="2.5"
-                          opacity="0.7"
-                        />
-                        <ellipse
-                          cx="100"
-                          cy="50"
-                          rx="50"
-                          ry="16"
-                          fill="none"
-                          stroke="#60a5fa"
-                          strokeWidth="2"
-                          opacity="0.5"
-                          transform="rotate(-30 100 50)"
-                        />
-                        <path
-                          d="M80 20 L95 55 L130 55 L102 76 L112 110 L80 88 L48 110 L58 76 L30 55 L65 55 Z"
-                          fill="none"
-                          stroke="white"
-                          strokeWidth="2"
-                          opacity="0.9"
-                        />
-                      </svg>
-                    </Box>
-
-                    {/* Play button */}
-                    <AnimatePresence>
-                      <motion.div
-                        animate={{
-                          scale: videoHovered ? 1.15 : 1,
-                          opacity: videoHovered ? 1 : 0.85,
-                        }}
-                        transition={{ duration: 0.25 }}
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          zIndex: 2,
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            width: { xs: 40, sm: 48 },
-                            height: { xs: 40, sm: 48 },
-                            borderRadius: "50%",
-                            background: "rgba(255,255,255,0.15)",
-                            backdropFilter: "blur(8px)",
-                            border: "1px solid rgba(255,255,255,0.25)",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <PlayArrowRoundedIcon
-                            sx={{
-                              color: "white",
-                              fontSize: { xs: 22, sm: 28 },
-                            }}
-                          />
-                        </Box>
-                      </motion.div>
-                    </AnimatePresence>
-                  </MotionBox>
+                
                 </MotionBox>
               </Grid>
             </Grid>
