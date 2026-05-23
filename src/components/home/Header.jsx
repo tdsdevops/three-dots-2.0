@@ -226,17 +226,7 @@ function Header() {
                       </Stack>
                     </>
                   )}
-                </Box>
-                <Box
-                  sx={{
-                    flex: "0 0 auto",
-                    height: "auto",
-                    position: "relative",
-                    width: "auto",
-                  }}
-                >
-             
-                  {isMobile && (
+                   {isMobile && (
                     <IconButton
                       onClick={() => setMobileOpen(true)}
                       sx={{ color: "#fff", p: 0.5 }}
@@ -268,6 +258,17 @@ function Header() {
                       </Box>
                     </IconButton>
                   )}
+                </Box>
+                <Box
+                  sx={{
+                    flex: "0 0 auto",
+                    height: "auto",
+                    position: "relative",
+                    width: "auto",
+                  }}
+                >
+             
+                 
                 </Box>
               </Box>
             </Toolbar>
@@ -448,7 +449,7 @@ function Header() {
                       },
                     }}
                   >
-                    Get In Touch
+                    Contact Us
                   </Button>
                 </Box>
               </motion.div>
