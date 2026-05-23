@@ -1,7 +1,7 @@
 import { useTransform } from "framer-motion";
 import React, { useContext, useRef } from "react";
 import bgVdo from "../../assets/bgVdo.mp4";
-import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, Container, Stack, Typography, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
 import LiquidEther from "../../reactbits/LiquidEther";
@@ -33,7 +33,7 @@ const BRANDS = [
 
 function HeroSection() {
   const { openDialog } = useAppointment();
-  const videoRef = useRef(null);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const { scrollY, fadeUp } = useContext(ThemeContext);
   const videoOpacity = useTransform(scrollY, [0, 600], [1, 0]);
   const videoScale = useTransform(scrollY, [0, 600], [1, 1.08]);
@@ -227,6 +227,7 @@ function HeroSection() {
                 <Button
                   variant="contained"
                   onClick={handleScrollToQuote}
+                  fullWidth={isMobile ? true:false}
                    sx={{
                     px: 4,
                     py: 1.4,
@@ -241,6 +242,7 @@ function HeroSection() {
                 <Button
                   variant="outlined"
                   onClick={openDialog}
+                  fullWidth={false}
                   sx={{
                     borderColor: "#3B6EF8",
                     color: "#3B6EF8",
