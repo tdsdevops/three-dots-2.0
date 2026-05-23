@@ -170,6 +170,7 @@ function ServiceCard({ service, index }) {
 
         {/* Title */}
         <Typography
+          component="h3"
           sx={{
             fontFamily: "'Syne', sans-serif",
             fontWeight: 700,
@@ -462,6 +463,7 @@ export default function ServicesSection() {
               transition={{ duration: 0.65, delay: 0.08 }}
             >
               <Typography
+                component="h2"
                 sx={{
                   fontFamily: "'Syne', sans-serif",
                   fontWeight: 800,
@@ -479,6 +481,7 @@ export default function ServicesSection() {
                 End-to-End Development,
               </Typography>
               <Typography
+                component="h2"
                 sx={{
                   fontFamily: "'Syne', sans-serif",
                   fontWeight: 800,

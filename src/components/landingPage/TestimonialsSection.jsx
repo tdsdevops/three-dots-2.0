@@ -1,5 +1,6 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import React, { useContext, useRef, useState } from "react";
+import { Link } from "react-router";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -48,11 +49,13 @@ function TestimonialCard({ t, index }) {
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2, position: "relative", zIndex: 1 }}>
         {t.avatar ? <Box
           component="img"
+          loading="lazy"
           src={t.avatar}
           alt={t.name}
           sx={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(59,110,248,0.3)", objectFit: "cover" }}
         />:<Box
           component="img"
+          loading="lazy"
           src={"https://cdn-icons-png.flaticon.com/512/8345/8345328.png?w=200&h=200&fit=crop"}
           alt={t.name}
           sx={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(59,110,248,0.3)", objectFit: "cover" }}
@@ -95,7 +98,7 @@ function TestimonialCard({ t, index }) {
         {/* Author */}
         <Box sx={{ position: "relative", zIndex: 1 }}>
           <Stack direction="row" spacing={0.8} alignItems="center">
-            <Typography sx={{  fontWeight: 700, fontSize: 13.5, color: "#fff" }}>
+            <Typography component="h3" sx={{  fontWeight: 700, fontSize: 13.5, color: "#fff" }}>
               {t.name}
             </Typography>
             <Box sx={{ width: 3, height: 3, borderRadius: "50%", background: "rgba(255,255,255,0.3)" }} />
@@ -191,17 +194,11 @@ const BRANDS = ["MS Industries", "Smatal", "BrandmicMedia", "Velaivendum.com"];
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.65, delay: 0.08 }}>
-            <Typography sx={{
+            <Typography component="h2" sx={{
               fontSize: { xs: "1.9rem", sm: "2.5rem", md: "3rem", lg: "3.4rem" },
               color: "#fff", lineHeight: 1.15, mb: 0.5,
             }}>
-              Customer Reviews About
-            </Typography>
-            <Typography sx={{
-              fontSize: { xs: "1.9rem", sm: "2.5rem", md: "3rem", lg: "3.4rem" },
-              color: "rgba(255,255,255,0.75)", lineHeight: 1.15, mb: 2.5,
-            }}>
-              Work, Usability and Design.
+              Customer Reviews About Work, Usability and Design.
             </Typography>
           </motion.div>
 
@@ -242,6 +239,8 @@ const BRANDS = ["MS Industries", "Smatal", "BrandmicMedia", "Velaivendum.com"];
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} style={{ display: "inline-block" }}>
               <Button
+                component={Link}
+                to="/about"
                 variant="contained"
                  sx={{
                     px: 4,

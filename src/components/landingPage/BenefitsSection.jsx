@@ -96,20 +96,26 @@ export default function BenefitsSection() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.65, delay: 0.08 }}>
-          <Typography sx={{
-            fontFamily: "'Syne', sans-serif",
-            fontWeight: 800,
-            fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.5rem" },
-            color: "#fff", lineHeight: 1.15, mb: 1.5,
-          }}>
+          <Typography
+            component="h2"
+            sx={{
+              fontFamily: "'Syne', sans-serif",
+              fontWeight: 800,
+              fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.5rem" },
+              color: "#fff", lineHeight: 1.15, mb: 1.5,
+            }}
+          >
             Why Clients Choose
           </Typography>
-          <Typography sx={{
-            fontFamily: "'Syne', sans-serif",
-            fontWeight: 800,
-            fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.5rem" },
-            color: "#3B6EF8", lineHeight: 1.15, mb: 4,
-          }}>
+          <Typography
+            component="h2"
+            sx={{
+              fontFamily: "'Syne', sans-serif",
+              fontWeight: 800,
+              fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.5rem" },
+              color: "#3B6EF8", lineHeight: 1.15, mb: 4,
+            }}
+          >
             Three Dots
           </Typography>
         </motion.div>
@@ -146,6 +152,7 @@ export default function BenefitsSection() {
                     component="img"
                     src={b.image}
                     alt={b.title}
+                    loading="lazy"
                     sx={{
                       width: "100%",
                       height: "100%",
@@ -167,13 +174,16 @@ export default function BenefitsSection() {
                 {/* Card Description */}
                 <Box sx={{ p: 4, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <Box>
-                    <Typography sx={{
-                      fontFamily: "'Syne', sans-serif",
-                      fontWeight: 700,
-                      fontSize: { xs: "1.15rem", md: "1.3rem" },
-                      color: "#fff",
-                      mb: 1.5
-                    }}>
+                    <Typography
+                      component="h3"
+                      sx={{
+                        fontFamily: "'Syne', sans-serif",
+                        fontWeight: 700,
+                        fontSize: { xs: "1.15rem", md: "1.3rem" },
+                        color: "#fff",
+                        mb: 1.5
+                      }}
+                    >
                       {b.title}
                     </Typography>
                     <Typography sx={{

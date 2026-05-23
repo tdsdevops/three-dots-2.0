@@ -361,6 +361,8 @@ export default function Footer() {
                 <MotionBox variants={itemVariants}>
                   {/* Sales badge */}
                   <MotionBox
+                    component={RouterLink}
+                    to="/contact"
                     whileHover={{ scale: 1.04 }}
                     sx={{
                       display: "inline-flex",
@@ -372,7 +374,8 @@ export default function Footer() {
                       py: 0.7,
                       mb: 2,
                       backdropFilter: "blur(8px)",
-                      cursor: "default",
+                      cursor: "pointer",
+                      textDecoration: "none",
                     }}
                   >
                     <Typography
@@ -383,17 +386,8 @@ export default function Footer() {
                         fontSize: { xs: "0.82rem", sm: "0.87rem" },
                         letterSpacing: "-0.01em",
                       }}
-                      href="contact"
                     >
                       Contact Us
-                      <motion.span
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: 0.6, duration: 0.4 }}
-                        style={{ color: "#e2e8f0" }}
-                      >
-                 
-                      </motion.span>
                     </Typography>
                   </MotionBox>
 
@@ -427,23 +421,26 @@ export default function Footer() {
               </Typography>
 
               <Box sx={{ display: "flex", gap: { xs: 2.5, sm: 4 } }}>
-                {generalInfo.footerLinks.map((item) => (
-                  <MotionTypography
-                    key={item}
-                    component="a"
-                    href="#"
-                    whileHover={{ color: "#e2e8f0" }}
-                    sx={{
-                      color: "text.secondary",
-                      fontSize: { xs: "0.78rem", sm: "0.82rem" },
-                      textDecoration: "none",
-                      cursor: "pointer",
-                      transition: "color 0.2s",
-                    }}
-                  >
-                    {item}
-                  </MotionTypography>
-                ))}
+                {generalInfo.footerLinks.map((item) => {
+                  const to = item === "Terms & Conditions" ? "/terms" : "/privacy";
+                  return (
+                    <MotionTypography
+                      key={item}
+                      component={RouterLink}
+                      to={to}
+                      whileHover={{ color: "#e2e8f0" }}
+                      sx={{
+                        color: "text.secondary",
+                        fontSize: { xs: "0.78rem", sm: "0.82rem" },
+                        textDecoration: "none",
+                        cursor: "pointer",
+                        transition: "color 0.2s",
+                      }}
+                    >
+                      {item}
+                    </MotionTypography>
+                  );
+                })}
               </Box>
             </MotionBox>
           </MotionBox>

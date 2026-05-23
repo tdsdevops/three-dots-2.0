@@ -16,6 +16,7 @@ import { ThemeContext } from "../../appConstant";
 import CtaBanner from "../../shared/components/CtaBanner";
 import FaqSection from "../../shared/components/FaqSection";
 import faqs from "../../data/faqs.json";
+import SEO from "../SEO";
 const portfolioItems = [
   {
     id: 1,
@@ -85,6 +86,7 @@ function PortfolioCard({ item, index }) {
       <motion.img
         src={item.image}
         alt={item.title}
+        loading="lazy"
         style={{
           width: "100%",
           height: "100%",
@@ -112,6 +114,7 @@ function PortfolioCard({ item, index }) {
         }}
       >
         <Typography
+          component="h3"
           sx={{
             color: "#fff",
             fontWeight: 600,
@@ -230,6 +233,7 @@ export default function Portfolio() {
         fontFamily: "'Syne', sans-serif",
       }}
     >
+      <SEO pageKey="portfolio" />
       {/* ───── PORTFOLIO SECTION ───── */}
       <Box
         sx={{
@@ -349,6 +353,7 @@ export default function Portfolio() {
             sx={{ textAlign: "center", mb: 3 }}
           >
             <Typography
+              component="h1"
               sx={{
                 fontSize: {
                   xs: "2.4rem",

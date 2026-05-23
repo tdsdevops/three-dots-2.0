@@ -3,9 +3,9 @@ import { Box, Typography, Container, Grid, Chip } from "@mui/material";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
 import CtaBanner from "../../shared/components/CtaBanner";
-
 import { Link } from "react-router";
 import blogs from "../../data/blogs.json";
+import SEO from "../SEO";
 
 const MotionBox = motion(Box);
 
@@ -21,6 +21,7 @@ export default function Blog() {
         fontFamily: "'Syne', sans-serif",
       }}
     >
+      <SEO pageKey="blog" />
       <Box
         sx={{
           position: "relative",

@@ -141,18 +141,6 @@ function Header() {
                   <Logo />
                   {!isMobile && (
                     <>
-                      <div
-                        style={{
-                          background:
-                            "linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%)",
-                          opacity: 1,
-                          flex: "0 0 auto",
-                          height: "40px",
-                          overflow: "hidden",
-                          position: "relative",
-                          width: "1px",
-                        }}
-                      ></div>
                       <Stack
                         direction="row"
                         spacing={0.5}

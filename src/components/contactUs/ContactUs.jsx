@@ -26,6 +26,7 @@ import CtaBanner from "../../shared/components/CtaBanner";
 import { sendEmail } from "../../utils/sendEmail";
 import { getContactEmailTemplate } from "../../utils/emailTemplates";
 import generalInfo from "../../data/generalInfo.json";
+import SEO from "../SEO";
 
 /* ─── Theme ─────────────────────────────────────────────────── */
 
@@ -163,6 +164,7 @@ export default function ContactUs() {
 
   return (
     <Box sx={{ bgcolor: "#000", minHeight: "100vh", color: "#fff" }}>
+      <SEO pageKey="contact" />
       {/* ═══════════════ CONTACT SECTION ═══════════════════════ */}
       <Box
         sx={{
@@ -287,6 +289,7 @@ export default function ContactUs() {
             sx={{ textAlign: "center", mb: 3 }}
           >
             <Typography
+              component="h1"
               sx={{
                 fontSize: {
                   xs: "2.2rem",

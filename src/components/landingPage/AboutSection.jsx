@@ -1,6 +1,7 @@
 import {useRef} from 'react'
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { Link } from 'react-router';
 import { motion, useInView } from 'framer-motion';
 
 
@@ -57,6 +58,7 @@ function AboutSection() {
                 component="img"
                 src="about_halftone_human.png"
                 alt="Blue halftone tech illustration with human network"
+                loading="lazy"
                 sx={{
                   width: "100%",
                   borderRadius: 3,
@@ -218,7 +220,8 @@ function AboutSection() {
               >
                 <Button
                   variant="contained"
-                  href="about"
+                  component={Link}
+                  to="/about"
                   sx={{
                     px: 4,
                     py: 1.4,
