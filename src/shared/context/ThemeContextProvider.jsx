@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useMotionValue, useSpring, useTransform } from "motion/react";
+import { useMotionValue, useSpring, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../appConstant";
 import bgVdo from "../../assets/bgVdo.mp4";
@@ -41,17 +41,31 @@ const theme = createTheme({
   },
 });
 function useSmoothScroll() {
-  const contentRef = useRef(null); // the motion.div with transform
-  const proxyRef = useRef(null); // hidden overflow:auto proxy for middle-mouse
+  const [content, setContent] = useState(null);
+  const [proxy, setProxy] = useState(null);
+
+  const contentRef = useCallback((node) => {
+    if (node) setContent(node);
+  }, []);
+
+  const proxyRef = useCallback((node) => {
+    if (node) setProxy(node);
+  }, []);
+
   const scrollY = useMotionValue(0);
   const EASE = 0.08;
   const targetY = useRef(0);
   const currentY = useRef(0);
   const rafId = useRef(null);
 
+  const resetScroll = useCallback(() => {
+    targetY.current = 0;
+    currentY.current = 0;
+    scrollY.set(0);
+    if (proxy) proxy.scrollTop = 0;
+  }, [proxy, scrollY]);
+
   useEffect(() => {
-    const content = contentRef.current;
-    const proxy = proxyRef.current;
     if (!content || !proxy) return;
 
     const getMax = () => Math.max(0, content.scrollHeight - window.innerHeight);
@@ -101,6 +115,14 @@ function useSmoothScroll() {
 
     // ── Keyboard ──
     const onKeyDown = (e) => {
+      if (
+        document.activeElement &&
+        (document.activeElement.tagName === "INPUT" ||
+          document.activeElement.tagName === "TEXTAREA" ||
+          document.activeElement.isContentEditable)
+      ) {
+        return;
+      }
       const step = 80;
       const pageStep = window.innerHeight * 0.85;
       const map = {
@@ -149,9 +171,9 @@ function useSmoothScroll() {
       cancelAnimationFrame(rafId.current);
       ro.disconnect();
     };
-  }, []);
+  }, [content, proxy]);
 
-  return { scrollY, contentRef, proxyRef };
+  return { scrollY, contentRef, proxyRef, resetScroll };
 }
 function Cursor() {
   const cursorX = useSpring(0, { stiffness: 1000, damping: 60 });
@@ -203,13 +225,13 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 function ThemeContextProvider({ children }) {
-  const { scrollY, contentRef, proxyRef } = useSmoothScroll();
+  const { scrollY, contentRef, proxyRef, resetScroll } = useSmoothScroll();
   const contentY = useTransform(scrollY, (v) => -v);
 
   return (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider
-        value={{ scrollY, contentRef, proxyRef, theme, contentY ,fadeUp, stagger, bgVdo}}
+        value={{ scrollY, contentRef, proxyRef, theme, contentY, resetScroll, fadeUp, stagger, bgVdo }}
       >
         <Cursor />
 

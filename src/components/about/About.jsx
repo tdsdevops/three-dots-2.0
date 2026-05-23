@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import bgVdo from "../../assets/bgVdo.mp4";
 import CtaBanner from "../../shared/components/CtaBanner";
 import { useAppointment } from "../../context/AppointmentContext";
+import SEO from "../SEO";
 
 const darkTheme = createTheme({
   palette: {
@@ -56,6 +57,7 @@ function SectionHeader({ badge, title, titleGray, subtitle, cta, ctaLabel }) {
       </M>
       <M {...fadeUp(0.1)}>
         <Typography
+          component="h2"
           sx={{
             
             fontWeight: 800,
@@ -336,6 +338,7 @@ function HeroSection() {
           sx={{ textAlign: "center", maxWidth: 760 }}
         >
           <Typography
+            component="h1"
             sx={{
               
               fontWeight: 800,
@@ -475,18 +478,8 @@ function AboutBlock({
       {...fadeUp(0.1)}
       sx={{ flex: 1, order: { xs: 2, md: imageRight ? 1 : 2 } }}
     >
-      <Chip
-        label="● About Landin"
-        sx={{
-          bgcolor: "#111",
-          color: "#fff",
-          border: "1px solid #333",
-          fontFamily: "DM Sans",
-          fontSize: { xs: "0.72rem", md: "0.8rem" },
-          mb: 3,
-        }}
-      />
       <Typography
+        component="h2"
         sx={{
           
           fontWeight: 800,
@@ -497,11 +490,10 @@ function AboutBlock({
             lg: "3.5rem",
             xl: "4rem",
           },
-          lineHeight: 1.15,
           mb: 4,
         }}
       >
-        {title}
+    
         <Box component="span" sx={{ color: "#6b7280", display: "block" }}>
           {titleGray}
         </Box>
@@ -509,6 +501,7 @@ function AboutBlock({
       {points.map((p, i) => (
         <M key={i} {...fadeUp(0.2 + i * 0.12)} sx={{ mb: 3 }}>
           <Typography
+            component="h3"
             sx={{
               fontFamily: "DM Sans",
               fontWeight: 700,
@@ -595,12 +588,12 @@ function AboutBlock({
 
 /* ── SECTION 4: Team ── */
 const team = [
-  { name: "Sairam Srinivasan", role: "Founder, Software Engineer", color: "#7c5c3a" },
-  { name: "Lokesh S", role: "Developer, Tech Lead", color: "#3a5c7c" },
-  { name: "Krithika R", role: "UX/UI Specialist", color: "#5c4a3a" },
-  { name: "Balavignesh E", role: "QA lead, Software Engineer", color: "#3a4a5c" },
-  { name: "Ashok Kumar S", role: "Content Creator, Writer", color: "#5c3a4a" },
-  { name: "Abiniya Sri", role: "Marketing, Organizer", color: "#4a5c4a" },
+  { name: "Sairam Srinivasan", role: "Software Engineer - 5 + years exp", color: "#7c5c3a" },
+  { name: "Lokesh S", role: "Developer, Tech Lead -5 years exp", color: "#3a5c7c" },
+  { name: "Krithika R", role: "UX/UI Specialist - 5 years exp", color: "#5c4a3a" },
+  { name: "Balavignesh E", role: "QA lead, Software Engineer - 5 years exp", color: "#3a4a5c" },
+  { name: "Ashok Kumar S", role: "Content Creator, Writer - 3 years exp", color: "#5c3a4a" },
+  { name: "Abiniya Sri", role: "Marketing, Organizer - 2 years exp", color: "#4a5c4a" },
 
 ];
 
@@ -678,23 +671,7 @@ function TeamCard({ member, index }) {
             {member.role}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            width: 28,
-            height: 28,
-            borderRadius: 1.5,
-            bgcolor: "#12122a",
-            border: "1px solid rgba(37,99,235,0.3)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="white">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-        </Box>
+        
       </Box>
     </M>
   );
@@ -1034,6 +1011,7 @@ function ToolsSection() {
 export default function App() {
   return (
     <>
+      <SEO pageKey="about" />
       <HeroSection />
       <AboutBlock
         title="An Agency With Classic"

@@ -249,7 +249,7 @@ class CommonClass {
     this.delta = 0;
     this.container = null;
     this.renderer = null;
-    this.clock = null;
+    this.lastTime = 0;
   }
   init(container) {
     this.container = container;
@@ -263,8 +263,7 @@ class CommonClass {
     this.renderer.domElement.style.width = '100%';
     this.renderer.domElement.style.height = '100%';
     this.renderer.domElement.style.display = 'block';
-    this.clock = new THREE.Clock();
-    this.clock.start();
+    this.lastTime = performance.now();
   }
   resize() {
     if (!this.container) return;
@@ -275,7 +274,9 @@ class CommonClass {
     if (this.renderer) this.renderer.setSize(this.width, this.height, false);
   }
   update() {
-    this.delta = this.clock.getDelta();
+    const now = performance.now();
+    this.delta = (now - this.lastTime) / 1000;
+    this.lastTime = now;
     this.time += this.delta;
   }
 }

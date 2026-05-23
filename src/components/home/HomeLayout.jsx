@@ -40,7 +40,6 @@ function HomeLayout() {
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Header />
-
         <DynamicSmoothScrolling>
           <Outlet />
         </DynamicSmoothScrolling>

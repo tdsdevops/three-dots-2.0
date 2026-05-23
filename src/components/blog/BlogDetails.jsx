@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router";
-import { Box, Container, Typography, Chip, IconButton } from "@mui/material";
+import { Box, Container, Typography, Chip, IconButton, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { motion } from "framer-motion";
 import blogs from "../../data/blogs.json";
+import SEO from "../SEO";
 
 const MotionBox = motion(Box);
 
@@ -13,42 +14,13 @@ export default function BlogDetails() {
   const post = blogs.find((b) => b.id === id);
 
   useEffect(() => {
-    // SEO Implementation
-    if (post) {
-      document.title = `${post.title} | ThreeDots`;
-      
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement('meta');
-        metaDescription.name = "description";
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.content = post.excerpt;
-
-      // Open Graph Tags
-      const setMetaProperty = (property, content) => {
-        let meta = document.querySelector(`meta[property="${property}"]`);
-        if (!meta) {
-          meta = document.createElement('meta');
-          meta.setAttribute("property", property);
-          document.head.appendChild(meta);
-        }
-        meta.content = content;
-      };
-
-      setMetaProperty("og:title", post.title);
-      setMetaProperty("og:description", post.excerpt);
-      setMetaProperty("og:image", post.image);
-      setMetaProperty("og:type", "article");
-    }
-    
     // Scroll to top on load
     window.scrollTo(0, 0);
   }, [post]);
 
   if (!post) {
     return (
-      <Box sx={{ minHeight: "100vh", bgcolor: "#000", color: "#fff", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <Box sx={{ minHeight: "100vh", bgcolor: "#000", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
         <Typography variant="h4">Article not found</Typography>
         <Button onClick={() => navigate('/blog')} sx={{ mt: 2, color: "#3B6EF8" }}>Back to Blog</Button>
       </Box>
@@ -57,6 +29,15 @@ export default function BlogDetails() {
 
   return (
     <Box component="article" sx={{ bgcolor: "#000", minHeight: "100vh", color: "#fff", fontFamily: "'Syne', sans-serif", pt: { xs: 10, md: 14 }, pb: 10 }}>
+      <SEO 
+        pageKey="blogDetails"
+        customTitle={`${post.title} | ThreeDots`}
+        customDescription={post.excerpt}
+        customCanonical={`https://three-dots.in/blog/${post.id}`}
+        customOgImage={post.image.startsWith("http") ? post.image : `https://three-dots.in${post.image}`}
+        schemaType="Article"
+        blogPost={post}
+      />
       <Container maxWidth="md">
         <MotionBox
           initial={{ opacity: 0, x: -20 }}

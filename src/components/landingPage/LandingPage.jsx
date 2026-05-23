@@ -10,6 +10,7 @@ import ProcessSection from "./ProcessSection";
 import Footer from "../home/Footer";
 import DynamicSmoothScrolling from "../../shared/components/DynamicSmoothScrolling";
 import TestimonialsSection from "./TestimonialsSection";
+import InstagramShowcase from "./InstagramShowcase";
 
 function LandingPage() {
   const { proxyRef, contentRef, contentY } = useContext(ThemeContext);
@@ -17,11 +18,14 @@ function LandingPage() {
     <>
       {/* <DynamicSmoothScrolling> */}
       <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <RequestQuoteSection />
-      <BenefitsSection />
-      <TestimonialsSection />
+      <Box  sx={{ overflowX: "clip" ,px:7}}>
+        <AboutSection />
+        <ServicesSection />
+        <RequestQuoteSection />
+        <BenefitsSection />
+        <TestimonialsSection />
+        <InstagramShowcase />
+      </Box>
       {/* </DynamicSmoothScrolling> */}
       {/* </motion.div>
       </Box> */}
