@@ -70,6 +70,15 @@
     "ogTitle": "ThreeDots Tools",
     "ogDescription": "Free utilities and tools provided by ThreeDots, including QR Code Generator.",
     "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "qr-generator": {
+    "title": "Free QR Code Generator | ThreeDots",
+    "description": "Generate QR codes for any URL or text instantly for free. No registration required.",
+    "keywords": "free QR code generator, QR code tool, generate QR code, three-dots QR",
+    "canonical": "https://three-dots.in/tools/qr-generator",
+    "ogTitle": "Free QR Code Generator - ThreeDots",
+    "ogDescription": "Create QR codes quickly and download them as PNG. Completely free.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
   }
 }
 

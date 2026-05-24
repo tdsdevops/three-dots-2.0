@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, Typography, Snackbar, Alert } from "@mui/material";
 import QRCode from "react-qr-code";
-
+import SEO from "../../components/SEO";
+import { Link } from "react-router";
 // A glass‑morphism card that matches the site dark theme
 const cardStyle = {
   background: "rgba(2, 7, 24, 0.6)", // dark translucent background
@@ -10,7 +11,7 @@ const cardStyle = {
   boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
   padding: "2rem",
   maxWidth: "420px",
-  margin: "auto",
+  margin: "0 auto",
   color: "#fff",
 };
 
@@ -81,8 +82,20 @@ export default function QrGenerator() {
     }
   };
 
-  return (
-    <Box sx={{ minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center",  }}>
+return (
+  <>
+    <SEO pageKey="qr-generator" />
+    {/* Hero Section */}
+    <Box sx={{ textAlign: "center", paddingTop: { xs: 6, md: 10 }, bgcolor: "#020718" }}>
+      <Typography variant="h2" sx={{ color: "#fff", fontWeight: 800, mb: 2 }}>
+        Free QR Code Generator
+      </Typography>
+      <Typography variant="subtitle1" sx={{ color: "#ddd", mb: 4 }}>
+        Generate QR codes for any URL, text or Wi‑Fi instantly – no signup, 100 % free.
+      </Typography>
+    </Box>
+    {/* Generator Section */}
+    <Box id="generator" sx={{ minHeight: "80vh", display: "flex", justifyContent: "center" }}>
       <Box sx={cardStyle}>
         <Typography variant="h5" sx={{ mb: 2, textAlign: "center", fontWeight: 800, fontFamily: "'Syne', sans-serif" }}>
           QR Code Generator
@@ -97,9 +110,7 @@ export default function QrGenerator() {
           helperText={error}
           sx={{
             mb: 2,
-            
             input: { color: "#fff" },
-          
           }}
         />
         <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
@@ -118,11 +129,13 @@ export default function QrGenerator() {
           <QRCode id="qr-svg" value={input} size={256} bgColor="#020718" fgColor="#ffffff" level="Q" style={{ borderRadius: "8px" }} />
         </Box>
       </Box>
-      <Snackbar open={downloadOpen} autoHideDuration={3000} onClose={() => setDownloadOpen(false)}>
-        <Alert onClose={() => setDownloadOpen(false)} severity={downloadSeverity} sx={{ width: '100%' }}>
-          {downloadMsg}
-        </Alert>
-      </Snackbar>
     </Box>
-  );
+    <Snackbar open={downloadOpen} autoHideDuration={3000} onClose={() => setDownloadOpen(false)}>
+      <Alert onClose={() => setDownloadOpen(false)} severity={downloadSeverity} sx={{ width: '100%' }}>
+        {downloadMsg}
+      </Alert>
+    </Snackbar>
+  </>
+);
+
 }
