@@ -16,6 +16,12 @@ const REELS_DATA = [
   {
     id: 2,
     embedUrl: "https://www.instagram.com/p/DUAtTb-k-Pk/", // Just another example if needed, or we can just use the single one
+  }, {
+    id: 2,
+    embedUrl: "https://www.instagram.com/p/DTUi6lmE2B_/", // Just another example if needed, or we can just use the single one
+  }, {
+    id: 3,
+    embedUrl: "https://www.instagram.com/p/DVF6RL4k1SK/", // Just another example if needed, or we can just use the single one
   }
 ];
 
