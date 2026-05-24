@@ -61,5 +61,15 @@
     "ogTitle": "Privacy Policy | ThreeDots Software Chennai",
     "ogDescription": "Learn about our data collection practices, user rights, and security measures in the ThreeDots privacy policy.",
     "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "tools": {
+    "title": "Tools | ThreeDots",
+    "description": "Explore free tools like QR Code Generator and upcoming utilities from ThreeDots. All tools are open and freely accessible.",
+    "keywords": "tools, free tools, QR code generator, three-dots tools",
+    "canonical": "https://three-dots.in/tools",
+    "ogTitle": "ThreeDots Tools",
+    "ogDescription": "Free utilities and tools provided by ThreeDots, including QR Code Generator.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
   }
 }
+

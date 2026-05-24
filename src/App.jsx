@@ -4,10 +4,12 @@ import HomeLayout from "./components/home/HomeLayout";
 import { AppointmentProvider } from "./context/AppointmentContext";
 import { Box, CircularProgress } from "@mui/material";
 import DotLoader from './shared/loader/DotLoader'
+import QrGenerator from "./components/tools/QrGenerator";
 // Code splitting / Lazy loading components for page speed & Core Web Vitals optimization
 const LandingPage = lazy(() => import("./components/landingPage/LandingPage"));
 const About = lazy(() => import("./components/about/About"));
 const Portfolio = lazy(() => import("./components/portfolio/Portfolio"));
+const ToolsPage = lazy(() => import("./components/tools/ToolsPage"));
 const ContactUs = lazy(() => import("./components/contactUs/ContactUs"));
 const Blog = lazy(() => import("./components/blog/Blog"));
 const BlogDetails = lazy(() => import("./components/blog/BlogDetails"));
@@ -45,6 +47,8 @@ function App() {
               <Route path="terms" element={<TermsAndConditions />} />
               <Route path="privacy" element={<PrivacyPolicy />} />
               <Route path="*" element={<LandingPage />} /> {/* Fallback to LandingPage for unknown routes */}
+              <Route path="tools" element={<ToolsPage />} />
+              <Route path="tools/qr-generator" element={<QrGenerator />} /> 
             </Route>
           </Routes>
         </Suspense>
