@@ -146,21 +146,7 @@ function HeroSection() {
               initial="hidden"
               animate="visible"
             >
-              <Chip
-                label="No. 1 Studio of 2025"
-                size="small"
-                sx={{
-                  mb: 3,
-                  background: "rgba(59,110,248,0.15)",
-                  border: "1px solid rgba(59,110,248,0.4)",
-                  color: "#7da4ff",
-                  fontWeight: 600,
-                  fontSize: 11,
-                  letterSpacing: 0.5,
-                  "& .MuiChip-label": { px: 1.5 },
-                    textAlign:"center"
-                }}
-              />
+             
             </motion.div>
             <motion.div
               variants={fadeUp}
