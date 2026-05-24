@@ -103,12 +103,13 @@ function Header() {
               borderRadius: "0 0 50% 50%",
             },
             transition: "all 0.45s cubic-bezier(0.22,1,0.36,1)",
+           px:{lg:7,md:7}
           }}
         >
-          <Container maxWidth="xl">
+          <Container maxWidth="xl" >
             <Toolbar
               disableGutters
-              sx={{ py: { xs: 1.2, md: 1.5 }, justifyContent: "space-between" }}
+              sx={{ py: { xs: 1.2, md: 1.5 ,}, justifyContent: "space-between" }}
             >
               <Box
                 sx={{

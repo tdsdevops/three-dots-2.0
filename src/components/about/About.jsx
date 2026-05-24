@@ -59,7 +59,7 @@ function SectionHeader({ badge, title, titleGray, subtitle, cta, ctaLabel }) {
         <Typography
           component="h2"
           sx={{
-            
+
             fontWeight: 800,
             fontSize: {
               xs: "2rem",
@@ -192,7 +192,7 @@ function Navbar() {
     >
       <Typography
         sx={{
-          
+
           fontWeight: 800,
           fontSize: { xs: "1.2rem", md: "1.4rem" },
           color: "#fff",
@@ -312,24 +312,6 @@ function HeroSection() {
           width: "100%",
         }}
       >
-        <M
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Chip
-            label="2025  Dig Deep About Us"
-            sx={{
-              bgcolor: "#2563EB",
-              color: "#fff",
-              fontFamily: "DM Sans",
-              fontWeight: 600,
-              fontSize: { xs: "0.7rem", md: "0.8rem" },
-              px: 1,
-              mb: 4,
-            }}
-          />
-        </M>
 
         <M
           initial={{ opacity: 0, y: 30 }}
@@ -340,7 +322,7 @@ function HeroSection() {
           <Typography
             component="h1"
             sx={{
-              
+
               fontWeight: 800,
               fontSize: {
                 xs: "2.2rem",
@@ -354,9 +336,10 @@ function HeroSection() {
               mb: 3,
             }}
           >
-            Learn More About Landin
+            Three Dots
+
             <Box component="span" sx={{ display: "block" }}>
-              Let's Deep Dive!
+           
             </Box>
           </Typography>
           <Typography
@@ -370,8 +353,7 @@ function HeroSection() {
               lineHeight: 1.7,
             }}
           >
-            Landin is your go-to agency for creative thinking and marketing
-            ideas. We specialize in digital business solutions.
+            At Three Dots, we believe great ideas start with simple connection
           </Typography>
           <Box
             sx={{
@@ -381,11 +363,11 @@ function HeroSection() {
               flexWrap: "wrap",
             }}
           >
-           
+
           </Box>
         </M>
 
-       
+    <AboutContent />
       </Box>
     </Box>
   );
@@ -481,7 +463,7 @@ function AboutBlock({
       <Typography
         component="h2"
         sx={{
-          
+
           fontWeight: 800,
           fontSize: {
             xs: "1.9rem",
@@ -493,7 +475,7 @@ function AboutBlock({
           mb: 4,
         }}
       >
-    
+
         <Box component="span" sx={{ color: "#6b7280", display: "block" }}>
           {titleGray}
         </Box>
@@ -586,6 +568,92 @@ function AboutBlock({
   );
 }
 
+// New About Content Section
+function AboutContent() {
+  const { openDialog } = useAppointment();
+  return (
+    <Box sx={{  py: { xs: 8, md: 12 }, px: 2, borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+      <Container maxWidth="lg">
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mb: 2 }}>
+            Who We Are
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            At Three Dots, we believe great ideas start with simple connections.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            Founded with a passion for innovation, creativity, and meaningful digital experiences, Three Dots is dedicated to helping businesses and individuals turn ideas into impactful solutions. Whether it’s design, technology, digital services, or creative strategy, we focus on delivering work that is thoughtful, effective, and built to last.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            Our name, Three Dots, represents possibility — the idea that every journey, every story, and every breakthrough begins with what comes next.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            What We Do
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            We specialize in creating solutions that help brands grow and stand out. From concept to execution, we combine creativity, strategy, and technology to deliver results that matter.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Our Mission
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            Our mission is simple: to create meaningful digital experiences that inspire growth, build trust, and deliver real value.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            We believe in keeping things clear, collaborative, and customer-focused — because the best results happen when ideas are built together.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Our Vision
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            To become a trusted creative and technology partner for businesses looking to innovate, grow, and make a lasting impact in the digital world.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Why Choose Three Dots?
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1, ml: 2 }}>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Quality-driven solutions
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Creative thinking with practical results
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Transparent communication
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Customer-first approach
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Continuous innovation
+            </Typography>
+          </Box>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Our Story
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            Every brand starts somewhere.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            Three Dots began with a simple idea — to bridge creativity and technology in a way that feels approachable, effective, and future-ready. What started as a vision has grown into a commitment to helping businesses bring their ideas to life through smart, modern solutions.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, fontStyle: "italic", mt: 2 }}>
+            And this is only the beginning…
+          </Typography>
+          <Box sx={{ textAlign: "center", mt: 4 }}>
+            <Button variant="contained" onClick={openDialog} sx={{ bgcolor: "#2563EB", color: "#fff", fontFamily: "DM Sans", fontWeight: 700, px: 4, py: 1.5, borderRadius: 2.5, textTransform: "none" }}>
+                Request Quote
+              </Button>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
+  );
+}
+
+// Include AboutContent in the main render
+
+
 /* ── SECTION 4: Team ── */
 const team = [
   { name: "Sairam Srinivasan", role: "Software Engineer - 5 + years exp", color: "#7c5c3a" },
@@ -671,7 +739,7 @@ function TeamCard({ member, index }) {
             {member.role}
           </Typography>
         </Box>
-        
+
       </Box>
     </M>
   );
@@ -890,7 +958,7 @@ function ToolCard({ tool, index }) {
           alignItems: "center",
           justifyContent: "center",
           mb: 2.5,
-          
+
           fontWeight: 800,
           fontSize: "1rem",
           color: tool.textColor,
@@ -1013,7 +1081,8 @@ export default function App() {
     <>
       <SEO pageKey="about" />
       <HeroSection />
-      <AboutBlock
+    
+      {/* <AboutBlock
         title="An Agency With Classic"
         titleGray="Revolutionary Skills!"
         points={[
@@ -1043,7 +1112,7 @@ export default function App() {
           },
         ]}
         ratingCount="People Rated"
-      />
+      /> */}
       <TeamSection />
       <ToolsSection />
       <CtaBanner />

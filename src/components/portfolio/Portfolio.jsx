@@ -1,13 +1,16 @@
 import { use, useContext, useState } from "react";
-import {
-  Box,
+import { Box,
   Typography,
   Button,
   Container,
   Grid,
   Chip,
   IconButton,
-} from "@mui/material";
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
 import AddIcon from "@mui/icons-material/Add";
@@ -17,6 +20,7 @@ import CtaBanner from "../../shared/components/CtaBanner";
 import FaqSection from "../../shared/components/FaqSection";
 import faqs from "../../data/faqs.json";
 import SEO from "../SEO";
+import { sendEmail } from "../../utils/sendEmail";
 const portfolioItems = [
   {
     id: 1,
@@ -222,6 +226,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
 
 export default function Portfolio() {
   const [openFaq, setOpenFaq] = useState(faqs[0].id);
+  const [productOpen, setProductOpen] = useState(false);
   const { bgVdo } = useContext(ThemeContext);
 
   return (
@@ -325,25 +330,7 @@ export default function Portfolio() {
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
           {/* Badge */}
-          <MotionBox
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            sx={{ display: "flex", justifyContent: "center", mb: 4 }}
-          >
-            <Chip
-              label="Explore Our Portfolio"
-              sx={{
-                bgcolor: "#2563EB",
-                color: "#fff",
-                fontWeight: 700,
-                fontSize: "0.75rem",
-                px: 1,
-                height: 30,
-                borderRadius: "20px",
-              }}
-            />
-          </MotionBox>
+      
 
           {/* Heading */}
           <MotionBox
@@ -408,6 +395,7 @@ export default function Portfolio() {
             <Button
               variant="contained"
               size="large"
+              onClick={() => setProductOpen(true)}
               sx={{
                 bgcolor: "#2563EB",
                 px: 4,
@@ -419,6 +407,65 @@ export default function Portfolio() {
               Build Your Product
             </Button>
           </MotionBox>
+          {/* Product Dialog */}
+          <Dialog open={productOpen} onClose={() => setProductOpen(false)} maxWidth="sm" fullWidth>
+            <DialogTitle>Contact & Requirements</DialogTitle>
+<DialogContent>
+  <form id="product-form" onSubmit={async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
+    const payload = {
+      to: 'info@threedots.com',
+      from: form.email.value,
+      subject: `Product Inquiry from ${form.name.value}`,
+      html: `<p><strong>Company:</strong> ${form.company.value}</p><p><strong>Description:</strong> ${form.description.value}</p>`
+    };
+    try {
+      await sendEmail(functionName, payload);
+      alert('Your request has been sent successfully!');
+    } catch (err) {
+      console.error(err);
+      alert('Failed to send request. Please try again later.');
+    }
+    setProductOpen(false);
+  }}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Full Name"
+                  name="name"
+                  margin="dense"
+                />
+                <TextField
+                  required
+                  fullWidth
+                  label="Email"
+                  name="email"
+                  type="email"
+                  margin="dense"
+                />
+                <TextField
+                  fullWidth
+                  label="Company"
+                  name="company"
+                  margin="dense"
+                />
+                <TextField
+                  fullWidth
+                  label="Brief Project Description"
+                  name="description"
+                  multiline
+                  rows={3}
+                  margin="dense"
+                />
+              </form>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setProductOpen(false)} color="inherit">Cancel</Button>
+              <Button type="submit" form="product-form" variant="contained" color="primary">Submit</Button>
+            </DialogActions>
+          </Dialog>
 
           {/* Portfolio Grid */}
           {/* <Grid container spacing={{ xs: 2, md: 3 }}> */}
