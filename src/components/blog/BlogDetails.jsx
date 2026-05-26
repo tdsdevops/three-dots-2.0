@@ -28,8 +28,8 @@ export default function BlogDetails() {
   }
 
   return (
-    <Box component="article" sx={{ bgcolor: "#000", minHeight: "100vh", color: "#fff", fontFamily: "'Syne', sans-serif", pt: { xs: 10, md: 14 }, pb: 10 }}>
-      <SEO 
+    <Box component="article" sx={{ bgcolor: "#000", minHeight: "100vh", color: "#fff", fontFamily: "DM Sans", pt: { xs: 10, md: 14 }, pb: 10 }}>
+      <SEO
         pageKey="blogDetails"
         customTitle={`${post.title} | ThreeDots`}
         customDescription={post.excerpt}

@@ -99,7 +99,7 @@ export default function BenefitsSection() {
           <Typography
             component="h2"
             sx={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "DM Sans",
               fontWeight: 800,
               fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.5rem" },
               color: "#fff", lineHeight: 1.15, mb: 1.5,
@@ -110,7 +110,7 @@ export default function BenefitsSection() {
           <Typography
             component="h2"
             sx={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "DM Sans",
               fontWeight: 800,
               fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.5rem" },
               color: "#3B6EF8", lineHeight: 1.15, mb: 4,
@@ -177,7 +177,7 @@ export default function BenefitsSection() {
                     <Typography
                       component="h3"
                       sx={{
-                        fontFamily: "'Syne', sans-serif",
+                        fontFamily: "DM Sans",
                         fontWeight: 700,
                         fontSize: { xs: "1.15rem", md: "1.3rem" },
                         color: "#fff",

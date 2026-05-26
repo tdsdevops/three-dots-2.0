@@ -1,5 +1,6 @@
 import { use, useContext, useState } from "react";
-import { Box,
+import {
+  Box,
   Typography,
   Button,
   Container,
@@ -10,7 +11,8 @@ import { Box,
   DialogTitle,
   DialogContent,
   DialogActions,
-  TextField } from "@mui/material";
+  TextField
+} from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
 import AddIcon from "@mui/icons-material/Add";
@@ -235,7 +237,7 @@ export default function Portfolio() {
         bgcolor: "#000",
         minHeight: "100vh",
         color: "#fff",
-        fontFamily: "'Syne', sans-serif",
+        fontFamily: "DM Sans",
       }}
     >
       <SEO pageKey="portfolio" />
@@ -330,7 +332,7 @@ export default function Portfolio() {
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
           {/* Badge */}
-      
+
 
           {/* Heading */}
           <MotionBox
@@ -410,26 +412,26 @@ export default function Portfolio() {
           {/* Product Dialog */}
           <Dialog open={productOpen} onClose={() => setProductOpen(false)} maxWidth="sm" fullWidth>
             <DialogTitle>Contact & Requirements</DialogTitle>
-<DialogContent>
-  <form id="product-form" onSubmit={async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
-    const payload = {
-      to: 'info@threedots.com',
-      from: form.email.value,
-      subject: `Product Inquiry from ${form.name.value}`,
-      html: `<p><strong>Company:</strong> ${form.company.value}</p><p><strong>Description:</strong> ${form.description.value}</p>`
-    };
-    try {
-      await sendEmail(functionName, payload);
-      alert('Your request has been sent successfully!');
-    } catch (err) {
-      console.error(err);
-      alert('Failed to send request. Please try again later.');
-    }
-    setProductOpen(false);
-  }}>
+            <DialogContent>
+              <form id="product-form" onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
+                const payload = {
+                  to: 'info@threedots.com',
+                  from: form.email.value,
+                  subject: `Product Inquiry from ${form.name.value}`,
+                  html: `<p><strong>Company:</strong> ${form.company.value}</p><p><strong>Description:</strong> ${form.description.value}</p>`
+                };
+                try {
+                  await sendEmail(functionName, payload);
+                  alert('Your request has been sent successfully!');
+                } catch (err) {
+                  console.error(err);
+                  alert('Failed to send request. Please try again later.');
+                }
+                setProductOpen(false);
+              }}>
                 <TextField
                   required
                   fullWidth
@@ -485,7 +487,7 @@ export default function Portfolio() {
         </Container>
       </Box>
 
-      <FaqSection/>
+      <FaqSection />
 
       <CtaBanner />
     </Box>

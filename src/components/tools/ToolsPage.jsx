@@ -19,7 +19,7 @@ export default function ToolsPage() {
     <Box sx={{ minHeight: '100vh', bgcolor: '#020718', py: { xs: 8, md: 12 } }}>
       <SEO pageKey="tools" />
       <Container maxWidth="lg">
-        <Typography variant="h3" sx={{ color: '#fff', mb: 4, fontWeight: 800, textAlign: 'center', fontFamily: "'Syne', sans-serif" }}>
+        <Typography variant="h3" sx={{ color: '#fff', mb: 4, fontWeight: 800, textAlign: 'center', fontFamily: "DM Sans" }}>
           Tools
         </Typography>
         <Box
@@ -45,7 +45,7 @@ export default function ToolsPage() {
               }}
             >
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h5" sx={{ fontWeight: 700, mb: 1, fontFamily: "'Syne', sans-serif" }}>
+                <Typography variant="h5" sx={{ fontWeight: 700, mb: 1, fontFamily: "DM Sans" }}>
                   {tool.name}
                 </Typography>
                 <Typography variant="body2" sx={{ opacity: 0.8 }}>

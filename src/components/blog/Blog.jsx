@@ -18,7 +18,7 @@ export default function Blog() {
         bgcolor: "#000",
         minHeight: "100vh",
         color: "#fff",
-        fontFamily: "'Syne', sans-serif",
+        fontFamily: "DM Sans",
       }}
     >
       <SEO pageKey="blog" />
@@ -121,69 +121,69 @@ export default function Blog() {
 
           {/* Grid */}
           <Grid container sx={{
-            display:"grid",
-            gridTemplateColumns:"1fr 1fr",
-            gap:"40px"
-          }}  spacing={{ xs: 3, md: 4 }}>
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr"},
+            gap: "40px"
+          }} spacing={{ xs: 3, md: 4 }}>
             {blogs.map((post, i) => (
               <Grid h item xs={12} md={4} key={post.id}>
                 <Box component={Link} to={`/blog/${post.id}`} sx={{ textDecoration: "none" }}>
                   <MotionBox
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.15 }}
-                  viewport={{ once: true }}
-                  sx={{
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    bgcolor: "#111",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    cursor: "pointer",
-                    "&:hover img": { transform: "scale(1.05)" },
-                    "&:hover": {
-                      boxShadow: "0 0 30px rgba(37, 99, 235, 0.3)",
-                      transform: "translateY(-5px)",
-                    },
-                    transition: "all 0.4s ease-in-out",
-                  }}
-                >
-                  <Box sx={{ overflow: "hidden", height: 220, position: "relative" }}>
-                    <Box
-                      component="img"
-                      src={post.image}
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        transition: "transform 0.5s ease",
-                      }}
-                    />
-                    <Chip 
-                      label={post.category} 
-                      sx={{ 
-                        position: "absolute", 
-                        top: 16, 
-                        left: 16, 
-                        bgcolor: "rgba(0,0,0,0.6)", 
-                        color: "#fff",
-                        backdropFilter: "blur(4px)",
-                        fontSize: "0.7rem",
-                        fontWeight: 600,
-                      }} 
-                    />
-                  </Box>
-                  <Box sx={{ p: 3 }}>
-                    <Typography sx={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", mb: 1 }}>
-                      {post.date}
-                    </Typography>
-                    <Typography sx={{ fontSize: "1.2rem", fontWeight: 700, mb: 1.5, lineHeight: 1.3 }}>
-                      {post.title}
-                    </Typography>
-                    <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-                      {post.excerpt}
-                    </Typography>
-                  </Box>
-                </MotionBox>
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.15 }}
+                    viewport={{ once: true }}
+                    sx={{
+                      borderRadius: "16px",
+                      overflow: "hidden",
+                      bgcolor: "#111",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      cursor: "pointer",
+                      "&:hover img": { transform: "scale(1.05)" },
+                      "&:hover": {
+                        boxShadow: "0 0 30px rgba(37, 99, 235, 0.3)",
+                        transform: "translateY(-5px)",
+                      },
+                      transition: "all 0.4s ease-in-out",
+                    }}
+                  >
+                    <Box sx={{ overflow: "hidden", height: 220, position: "relative" }}>
+                      <Box
+                        component="img"
+                        src={post.image}
+                        sx={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          transition: "transform 0.5s ease",
+                        }}
+                      />
+                      <Chip
+                        label={post.category}
+                        sx={{
+                          position: "absolute",
+                          top: 16,
+                          left: 16,
+                          bgcolor: "rgba(0,0,0,0.6)",
+                          color: "#fff",
+                          backdropFilter: "blur(4px)",
+                          fontSize: "0.7rem",
+                          fontWeight: 600,
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{ p: 3 }}>
+                      <Typography sx={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", mb: 1 }}>
+                        {post.date}
+                      </Typography>
+                      <Typography sx={{ fontSize: "1.2rem", fontWeight: 700, mb: 1.5, lineHeight: 1.3 }}>
+                        {post.title}
+                      </Typography>
+                      <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                        {post.excerpt}
+                      </Typography>
+                    </Box>
+                  </MotionBox>
                 </Box>
               </Grid>
             ))}

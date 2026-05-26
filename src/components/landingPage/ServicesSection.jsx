@@ -172,7 +172,7 @@ function ServiceCard({ service, index }) {
         <Typography
           component="h3"
           sx={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "DM Sans",
             fontWeight: 700,
             fontSize: { xs: "1.1rem", md: "1.2rem" },
             color: "#fff",
@@ -205,7 +205,7 @@ function ServiceCard({ service, index }) {
           alignItems="center"
           sx={{ mb: 2.5, position: "relative", zIndex: 1 }}
         >
-        {service.price &&  <Box
+          {service.price && <Box
             sx={{
               px: 2,
               py: 0.75,
@@ -231,7 +231,7 @@ function ServiceCard({ service, index }) {
               / Project
             </Typography>
           </Box>}
-         {service.duration&& <Box
+          {service.duration && <Box
             sx={{
               px: 2,
               py: 0.75,
@@ -465,7 +465,7 @@ export default function ServicesSection() {
               <Typography
                 component="h2"
                 sx={{
-                  fontFamily: "'Syne', sans-serif",
+                  fontFamily: "DM Sans",
                   fontWeight: 800,
                   fontSize: {
                     xs: "2rem",
@@ -483,7 +483,7 @@ export default function ServicesSection() {
               <Typography
                 component="h2"
                 sx={{
-                  fontFamily: "'Syne', sans-serif",
+                  fontFamily: "DM Sans",
                   fontWeight: 800,
                   fontSize: {
                     xs: "2rem",

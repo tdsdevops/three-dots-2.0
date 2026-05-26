@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 // Paths
 const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
+const publicDir = path.join(rootDir, 'public');
 const indexHtmlPath = path.join(distDir, 'index.html');
 const seoMetadataPath = path.join(rootDir, 'src', 'data', 'seoMetadata.json');
 const blogsPath = path.join(rootDir, 'src', 'data', 'blogs.json');
@@ -32,7 +33,7 @@ function generateSitemap() {
   sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
   
   // Static pages
-  const staticPages = ['', '/about', '/portfolio', '/contact', '/blog', '/terms', '/privacy'];
+  const staticPages = ['', '/about', '/portfolio', '/contact', '/blog', '/terms', '/privacy', '/tools', '/tools/qr-generator'];
   staticPages.forEach(p => {
     sitemap += `  <url>\n`;
     sitemap += `    <loc>${domain}${p}</loc>\n`;
@@ -55,7 +56,8 @@ function generateSitemap() {
   sitemap += `</urlset>\n`;
   
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap, 'utf8');
-  console.log('✓ sitemap.xml generated successfully.');
+  fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap, 'utf8');
+  console.log('✓ sitemap.xml generated successfully in dist/ and public/.');
 }
 
 // 3. Generate Robots.txt
@@ -66,7 +68,8 @@ Allow: /
 Sitemap: https://three-dots.in/sitemap.xml
 `;
   fs.writeFileSync(path.join(distDir, 'robots.txt'), robots, 'utf8');
-  console.log('✓ robots.txt generated successfully.');
+  fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots, 'utf8');
+  console.log('✓ robots.txt generated successfully in dist/ and public/.');
 }
 
 // 4. Pre-render HTML

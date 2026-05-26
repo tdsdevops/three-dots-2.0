@@ -73,7 +73,7 @@ export default function AppointmentDialog({ open, onClose }) {
       alert("Please fill out all required fields.");
       return;
     }
-   onClose()
+    onClose()
     setLoading(true);
     try {
       const payload = {
@@ -85,7 +85,7 @@ export default function AppointmentDialog({ open, onClose }) {
 
       const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
       await sendEmail(functionName, payload);
-      
+
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
@@ -120,9 +120,9 @@ export default function AppointmentDialog({ open, onClose }) {
       }}
     >
       <Box sx={{ position: "absolute", top: 0, left: 0, right: 0, height: "4px", background: "linear-gradient(90deg, #3B6EF8, #8B5CF6)" }} />
-      
+
       <DialogTitle sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", pt: 4, px: { xs: 3, sm: 5 } }}>
-        <Typography sx={{ fontSize: "1.8rem", fontWeight: 800, letterSpacing: "-0.02em", fontFamily: "'Syne', sans-serif" }}>
+        <Typography sx={{ fontSize: "1.8rem", fontWeight: 800, letterSpacing: "-0.02em", fontFamily: "DM Sans" }}>
           Book a Call
         </Typography>
         <IconButton onClick={onClose} disabled={loading} sx={{ color: "rgba(255,255,255,0.5)", "&:hover": { color: "#fff", bgcolor: "rgba(255,255,255,0.08)" } }}>
@@ -142,7 +142,7 @@ export default function AppointmentDialog({ open, onClose }) {
             >
               <Box sx={{ width: 64, height: 64, borderRadius: "50%", bgcolor: "rgba(16, 185, 129, 0.1)", color: "#10b981", display: "flex", alignItems: "center", justifyContent: "center", mx: "auto", mb: 3 }}>
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6L9 17l-5-5"/>
+                  <path d="M20 6L9 17l-5-5" />
                 </svg>
               </Box>
               <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>Booking Confirmed!</Typography>
@@ -165,21 +165,21 @@ export default function AppointmentDialog({ open, onClose }) {
                   <TextField required fullWidth label="Full Name" name="name" placeholder="e.g. John Doe" InputLabelProps={{ shrink: true }} value={form.name} onChange={handleChange} sx={inputSx} disabled={loading} />
                   <TextField required fullWidth label="Email Address" type="email" name="email" placeholder="e.g. john@example.com" InputLabelProps={{ shrink: true }} value={form.email} onChange={handleChange} sx={inputSx} disabled={loading} />
                 </Grid>
-                  <Grid  width={"80%"} item xs={12} sm={6}>
+                <Grid width={"80%"} item xs={12} sm={6}>
                   <TextField fullWidth label="Phone Number" name="phone" placeholder="e.g. +1 (555) 000-0000" InputLabelProps={{ shrink: true }} value={form.phone} onChange={handleChange} sx={inputSx} disabled={loading} />
                 </Grid>
                 <Grid width={"80%"} item xs={12} sm={6} display={"flex"} alignItems={"center"} justifyContent={"space-between"} gridTemplateRows={"auto auto"} gap={2.5}>
                   <TextField required fullWidth label="Preferred Date" type="date" name="date" InputLabelProps={{ shrink: true }} value={form.date} onChange={handleChange} sx={inputSx} disabled={loading} />
                   <TextField required fullWidth label="Preferred Time" type="time" name="time" InputLabelProps={{ shrink: true }} value={form.time} onChange={handleChange} sx={inputSx} disabled={loading} />
                 </Grid>
-              
-                
-               
+
+
+
                 <Grid width={"80%"} item xs={12}>
                   <TextField fullWidth label="Briefly describe your project/needs" name="message" placeholder="Tell us about your project goals, timeline, or specific requirements..." multiline rows={3} InputLabelProps={{ shrink: true }} value={form.message} onChange={handleChange} sx={inputSx} disabled={loading} />
                 </Grid>
               </Grid>
-              
+
               <Button
                 type="submit"
                 fullWidth

@@ -55,7 +55,7 @@ export default function InstagramShowcase() {
           <Typography
             variant="h2"
             sx={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "DM Sans",
               fontWeight: 800,
               fontSize: { xs: "2rem", sm: "2.6rem", md: "3.2rem" },
               color: "#fff",
@@ -87,7 +87,7 @@ export default function InstagramShowcase() {
             let base = reel.embedUrl.split("?")[0].replace(/\/$/, "");
             if (base.endsWith("/dark")) base = base.slice(0, -5).replace(/\/$/, "");
             if (base.endsWith("/embed")) base = base.slice(0, -6).replace(/\/$/, "");
-            
+
             // Enforce dark mode and append autoplay parameters correctly via query strings
             const safeEmbedUrl = `${base}/embed/?theme=dark&autoplay=1&muted=1`;
 

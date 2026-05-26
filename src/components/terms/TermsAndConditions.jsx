@@ -81,7 +81,7 @@ export default function TermsAndConditions() {
                 variant="h1"
                 component="h1"
                 sx={{
-                  fontFamily: "'Syne', sans-serif",
+                  fontFamily: "DM Sans",
                   fontWeight: 800,
                   fontSize: { xs: "2.5rem", sm: "3.5rem", md: "4rem" },
                   color: "#fff",
@@ -120,7 +120,7 @@ export default function TermsAndConditions() {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontFamily: "'Syne', sans-serif",
+                      fontFamily: "DM Sans",
                       fontWeight: 700,
                       color: "#fff",
                       mb: 2.5,
@@ -164,7 +164,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       1. Welcome & Introduction
                     </Typography>
@@ -180,7 +180,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       2. Project Scope & Deliverables
                     </Typography>
@@ -196,7 +196,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       3. Client Responsibilities & Input
                     </Typography>
@@ -212,7 +212,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       4. Payments, Milestones & Invoicing
                     </Typography>
@@ -228,7 +228,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       5. Intellectual Property Rights
                     </Typography>
@@ -244,7 +244,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       6. Confidentiality
                     </Typography>
@@ -257,7 +257,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       7. Limitation of Liability
                     </Typography>
@@ -270,7 +270,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       8. Governing Law & Dispute Resolution
                     </Typography>
@@ -283,7 +283,7 @@ export default function TermsAndConditions() {
                     <Typography
                       variant="h5"
                       component="h2"
-                      sx={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, color: "#fff", mb: 2 }}
+                      sx={{ fontFamily: "DM Sans", fontWeight: 700, color: "#fff", mb: 2 }}
                     >
                       9. Contacting Us
                     </Typography>

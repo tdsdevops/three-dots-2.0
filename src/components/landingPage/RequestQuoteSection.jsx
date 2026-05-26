@@ -87,7 +87,7 @@ export default function RequestQuoteSection() {
       id="request-quote"
       ref={ref}
       sx={{
-        
+
         position: "relative",
         overflow: "clip",
         py: { xs: 10, md: 16 },
@@ -165,7 +165,7 @@ export default function RequestQuoteSection() {
               <Typography
                 variant="h2"
                 sx={{
-                  fontFamily: "'Syne', sans-serif",
+                  fontFamily: "DM Sans",
                   fontWeight: 800,
                   fontSize: { xs: "2.2rem", sm: "2.8rem", md: "3.4rem" },
                   color: "#fff",
@@ -211,7 +211,7 @@ export default function RequestQuoteSection() {
                   boxShadow: "0 12px 50px rgba(0,0,30,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
                   position: "relative",
                   overflow: "hidden",
-          
+
 
                 }}
               >
@@ -227,7 +227,7 @@ export default function RequestQuoteSection() {
                     <Typography
                       variant="h3"
                       sx={{
-                        fontFamily: "'Syne', sans-serif",
+                        fontFamily: "DM Sans",
                         fontWeight: 700,
                         fontSize: "1.8rem",
                         color: "#fff",
@@ -257,7 +257,7 @@ export default function RequestQuoteSection() {
                   >
                     {({ errors, touched, isSubmitting }) => (
                       <Form>
-                        <Grid sx={{flexDirection:{xs:"column"}}} container spacing={3 }>
+                        <Grid sx={{ flexDirection: { xs: "column" } }} container spacing={3}>
                           {/* Row 1: Name, Company, Email (3 Columns side-by-side on desktop) */}
                           <Grid item xs={12} md={4}>
                             <Field
@@ -331,7 +331,7 @@ export default function RequestQuoteSection() {
                                 {SERVICES_LIST.map((srv) => (
                                   <MenuItem
                                     key={srv}
-                                    
+
                                     value={srv}
                                     sx={{
                                       color: "#fff",
@@ -372,13 +372,13 @@ export default function RequestQuoteSection() {
                               variant="contained"
                               disabled={isSubmitting}
                               sx={{
-                    px: 4,
-                    py: 1.4,
-                    fontSize: 14,
-                    background: "#3B6EF8",
-                    "&:hover": { background: "#2a5ce8" },
-                    alignSelf: "flex-start",
-                  }}
+                                px: 4,
+                                py: 1.4,
+                                fontSize: 14,
+                                background: "#3B6EF8",
+                                "&:hover": { background: "#2a5ce8" },
+                                alignSelf: "flex-start",
+                              }}
                             >
                               {isSubmitting ? (
                                 <CircularProgress size={24} sx={{ color: "#fff" }} />
