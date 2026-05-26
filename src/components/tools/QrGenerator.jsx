@@ -113,10 +113,8 @@ return (
             input: { color: "#fff" },
           }}
         />
-        <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-          <Button variant="contained" onClick={handleCopy} disabled={!!error} sx={{ mr: 1, background: "#3B6EF8", fontWeight: 600 }}>
-            Copy Text
-          </Button>
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+        
           <Button variant="outlined" onClick={() => setInput("")} sx={{ borderColor: "#3B6EF8", color: "#3B6EF8" }}>
             Clear
           </Button>
