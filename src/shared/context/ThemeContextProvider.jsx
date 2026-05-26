@@ -176,10 +176,18 @@ function useSmoothScroll() {
   return { scrollY, contentRef, proxyRef, resetScroll };
 }
 function Cursor() {
+  const [showCursor, setShowCursor] = useState(false);
   const cursorX = useSpring(0, { stiffness: 1000, damping: 60 });
   const cursorY = useSpring(0, { stiffness: 1000, damping: 60 });
 
   useEffect(() => {
+    const isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
+    if (isMobile) {
+      setShowCursor(false);
+      return;
+    }
+    setShowCursor(true);
+
     const move = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -188,6 +196,7 @@ function Cursor() {
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
+  if (!showCursor) return null;
 
   return (
     <motion.div

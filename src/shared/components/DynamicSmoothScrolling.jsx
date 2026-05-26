@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { motion } from "framer-motion";
 import Footer from "../../components/home/Footer";
@@ -8,6 +8,7 @@ import { ThemeContext } from "../../appConstant";
 function DynamicSmoothScrolling({ children }) {
   const { proxyRef, contentRef, contentY, resetScroll } = useContext(ThemeContext);
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
 
   // Reset scroll to top when pathname/route changes
   useEffect(() => {
@@ -15,6 +16,25 @@ function DynamicSmoothScrolling({ children }) {
       resetScroll();
     }
   }, [location.pathname, resetScroll]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobileMatch = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
+      setIsMobile(mobileMatch);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <Box sx={{ width: "100%", overflowX: "hidden" }}>
+        {children}
+        <Footer />
+      </Box>
+    );
+  }
 
   return (
     <>

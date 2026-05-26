@@ -12,7 +12,9 @@
 html,
 body {
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: #020718;
   -webkit-font-smoothing: antialiased;
 }
@@ -42,7 +44,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .barlow-light {

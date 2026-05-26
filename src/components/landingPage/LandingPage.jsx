@@ -16,9 +16,9 @@ function LandingPage() {
   const { proxyRef, contentRef, contentY } = useContext(ThemeContext);
   return (
     <>
-      {/* <DynamicSmoothScrolling> */}
+ 
       <HeroSection />
-      <Box  sx={{ overflowX: "clip" ,px:7}}>
+      <Box  sx={{ overflowX: "clip" ,px:{xs:2,md:2,lg:4,xl:7}}}>
         <AboutSection />
         <ServicesSection />
         <RequestQuoteSection />
@@ -26,7 +26,6 @@ function LandingPage() {
         <TestimonialsSection />
         <InstagramShowcase />
       </Box>
-      {/* </DynamicSmoothScrolling> */}
       {/* </motion.div>
       </Box> */}
     </>
