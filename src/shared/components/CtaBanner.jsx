@@ -83,7 +83,7 @@ function CtaBanner() {
               />
               <Typography
                 sx={{
-                  fontFamily: "'Syne', sans-serif",
+                  fontFamily: "DM Sans",
                   fontWeight: 800,
                   fontSize: {
                     xs: "1.8rem",
@@ -118,7 +118,7 @@ function CtaBanner() {
                 Tell us what you're working on. We'll review your project requirements and get back to you within one business day with an honest assessment — no sales pitch, no obligation.
               </Typography>
               <Stack
-              
+
                 direction={{ xs: "column", sm: "row" }}
                 spacing={2}
                 justifyContent="center"
@@ -133,7 +133,7 @@ function CtaBanner() {
                     variant="contained"
                     onClick={openDialog}
                     sx={{
-                     background: "#3B6EF8",
+                      background: "#3B6EF8",
                       color: "#fff",
                       fontFamily: "'Plus Jakarta Sans', sans-serif",
                       fontWeight: 700,
