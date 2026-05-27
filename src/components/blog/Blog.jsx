@@ -176,10 +176,31 @@ export default function Blog() {
                       <Typography sx={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", mb: 1 }}>
                         {post.date}
                       </Typography>
-                      <Typography sx={{ fontSize: "1.2rem", fontWeight: 700, mb: 1.5, lineHeight: 1.3 }}>
+                      <Typography
+                        sx={{
+                          fontSize: "1.2rem",
+                          fontWeight: 700,
+                          mb: 1.5,
+                          lineHeight: 1.3,
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
                         {post.title}
                       </Typography>
-                      <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", lineHeight: 1.6 }}>
+                     <Typography
+  sx={{
+    color: "rgba(255,255,255,0.6)",
+    fontSize: "0.9rem",
+    lineHeight: 1.6,
+    overflow: "hidden",
+    display: "-webkit-box",
+    textOverflow: "ellipsis",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+  }}
+>
                         {post.excerpt}
                       </Typography>
                     </Box>

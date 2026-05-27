@@ -1,5 +1,14 @@
 [
   {
+    "id": "custom-software-development-chennai",
+    "title": "Custom Software Development Company in Chennai – WMS & Franchise Management Solutions",
+    "category": "Business",
+    "date": "May 27, 2026",
+    "image": "/blogCSD.png",
+    "excerpt": "Discover how custom software solutions like Warehouse Management Systems (WMS) and Franchise Management Software can automate operations, reduce errors, and drive business growth.",
+    "content": "In today’s digital world, businesses need more than just a website. They need smart software solutions that automate operations, improve productivity, and support business growth.\n\nAt ThreeDots, we started as a website development company, but many of our clients later approached us for custom software development solutions tailored to their business needs.\n\nRecently, we successfully completed two powerful software development projects:\n\n### Warehouse Management System (WMS) Development\n\nWe developed a custom Warehouse Management System (WMS) designed to simplify warehouse operations and inventory control.\n\nKey Features of Our WMS Software:\n• Real-time inventory tracking\n• Stock management system\n• Dispatch and delivery monitoring\n• Product movement tracking\n• Warehouse reporting dashboard\n• Multi-user access management\n\nBenefits:\n• Reduced manual work\n• Improved inventory accuracy\n• Faster warehouse operations\n• Better stock visibility\n• Increased operational efficiency\n\nOur WMS software helps businesses manage warehouses more effectively while reducing errors and saving time.\n\n### Franchise Management Software for Academy\n\nWe also developed a Franchise Management System for an academy to help manage multiple franchise branches from a single platform.\n\nFeatures Included:\n• Student management system\n• Franchise branch management\n• Course and batch management\n• Reports and analytics\n• Staff coordination\n• Centralized administration dashboard\n\nBenefits:\n• Easy franchise monitoring\n• Simplified student data management\n• Improved communication between branches\n• Better operational control\n• Scalable management system\n\nThis custom software solution helped the academy streamline operations and improve overall management efficiency.\n\n### Why Businesses Need Custom Software Development\n\nEvery business has unique workflows and operational challenges. Generic software may not always fit your exact requirements.\n\nCustom software development offers:\n• Business-specific solutions\n• Better scalability\n• Higher efficiency\n• Automation of manual tasks\n• Improved data management\n• Long-term cost savings\n\n### Why Choose ThreeDots for Software Development?\n\nAt ThreeDots, we provide:\n• Custom software development\n• Web application development\n• Business automation solutions\n• ERP and management systems\n• React JS development\n• Full-stack development services\n\nWe focus on building scalable, user-friendly, and performance-driven software solutions for businesses across different industries.\n\n### Looking for Software Development Services in Chennai?\n\nIf you are searching for:\n• Software development company in Chennai\n• Warehouse management software\n• Franchise management software\n• Custom ERP development\n• Web application development\n• Business management systems\n\nThreeDots can help you build the right solution for your business. Visit our website [ThreeDots](https://www.three-dots.in) or contact us today to transform your business with custom software solutions."
+  },
+  {
     "id": "future-of-web-dev",
     "title": "The Future of Web Development in 2026",
     "category": "Technology",
@@ -14,7 +23,7 @@
     "category": "Design",
     "date": "Sep 28, 2025",
     "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
-    "excerpt": "A deep dive into creating intuitive, accessible, and beautiful user interfaces.",
+    "excerpt": "A deep dive into creating intuitive, accessible, and beautiful user interfaces and animations.",
     "content": "Great design goes completely unnoticed. When a user interface works flawlessly, the user is immersed in the task, not the tool. This article explores the fundamental principles of UI/UX design that every developer and designer should master.\n\nWe start with visual hierarchy—guiding the user's eye to the most critical elements using scale, contrast, and whitespace. Next, we look at cognitive load. The best interfaces don't make the user think; they present clear, unambiguous choices. Finally, we discuss accessibility, ensuring that beautiful design is inclusive and usable by everyone, regardless of their abilities."
   },
   {
