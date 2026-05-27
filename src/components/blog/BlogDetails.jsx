@@ -60,7 +60,7 @@ export default function BlogDetails() {
             component="img"
             src={post.image}
             alt={post.title}
-            sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+            sx={{ width: "100%", height: "100%", objectFit: "scale-down" }}
           />
         </MotionBox>
 
@@ -91,11 +91,190 @@ export default function BlogDetails() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          {post.content.split('\\n\\n').map((paragraph, index) => (
-            <Typography key={index} sx={{ color: "rgba(255,255,255,0.85)", fontSize: "1.05rem", lineHeight: 1.8, mb: 3 }}>
-              {paragraph}
-            </Typography>
-          ))}
+          {post.content.split('\n\n').map((paragraph, index) => {
+            const trimmed = paragraph.trim();
+            if (!trimmed) return null;
+
+            // Link formatter helper
+            const renderTextWithLinks = (text) => {
+              const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+              const parts = [];
+              let lastIndex = 0;
+              let match;
+
+              while ((match = linkRegex.exec(text)) !== null) {
+                if (match.index > lastIndex) {
+                  parts.push(text.substring(lastIndex, match.index));
+                }
+                const url = match[2];
+                const isExternal = url.startsWith("http");
+                parts.push(
+                  isExternal ? (
+                    <a
+                      key={match.index}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#3B6EF8", textDecoration: "underline" }}
+                    >
+                      {match[1]}
+                    </a>
+                  ) : (
+                    <Link
+                      key={match.index}
+                      to={url}
+                      style={{ color: "#3B6EF8", textDecoration: "underline" }}
+                    >
+                      {match[1]}
+                    </Link>
+                  )
+                );
+                lastIndex = linkRegex.lastIndex;
+              }
+
+              if (lastIndex < text.length) {
+                parts.push(text.substring(lastIndex));
+              }
+
+              return parts.length > 0 ? parts : text;
+            };
+
+            if (trimmed.startsWith('### ')) {
+              return (
+                <Typography
+                  key={index}
+                  variant="h5"
+                  sx={{
+                    color: '#fff',
+                    fontWeight: 700,
+                    fontSize: { xs: '1.4rem', md: '1.8rem' },
+                    mt: 5,
+                    mb: 2.5,
+                    fontFamily: 'DM Sans',
+                  }}
+                >
+                  {renderTextWithLinks(trimmed.replace('### ', ''))}
+                </Typography>
+              );
+            }
+
+            if (trimmed.startsWith('## ')) {
+              return (
+                <Typography
+                  key={index}
+                  variant="h4"
+                  sx={{
+                    color: '#fff',
+                    fontWeight: 800,
+                    fontSize: { xs: '1.8rem', md: '2.4rem' },
+                    mt: 6,
+                    mb: 3,
+                    fontFamily: 'DM Sans',
+                  }}
+                >
+                  {renderTextWithLinks(trimmed.replace('## ', ''))}
+                </Typography>
+              );
+            }
+
+            // Check if paragraph contains list items (lines starting with • or -)
+            const lines = trimmed.split('\n');
+            const hasListItems = lines.some(l => l.trim().startsWith('•') || l.trim().startsWith('-'));
+
+            if (hasListItems) {
+              const elements = [];
+              let currentList = [];
+
+              const flushList = (key) => {
+                if (currentList.length > 0) {
+                  elements.push(
+                    <Box
+                      component="ul"
+                      key={`list-${key}`}
+                      sx={{
+                        color: "rgba(255,255,255,0.85)",
+                        pl: 3,
+                        mb: 4,
+                        listStyleType: "none",
+                      }}
+                    >
+                      {currentList.map((item, idx) => (
+                        <Box
+                          component="li"
+                          key={idx}
+                          sx={{
+                            fontSize: "1.05rem",
+                            lineHeight: 1.8,
+                            mb: 1.5,
+                            position: "relative",
+                            "&::before": {
+                              content: '""',
+                              position: "absolute",
+                              left: "-1.5rem",
+                              top: "0.6rem",
+                              width: "6px",
+                              height: "6px",
+                              borderRadius: "50%",
+                              bgcolor: "#3B6EF8",
+                            }
+                          }}
+                        >
+                          {renderTextWithLinks(item)}
+                        </Box>
+                      ))}
+                    </Box>
+                  );
+                  currentList = [];
+                }
+              };
+
+              lines.forEach((line, idx) => {
+                const trimmedLine = line.trim();
+                if (!trimmedLine) return;
+
+                if (trimmedLine.startsWith('•') || trimmedLine.startsWith('-')) {
+                  const itemText = trimmedLine.replace(/^[•\-\s]+/, '');
+                  if (itemText.trim()) {
+                    currentList.push(itemText);
+                  }
+                } else {
+                  flushList(`${index}-${idx}`);
+                  elements.push(
+                    <Typography
+                      key={`text-${index}-${idx}`}
+                      sx={{
+                        color: "rgba(255,255,255,0.85)",
+                        fontSize: "1.05rem",
+                        lineHeight: 1.8,
+                        mb: 2,
+                        fontFamily: "DM Sans"
+                      }}
+                    >
+                      {renderTextWithLinks(trimmedLine)}
+                    </Typography>
+                  );
+                }
+              });
+
+              flushList(`${index}-end`);
+              return <Box key={index}>{elements}</Box>;
+            }
+
+            return (
+              <Typography
+                key={index}
+                sx={{
+                  color: "rgba(255,255,255,0.85)",
+                  fontSize: "1.05rem",
+                  lineHeight: 1.8,
+                  mb: 3,
+                  fontFamily: "DM Sans"
+                }}
+              >
+                {renderTextWithLinks(paragraph)}
+              </Typography>
+            );
+          })}
         </MotionBox>
 
       </Container>
