@@ -33,7 +33,7 @@ function generateSitemap() {
   sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
   
   // Static pages
-  const staticPages = ['', '/about', '/portfolio', '/contact', '/blog', '/terms', '/privacy', '/tools', '/tools/qr-generator'];
+  const staticPages = ['', '/about', '/portfolio', '/contact', '/blog', '/terms', '/privacy', '/tools', '/tools/qr-generator', '/tools/invoice-generator'];
   staticPages.forEach(p => {
     sitemap += `  <url>\n`;
     sitemap += `    <loc>${domain}${p}</loc>\n`;
