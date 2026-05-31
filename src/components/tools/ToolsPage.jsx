@@ -12,6 +12,11 @@ export default function ToolsPage() {
       description: 'Generate QR codes for any URL or text – free and instant.',
       path: '/tools/qr-generator',
     },
+    {
+      name: 'Custom Invoice Generator',
+      description: 'Create GST-compliant professional invoices and download as PDF instantly for free.',
+      path: '/tools/invoice-generator',
+    },
     // Future tools can be added here
   ];
 
