@@ -26,8 +26,8 @@ const BRANDS = [
     logo: "brandmicmedialogo.png"
   },
   {
-    name:"three dots",
-    logo:"TTM_Black Letter-b0a3f4ec.svg"
+    name: "three dots",
+    logo: "TTM_Black Letter-b0a3f4ec.svg"
   }
 ];
 
@@ -39,9 +39,14 @@ function HeroSection() {
   const videoScale = useTransform(scrollY, [0, 600], [1, 1.08]);
 
   const handleScrollToQuote = () => {
-    const el = document.getElementById("request-quote");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+    try {
+
+      const el = document.getElementById("request-quote");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    } catch (error) {
+      console.error("Error scrolling to quote section", error);
     }
   };
 
@@ -62,23 +67,23 @@ function HeroSection() {
           zIndex: 0,
         }}
       >
-      <div style={{ width: '100%', height:"100%", position: 'relative' }}>
-        <LiquidEther
-          colors={[ '#5227FF', '#6366F1', '#6366F1' ]}
-          mouseForce={20}
-          cursorSize={100}
-          isViscous={false}
-          iterationsPoisson={16}
-          resolution={0.5}
-          isBounce={false}
-          autoDemo
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-        />
-      </div>
+        <div style={{ width: '100%', height: "100%", position: 'relative' }}>
+          <LiquidEther
+            colors={['#5227FF', '#6366F1', '#6366F1']}
+            mouseForce={20}
+            cursorSize={100}
+            isViscous={false}
+            iterationsPoisson={16}
+            resolution={0.5}
+            isBounce={false}
+            autoDemo
+            autoSpeed={0.5}
+            autoIntensity={2.2}
+            takeoverDuration={0.25}
+            autoResumeDelay={3000}
+            autoRampDuration={0.6}
+          />
+        </div>
         <Box sx={{ position: "absolute", inset: 0 }} />
         <Box
           sx={{
@@ -139,14 +144,15 @@ function HeroSection() {
             minHeight: "80vh",
           }}
         >
-          <Box textAlign="center"  sx={{ flex: 1, maxWidth: { lg: "55%" } }}>
+          <Box textAlign="center" sx={{ flex: 1, maxWidth: { lg: "55%" }, display: "flex", flexDirection: "column", gap: 1 }}>
+
             <motion.div
               variants={fadeUp}
               custom={0}
               initial="hidden"
               animate="visible"
             >
-             
+
             </motion.div>
             <motion.div
               variants={fadeUp}
@@ -169,7 +175,7 @@ function HeroSection() {
                   textShadow: "0 0 80px rgba(59,110,248,0.3)",
                   fontWeight: 700,
                   fontFamily: "Plus Jakarta Sans, sans-serif",
-                  textAlign: "center",  
+                  textAlign: "center",
                 }}
               >
                 We Build Software That Works — Exactly as Intended
@@ -190,8 +196,8 @@ function HeroSection() {
                   mb: 4,
                   fontWeight: 400,
                   fontFamily: "Plus Jakarta Sans, sans-serif",
-                  textAlign:"center"  ,
-                  margin:"1rem auto"
+                  textAlign: "center",
+                  margin: "1rem auto"
                 }}
               >
                 Three Dots is a product-focused software development company helping startups and growing businesses ship reliable, scalable digital products — on time and without the guesswork.
@@ -210,11 +216,11 @@ function HeroSection() {
                 justifyContent={"center"}
                 margin={"1rem 0"}
               >
-                <Button
+                {/* <Button
                   variant="contained"
                   onClick={handleScrollToQuote}
-                  fullWidth={isMobile ? true:false}
-                   sx={{
+                  fullWidth={isMobile ? true : false}
+                  sx={{
                     px: 4,
                     py: 1.4,
                     fontSize: 14,
@@ -224,7 +230,7 @@ function HeroSection() {
                   }}
                 >
                   Request a quote
-                </Button>
+                </Button> */}
                 <Button
                   variant="outlined"
                   onClick={openDialog}

@@ -35,6 +35,8 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import html2canvas from "html2canvas";
 import SEO from "../../components/SEO";
+import { getContactEmailTemplate } from "../../utils/emailTemplates";
+import { sendEmail } from "../../utils/sendEmail";
 
 
 // Indian states and UTs for GST State of Supply check
@@ -439,7 +441,23 @@ export default function InvoiceGenerator() {
       // For now, save local flag and log it. In a production app, this would hit a DB.
       localStorage.setItem("threedots_lead_submitted", "true");
       console.log("Lead captured:", leadData);
-
+            const payload = {
+                to: import.meta.env.VITE_CONTACT_EMAIL,
+                from: import.meta.env.VITE_FROM_EMAIL,
+                subject: `New Contact Inquiry from Invoice Generator`,
+                html: getContactEmailTemplate({
+                  firstName: leadData?.firstName??"No Data",
+                  lastName: leadData?.lastName??"No Data",
+                  email: leadData?.email??"No Data",
+                  country: leadData?.country??"No Data",
+                  category:leadData?.category??"No Data",
+                  message: leadData?.message??"No Data",
+                  phone:leadData?.phone??"No Data"
+                })
+              };
+        
+              const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
+              const res =  sendEmail(functionName, payload); 
       setLeadModalOpen(false);
       setSnackbar({ open: true, message: "Thank you! Starting download...", severity: "success" });
       
@@ -560,7 +578,7 @@ export default function InvoiceGenerator() {
                 p: 3,
                 color: "#fff"
               }}>
-                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 1.5 }}>
+                 <Box sx={{ width:{xs:"100%" , lg:"94vw"} ,display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3, borderBottom: "1px solid rgba(255,255,255,0.1)", pb: 1.5 }}>
                    <Typography variant="h5" sx={{ fontWeight: 700, fontFamily: "DM Sans" }}>
                      Invoice Creator
                    </Typography>
@@ -591,7 +609,8 @@ export default function InvoiceGenerator() {
                      "& .MuiTabs-indicator": {
                        bgcolor: "#3B6EF8",
                        height: "3px",
-                       borderRadius: "3px"
+                       borderRadius: "3px",
+                      
                      }
                    }}
                  >

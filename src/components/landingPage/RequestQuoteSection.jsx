@@ -22,6 +22,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email("Please enter a valid email").required("Please enter your email"),
   service: Yup.string().required("Please select a service"),
   message: Yup.string().required("Please tell us about your project"),
+  phone: Yup.string().required("Please enter your phone number"),
 });
 
 export default function RequestQuoteSection() {
@@ -42,6 +43,7 @@ export default function RequestQuoteSection() {
           country: values.service,
           category: "Project Quote Request",
           message: values.message,
+          phone:values.phone
         })
       };
 
@@ -251,7 +253,7 @@ export default function RequestQuoteSection() {
                   </motion.div>
                 ) : (
                   <Formik
-                    initialValues={{ name: "", companyName: "", email: "", service: "", message: "" }}
+                    initialValues={{ name: "", companyName: "", email: "", service: "", message: "" ,phone:""}}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                   >
@@ -298,6 +300,19 @@ export default function RequestQuoteSection() {
                               sx={inputSx}
                               error={touched.email && Boolean(errors.email)}
                               helperText={touched.email && errors.email}
+                            />
+                          </Grid>
+                         <Grid item xs={12} md={6}>
+                            <Field
+                              as={TextField}
+                              fullWidth
+                              name="phone"
+                              label="Phone Number*"
+                              variant="outlined"
+                              size="medium"
+                              sx={inputSx}
+                              error={touched.phone && Boolean(errors.phone)}
+                              helperText={touched.phone && errors.phone}
                             />
                           </Grid>
 
