@@ -37,6 +37,7 @@ function FaqSection() {
           }}
         >
           <Typography
+            component="h3"
             sx={{
               color: "#fff",
               fontWeight: isOpen ? 700 : 500,
@@ -124,6 +125,7 @@ const MotionBox = motion(Box);
                 }}
               />
               <Typography
+                component="h2"
                 sx={{
                   fontSize: { xs: "2.5rem", md: "3.5rem", xl: "4rem" },
                   fontWeight: 800,

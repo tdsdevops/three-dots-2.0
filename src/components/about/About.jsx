@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import bgVdo from "../../assets/bgVdo.mp4";
 import CtaBanner from "../../shared/components/CtaBanner";
 import { useAppointment } from "../../context/AppointmentContext";
+import SEO from "../SEO";
 
 const darkTheme = createTheme({
   palette: {
@@ -56,8 +57,9 @@ function SectionHeader({ badge, title, titleGray, subtitle, cta, ctaLabel }) {
       </M>
       <M {...fadeUp(0.1)}>
         <Typography
+          component="h2"
           sx={{
-            
+
             fontWeight: 800,
             fontSize: {
               xs: "2rem",
@@ -190,7 +192,7 @@ function Navbar() {
     >
       <Typography
         sx={{
-          
+
           fontWeight: 800,
           fontSize: { xs: "1.2rem", md: "1.4rem" },
           color: "#fff",
@@ -310,24 +312,6 @@ function HeroSection() {
           width: "100%",
         }}
       >
-        <M
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Chip
-            label="2025  Dig Deep About Us"
-            sx={{
-              bgcolor: "#2563EB",
-              color: "#fff",
-              fontFamily: "DM Sans",
-              fontWeight: 600,
-              fontSize: { xs: "0.7rem", md: "0.8rem" },
-              px: 1,
-              mb: 4,
-            }}
-          />
-        </M>
 
         <M
           initial={{ opacity: 0, y: 30 }}
@@ -336,8 +320,9 @@ function HeroSection() {
           sx={{ textAlign: "center", maxWidth: 760 }}
         >
           <Typography
+            component="h1"
             sx={{
-              
+
               fontWeight: 800,
               fontSize: {
                 xs: "2.2rem",
@@ -351,9 +336,10 @@ function HeroSection() {
               mb: 3,
             }}
           >
-            Learn More About Landin
+            Three Dots
+
             <Box component="span" sx={{ display: "block" }}>
-              Let's Deep Dive!
+           
             </Box>
           </Typography>
           <Typography
@@ -367,8 +353,7 @@ function HeroSection() {
               lineHeight: 1.7,
             }}
           >
-            Landin is your go-to agency for creative thinking and marketing
-            ideas. We specialize in digital business solutions.
+            At Three Dots, we believe great ideas start with simple connection
           </Typography>
           <Box
             sx={{
@@ -378,134 +363,11 @@ function HeroSection() {
               flexWrap: "wrap",
             }}
           >
-            <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Button
-                variant="outlined"
-                sx={{
-                  borderColor: "#fff",
-                  color: "#fff",
-                  fontFamily: "DM Sans",
-                  fontWeight: 600,
-                  px: { xs: 2.5, md: 3 },
-                  py: 1,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: { xs: "0.85rem", md: "0.95rem" },
-                  backdropFilter: "blur(6px)",
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  "&:hover": {
-                    borderColor: "#2563EB",
-                    bgcolor: "rgba(37,99,235,0.12)",
-                  },
-                }}
-              >
-                Connect With Us
-              </Button>
-            </M>
-            <M whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Button
-                variant="contained"
-                sx={{
-                  bgcolor: "rgba(10,10,20,0.7)",
-                  color: "#fff",
-                  fontFamily: "DM Sans",
-                  fontWeight: 600,
-                  px: { xs: 2.5, md: 3 },
-                  py: 1,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: { xs: "0.85rem", md: "0.95rem" },
-                  border: "1px solid rgba(255,255,255,0.18)",
-                  boxShadow: "none",
-                  backdropFilter: "blur(6px)",
-                  "&:hover": { bgcolor: "rgba(20,20,40,0.8)" },
-                }}
-              >
-                What is Landin?
-              </Button>
-            </M>
+
           </Box>
         </M>
 
-        <M
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          sx={{
-            mt: { xs: 5, md: 7 },
-            width: "100%",
-            maxWidth: { xs: "100%", sm: 580, md: 720, lg: 860, xl: 960 },
-            mx: "auto",
-          }}
-        >
-          <Box
-            sx={{
-              borderRadius: { xs: 3, md: 4 },
-              overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.1)",
-              boxShadow: "0 0 80px rgba(37,99,235,0.2)",
-              aspectRatio: "16/9",
-              position: "relative",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background:
-                "radial-gradient(ellipse at 60% 70%, #0d1a4a 0%, #050510 60%)",
-            }}
-          >
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "radial-gradient(ellipse 60% 40% at 40% 60%, rgba(37,99,235,0.3) 0%, transparent 70%)",
-              }}
-            />
-            <svg
-              width="160"
-              height="160"
-              viewBox="0 0 160 160"
-              style={{ position: "absolute", opacity: 0.85 }}
-            >
-              <defs>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              <polygon
-                points="80,15 95,60 145,60 105,88 120,130 80,103 40,130 55,88 15,60 65,60"
-                fill="none"
-                stroke="#3b82f6"
-                strokeWidth="2.5"
-                filter="url(#glow)"
-              />
-            </svg>
-            <M
-              whileHover={{ scale: 1.12 }}
-              style={{
-                zIndex: 2,
-                width: 52,
-                height: 52,
-                borderRadius: "50%",
-                background: "rgba(255,255,255,0.12)",
-                backdropFilter: "blur(8px)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </M>
-          </Box>
-        </M>
+    <AboutContent />
       </Box>
     </Box>
   );
@@ -598,20 +460,10 @@ function AboutBlock({
       {...fadeUp(0.1)}
       sx={{ flex: 1, order: { xs: 2, md: imageRight ? 1 : 2 } }}
     >
-      <Chip
-        label="● About Landin"
-        sx={{
-          bgcolor: "#111",
-          color: "#fff",
-          border: "1px solid #333",
-          fontFamily: "DM Sans",
-          fontSize: { xs: "0.72rem", md: "0.8rem" },
-          mb: 3,
-        }}
-      />
       <Typography
+        component="h2"
         sx={{
-          
+
           fontWeight: 800,
           fontSize: {
             xs: "1.9rem",
@@ -620,11 +472,10 @@ function AboutBlock({
             lg: "3.5rem",
             xl: "4rem",
           },
-          lineHeight: 1.15,
           mb: 4,
         }}
       >
-        {title}
+
         <Box component="span" sx={{ color: "#6b7280", display: "block" }}>
           {titleGray}
         </Box>
@@ -632,6 +483,7 @@ function AboutBlock({
       {points.map((p, i) => (
         <M key={i} {...fadeUp(0.2 + i * 0.12)} sx={{ mb: 3 }}>
           <Typography
+            component="h3"
             sx={{
               fontFamily: "DM Sans",
               fontWeight: 700,
@@ -716,14 +568,100 @@ function AboutBlock({
   );
 }
 
+// New About Content Section
+function AboutContent() {
+  const { openDialog } = useAppointment();
+  return (
+    <Box sx={{  py: { xs: 8, md: 12 }, px: 2, borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+      <Container maxWidth="lg">
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mb: 2 }}>
+            Who We Are
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            At Three Dots, we believe great ideas start with simple connections.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            Founded with a passion for innovation, creativity, and meaningful digital experiences, Three Dots is dedicated to helping businesses and individuals turn ideas into impactful solutions. Whether it’s design, technology, digital services, or creative strategy, we focus on delivering work that is thoughtful, effective, and built to last.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            Our name, Three Dots, represents possibility — the idea that every journey, every story, and every breakthrough begins with what comes next.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            What We Do
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            We specialize in creating solutions that help brands grow and stand out. From concept to execution, we combine creativity, strategy, and technology to deliver results that matter.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Our Mission
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            Our mission is simple: to create meaningful digital experiences that inspire growth, build trust, and deliver real value.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            We believe in keeping things clear, collaborative, and customer-focused — because the best results happen when ideas are built together.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Our Vision
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            To become a trusted creative and technology partner for businesses looking to innovate, grow, and make a lasting impact in the digital world.
+          </Typography>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Why Choose Three Dots?
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1, ml: 2 }}>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Quality-driven solutions
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Creative thinking with practical results
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Transparent communication
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Customer-first approach
+            </Typography>
+            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+              ✔ Continuous innovation
+            </Typography>
+          </Box>
+          <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
+            Our Story
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7 }}>
+            Every brand starts somewhere.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, mt: 2 }}>
+            Three Dots began with a simple idea — to bridge creativity and technology in a way that feels approachable, effective, and future-ready. What started as a vision has grown into a commitment to helping businesses bring their ideas to life through smart, modern solutions.
+          </Typography>
+          <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" }, lineHeight: 1.7, fontStyle: "italic", mt: 2 }}>
+            And this is only the beginning…
+          </Typography>
+          <Box sx={{ textAlign: "center", mt: 4 }}>
+            <Button variant="contained" onClick={openDialog} sx={{ bgcolor: "#2563EB", color: "#fff", fontFamily: "DM Sans", fontWeight: 700, px: 4, py: 1.5, borderRadius: 2.5, textTransform: "none" }}>
+                Request Quote
+              </Button>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
+  );
+}
+
+// Include AboutContent in the main render
+
+
 /* ── SECTION 4: Team ── */
 const team = [
-  { name: "Sairam Srinivasan", role: "Founder, Software Engineer", color: "#7c5c3a" },
-  { name: "Lokesh S", role: "Developer, Tech Lead", color: "#3a5c7c" },
-  { name: "Krithika R", role: "UX/UI Specialist", color: "#5c4a3a" },
-  { name: "Balavignesh E", role: "QA lead, Software Engineer", color: "#3a4a5c" },
-  { name: "Ashok Kumar S", role: "Content Creator, Writer", color: "#5c3a4a" },
-  { name: "Abiniya Sri", role: "Marketing, Organizer", color: "#4a5c4a" },
+  { name: "Sairam Srinivasan", role: "Software Engineer - 5 + years exp", color: "#7c5c3a" },
+  { name: "Lokesh S", role: "Developer, Tech Lead -5 years exp", color: "#3a5c7c" },
+  { name: "Krithika R", role: "UX/UI Specialist - 5 years exp", color: "#5c4a3a" },
+  { name: "Balavignesh E", role: "QA lead, Software Engineer - 5 years exp", color: "#3a4a5c" },
+  { name: "Ashok Kumar S", role: "Content Creator, Writer - 3 years exp", color: "#5c3a4a" },
+  { name: "Abiniya Sri", role: "Marketing, Organizer - 2 years exp", color: "#4a5c4a" },
 
 ];
 
@@ -801,23 +739,7 @@ function TeamCard({ member, index }) {
             {member.role}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            width: 28,
-            height: 28,
-            borderRadius: 1.5,
-            bgcolor: "#12122a",
-            border: "1px solid rgba(37,99,235,0.3)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="white">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-        </Box>
+
       </Box>
     </M>
   );
@@ -1036,7 +958,7 @@ function ToolCard({ tool, index }) {
           alignItems: "center",
           justifyContent: "center",
           mb: 2.5,
-          
+
           fontWeight: 800,
           fontSize: "1rem",
           color: tool.textColor,
@@ -1157,8 +1079,10 @@ function ToolsSection() {
 export default function App() {
   return (
     <>
+      <SEO pageKey="about" />
       <HeroSection />
-      <AboutBlock
+    
+      {/* <AboutBlock
         title="An Agency With Classic"
         titleGray="Revolutionary Skills!"
         points={[
@@ -1171,7 +1095,7 @@ export default function App() {
             body: "Landin is here to ensure your success with expert guidance and collaborative teamwork.",
           },
         ]}
-        ratingCount="200+ Agencies Rated"
+        ratingCount="Agencies Rated"
       />
       <AboutBlock
         imageRight
@@ -1187,8 +1111,8 @@ export default function App() {
             body: "Our commitment doesn't end at launch—Landin is here to support you with ongoing updates and expertise whenever you need it.",
           },
         ]}
-        ratingCount="900+ People Rated"
-      />
+        ratingCount="People Rated"
+      /> */}
       <TeamSection />
       <ToolsSection />
       <CtaBanner />

@@ -1,0 +1,93 @@
+{
+  "home": {
+    "title": "Custom Software & Mobile App Development Company in Chennai | ThreeDots",
+    "description": "ThreeDots is a premium software development company in Chennai, India. We deliver cutting-edge web applications, custom software, mobile apps, and UI/UX design services to scale your business.",
+    "keywords": "software development company in chennai, web development company chennai, mobile app development chennai, custom software chennai, threedots software, software developers chennai, ui ux design agency chennai",
+    "canonical": "https://three-dots.in/",
+    "ogTitle": "Custom Software & Web Development Company in Chennai | ThreeDots",
+    "ogDescription": "Empowering businesses with custom software development, mobile apps, and scalable web solutions. Contact Chennai's leading development team today.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "about": {
+    "title": "About Us | Top Software & Web Developers in Chennai - ThreeDots",
+    "description": "Learn about ThreeDots, a premium technology agency in Chennai. Our mission, values, and expert team are dedicated to crafting high-performance digital products that scale.",
+    "keywords": "about threedots software, software engineering team chennai, custom application developers, digital product agency chennai",
+    "canonical": "https://three-dots.in/about",
+    "ogTitle": "About ThreeDots | Dedicated Tech & Software Team in Chennai",
+    "ogDescription": "Discover our values, technology expertise, and the passionate team of software developers and designers making ideas happen at ThreeDots.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "portfolio": {
+    "title": "Our Work Portfolio | Custom Software & Web Projects - ThreeDots",
+    "description": "Explore our portfolio of successful software products, custom web apps, mobile apps, and digital solutions delivered by Chennai's top software development team.",
+    "keywords": "software portfolio, web development projects, custom software case studies, app development portfolio chennai, threedots case studies",
+    "canonical": "https://three-dots.in/portfolio",
+    "ogTitle": "ThreeDots Portfolio | Cutting-Edge Digital Solutions & Case Studies",
+    "ogDescription": "See how we help businesses transform and scale with modern web applications, mobile apps, and tailored software solutions.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "contact": {
+    "title": "Contact ThreeDots | Software Development Agency in Chennai",
+    "description": "Get in touch with ThreeDots, Chennai's top custom software development company. Let's discuss your next web application, mobile app, or software integration project.",
+    "keywords": "contact software developers chennai, threedots software contact, web design agency phone, hire software developers chennai",
+    "canonical": "https://three-dots.in/contact",
+    "ogTitle": "Contact ThreeDots Software Development | Hire Top Developers in Chennai",
+    "ogDescription": "Have an idea? Let's build it together. Get in touch with us for a free consultation and project quote in Chennai.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "blog": {
+    "title": "ThreeDots Blog | Software, Technology & Development Insights",
+    "description": "Read the latest articles, insights, and industry updates on software engineering, web development, mobile apps, UI/UX design, and SEO strategies from ThreeDots.",
+    "keywords": "threedots blog, software engineering insights, tech blog chennai, web development trends, custom software blog",
+    "canonical": "https://three-dots.in/blog",
+    "ogTitle": "ThreeDots Technology & Development Blog | Insights & Trends",
+    "ogDescription": "Stay updated with expert articles and tutorials on modern web development, software architecture, mobile solutions, and marketing strategies.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "terms": {
+    "title": "Terms & Conditions | ThreeDots Software Development Chennai",
+    "description": "Read the terms and conditions for using the website and software development services provided by ThreeDots software solutions.",
+    "keywords": "terms and conditions, software development contract, legal agreement, threedots terms",
+    "canonical": "https://three-dots.in/terms",
+    "ogTitle": "Terms & Conditions | ThreeDots Software Chennai",
+    "ogDescription": "Review the legal agreement and terms of service for ThreeDots software solutions and consultancy.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "privacy": {
+    "title": "Privacy Policy | Data Protection & Security - ThreeDots",
+    "description": "Read the ThreeDots privacy policy to understand how we collect, store, utilize, and protect your personal and project information.",
+    "keywords": "privacy policy, data privacy, data security, threedots privacy, data protection chennai",
+    "canonical": "https://three-dots.in/privacy",
+    "ogTitle": "Privacy Policy | ThreeDots Software Chennai",
+    "ogDescription": "Learn about our data collection practices, user rights, and security measures in the ThreeDots privacy policy.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "tools": {
+    "title": "Tools | ThreeDots",
+    "description": "Explore free tools like QR Code Generator and upcoming utilities from ThreeDots. All tools are open and freely accessible.",
+    "keywords": "tools, free tools, QR code generator, three-dots tools",
+    "canonical": "https://three-dots.in/tools",
+    "ogTitle": "ThreeDots Tools",
+    "ogDescription": "Free utilities and tools provided by ThreeDots, including QR Code Generator.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "qr-generator": {
+    "title": "Free QR Code Generator | ThreeDots",
+    "description": "Generate QR codes for any URL or text instantly for free. No registration required.",
+    "keywords": "free QR code generator, QR code tool, generate QR code, three-dots QR",
+    "canonical": "https://three-dots.in/tools/qr-generator",
+    "ogTitle": "Free QR Code Generator - ThreeDots",
+    "ogDescription": "Create QR codes quickly and download them as PNG. Completely free.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "invoice-generator": {
+    "title": "Free Custom Invoice Generator | GST-Compliant PDFs | ThreeDots",
+    "description": "Generate professional, GST-compliant invoices instantly. Download PDF, print, or share. Perfect for Indian freelancers, shops, startups & service providers. No signup required.",
+    "keywords": "free custom invoice generator, gst invoice maker online, invoice pdf generator for freelancers, download invoice pdf free, custom invoice template free india, gst bill creator",
+    "canonical": "https://three-dots.in/tools/invoice-generator",
+    "ogTitle": "Free Custom Invoice Generator - GST-Compliant PDFs | ThreeDots",
+    "ogDescription": "Generate professional, GST-compliant invoices instantly. Download PDF, print, or share. Perfect for Indian freelancers, shops, startups & service providers. No signup required.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
+  }
+}
+

@@ -3,11 +3,6 @@ import supabase from '../supabaseClient';
 export const sendEmail = async (functionName, payload, files = {}) => {
   const formData = new FormData();
   
-  const { data: { session }, error } = await supabase.auth.getSession();
-
-  if (error || !session) {
-    throw new Error("No active session found");
-  }
 
   // ✅ Email params (from payload)
   if (payload.to) formData.append("to", payload.to);
@@ -35,7 +30,7 @@ export const sendEmail = async (functionName, payload, files = {}) => {
   const res = await fetch(`${supabaseUrl}/functions/v1/${functionName}`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${session?.access_token}`,
+      Authorization: `Bearer `,
     },
     body: formData,
   });

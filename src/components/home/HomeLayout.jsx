@@ -17,9 +17,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "'Plus Jakarta Sans', 'Syne', sans-serif",
-    h1: { fontFamily: "'Syne', sans-serif", fontWeight: 800 },
-    h2: { fontFamily: "'Syne', sans-serif", fontWeight: 800 },
-    h3: { fontFamily: "'Syne', sans-serif", fontWeight: 700 },
+    h1: { fontFamily: "DM Sans", fontWeight: 800 },
+    h2: { fontFamily: "DM Sans", fontWeight: 800 },
+    h3: { fontFamily: "DM Sans", fontWeight: 700 },
   },
   components: {
     MuiButton: {
@@ -40,7 +40,6 @@ function HomeLayout() {
     <>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Header />
-
         <DynamicSmoothScrolling>
           <Outlet />
         </DynamicSmoothScrolling>

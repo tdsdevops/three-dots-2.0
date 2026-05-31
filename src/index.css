@@ -12,11 +12,9 @@
 html,
 body {
   margin: 0;
-  /* overflow:hidden on html+body hides the native scrollbar but we need
-         the PROXY div (overflow:scroll) to remain interactive for middle-mouse.
-         html/body overflow:hidden does NOT block Ctrl+Wheel zoom — zoom is
-         handled at the OS/browser compositor level, not the scroll container. */
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: #020718;
   -webkit-font-smoothing: antialiased;
 }
@@ -46,7 +44,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .barlow-light {

@@ -103,12 +103,13 @@ function Header() {
               borderRadius: "0 0 50% 50%",
             },
             transition: "all 0.45s cubic-bezier(0.22,1,0.36,1)",
+           px:{lg:7,md:7}
           }}
         >
-          <Container maxWidth="xl">
+          <Container maxWidth="xl" >
             <Toolbar
               disableGutters
-              sx={{ py: { xs: 1.2, md: 1.5 }, justifyContent: "space-between" }}
+              sx={{ py: { xs: 1.2, md: 1.5 ,}, justifyContent: "space-between" }}
             >
               <Box
                 sx={{
@@ -134,24 +135,13 @@ function Header() {
                     overflow: "hidden",
                     padding: "0px",
                     position: "relative",
-                    width: "min-content",
+                    width: "100%",
+                    justifyContent: "space-between",
                   }}
                 >
                   <Logo />
                   {!isMobile && (
                     <>
-                      <div
-                        style={{
-                          background:
-                            "linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%)",
-                          opacity: 1,
-                          flex: "0 0 auto",
-                          height: "40px",
-                          overflow: "hidden",
-                          position: "relative",
-                          width: "1px",
-                        }}
-                      ></div>
                       <Stack
                         direction="row"
                         spacing={0.5}
@@ -160,20 +150,22 @@ function Header() {
                           height: "auto",
                           position: "relative",
                           width: "auto",
+                          gap: "40px",
                         }}
                       >
                         <Box
                           sx={{
-                            alignItems: "flex-start",
+                           
                             display: "flex",
                             flexDirection: "row",
                             flexWrap: "nowrap",
-                            gap: "38px",
-                            height: "min-content",
+                            gap: "1.5rem",
                             overflow: "hidden",
                             padding: "0px",
                             position: "relative",
                             width: "min-content",
+                            alignItems: "center",
+                           
                           }}
                         >
                           {links.map((l) => (
@@ -181,6 +173,7 @@ function Header() {
                               key={l}
                               to={`/${l.toLowerCase()}`}
                               sx={{
+                                
                                 alignItems: "center",
                                 cursor: "pointer",
                                 display: "flex",
@@ -213,19 +206,7 @@ function Header() {
                             </Link>
                           ))}
                         </Box>
-                      </Stack>
-                    </>
-                  )}
-                </Box>
-                <Box
-                  sx={{
-                    flex: "0 0 auto",
-                    height: "auto",
-                    position: "relative",
-                    width: "auto",
-                  }}
-                >
-                  {!isMobile && (
+                             {!isMobile && (
                     <Button
                       component={Link}
                       to="/contact"
@@ -240,10 +221,13 @@ function Header() {
                         textDecoration: "none",
                       }}
                     >
-                      Get In Touch
+                      Contact Us
                     </Button>
                   )}
-                  {isMobile && (
+                      </Stack>
+                    </>
+                  )}
+                   {isMobile && (
                     <IconButton
                       onClick={() => setMobileOpen(true)}
                       sx={{ color: "#fff", p: 0.5 }}
@@ -275,6 +259,17 @@ function Header() {
                       </Box>
                     </IconButton>
                   )}
+                </Box>
+                <Box
+                  sx={{
+                    flex: "0 0 auto",
+                    height: "auto",
+                    position: "relative",
+                    width: "auto",
+                  }}
+                >
+             
+                 
                 </Box>
               </Box>
             </Toolbar>
@@ -455,7 +450,7 @@ function Header() {
                       },
                     }}
                   >
-                    Get In Touch
+                    Contact Us
                   </Button>
                 </Box>
               </motion.div>

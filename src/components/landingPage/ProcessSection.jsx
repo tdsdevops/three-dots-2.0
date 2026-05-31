@@ -6,25 +6,32 @@ import { useAppointment } from "../../context/AppointmentContext";
 // ─── Process / How We Work Section ────────────────────────────────────────────
 const STAGES = [
   {
-    number: "Stage 1",
+    number: "01 Discovery & scoping",
     icon: "◎",
-    title: "Kickoff",
-    desc: "The kickoff stage is where everything begins. We align with you to understand your goals, vision, and expectations. Through in-depth discussions and thorough research.",
-    tags: ["Comprehensive Consultation", "Project Roadmap"],
+    title: "Discovery & scoping",
+    desc: "We map your requirements, goals, and constraints into a clear technical brief. No assumptions, no vague estimates.",
+    tags: ["Technical Brief", "Clear Requirements", "Zero Assumptions"],
   },
   {
-    number: "Stage 2",
+    number: "02 Design & architecture",
     icon: "⊞",
-    title: "Execution",
-    desc: "With a clear strategy in place, we move into the execution phase, where ideas come to life. Our team works high-efficiently and collaboratively to implement the plan.",
-    tags: ["Seamless Integration", "Real Time Collaboration"],
+    title: "Design & architecture",
+    desc: "Wireframes, system design, and tech stack decisions are made before development begins — keeping costly rework off the table.",
+    tags: ["Wireframing", "System Architecture", "Tech Stack Choices"],
   },
   {
-    number: "Stage 3",
+    number: "03 Agile development",
+    icon: "⚡",
+    title: "Agile development",
+    desc: "Two-week sprints with working software at every checkpoint. You see real progress, not status updates.",
+    tags: ["2-Week Sprints", "Working Checkpoints", "Real Progress"],
+  },
+  {
+    number: "04 QA, launch & handover",
     icon: "⟳",
-    title: "Handoff",
-    desc: "Once the design and development are finalized, we seamlessly transition to the handoff stage. Here, we provide you with all the assets, documentation, and support for a smooth launch.",
-    tags: ["Ongoing Support", "Documentation"],
+    title: "QA, launch & handover",
+    desc: "Rigorous testing, staged deployment, and a clean handover — including documentation, training, and optional ongoing retainer support.",
+    tags: ["Rigorous QA", "Staged Launch", "Clean Handover"],
   },
 ];
 
@@ -255,44 +262,43 @@ function ProcessSection() {
                 sx={{
                   fontSize: {
                     xs: "2rem",
-                    sm: "2.6rem",
-                    md: "3rem",
-                    xl: "3.4rem",
+                    sm: "2.4rem",
+                    md: "2.8rem",
+                    xl: "3.2rem",
                   },
                   color: "#fff",
-                  lineHeight: 1.1,
-                  mb: 1,
+                  lineHeight: 1.15,
+                  mb: 1.5,
                 }}
               >
-                We Simplify The Journey
+                A Process Built for Clarity,
               </Typography>
               <Typography
                 variant="h2"
                 sx={{
                   fontSize: {
                     xs: "2rem",
-                    sm: "2.6rem",
-                    md: "3rem",
-                    xl: "3.4rem",
+                    sm: "2.4rem",
+                    md: "2.8rem",
+                    xl: "3.2rem",
                   },
                   color: "#3B6EF8",
-                  lineHeight: 1.1,
+                  lineHeight: 1.15,
                   mb: 4,
                 }}
               >
-                From Design To Launch.
+                Not Complexity.
               </Typography>
               <Typography
                 sx={{
-                  fontSize: { xs: 14, md: 15 },
-                  color: "rgba(255,255,255,0.5)",
-                  lineHeight: 1.75,
+                  fontSize: { xs: 14, md: 15.5 },
+                  color: "rgba(255,255,255,0.6)",
+                  lineHeight: 1.8,
                   mb: 6,
-                  maxWidth: 440,
+                  maxWidth: 460,
                 }}
               >
-                We make it easy to bring your ideas to life, guiding you from
-                concept to a fully launched product.
+                We follow a structured delivery process that keeps you informed and in control — from the first discovery session to post-launch support.
               </Typography>
             </motion.div>
             <Box sx={{ position: "relative" }}>

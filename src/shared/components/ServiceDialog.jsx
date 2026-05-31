@@ -17,10 +17,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { apiRoutes, appConstant, services } from '../../appConstant';
 import MuiButton from '../MuiButton';
-import useAxios from '../../api/useAxios'
-import { sendmail } from '../functions/commonfunctions';
+import { sendEmail } from '../../utils/sendEmail';
+import { getContactEmailTemplate } from '../../utils/emailTemplates';
+
 const ServiceDialog = ({ open, onClose,handleClick }) => {
-  const axiosData = useAxios();
   const service =  services.map((item, ind) => {return item.title });
  
   const initialValues = {
@@ -39,9 +39,28 @@ const ServiceDialog = ({ open, onClose,handleClick }) => {
     message: Yup.string().required('Message is required'),
   });
 
-  const handleSubmit = (values) => {
-    handleClick()
-    sendmail(values);
+  const handleSubmit = async (values) => {
+    try {
+      handleClick();
+      const payload = {
+        to: import.meta.env.VITE_CONTACT_EMAIL,
+        from: import.meta.env.VITE_FROM_EMAIL,
+        subject: `New Request Quote from Dialog - ${values.name}`,
+        html: getContactEmailTemplate({
+          firstName: values.name,
+          lastName: `(${values.companyName})`,
+          email: values.email,
+          country: values.service,
+          category: "Dialog Quote Request",
+          message: values.message,
+        })
+      };
+
+      const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
+      await sendEmail(functionName, payload);
+    } catch (error) {
+      console.error("Error sending dialog email:", error);
+    }
     onClose();
   };
 

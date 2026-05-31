@@ -9,7 +9,7 @@ import { useAppointment } from "../../context/AppointmentContext";
 const SERVICES = [
   {
     icon: "⚡",
-    badge: "Development",
+    badge: "React & Next.js",
     badgeColor: "#3B6EF8",
     title: "Website Development",
     desc: "High-performance websites that reflect your brand and convert users optimized for speed, security, and scalability.",
@@ -18,7 +18,7 @@ const SERVICES = [
   },
   {
     icon: "✦",
-    badge: "Design",
+    badge: "Shopify & Custom",
     badgeColor: "#8B5CF6",
     title: "E-commerce Solutions",
     desc: "Robust online stores with seamless shopping experiences, custom features, and backend systems built to grow with your business.",
@@ -27,7 +27,7 @@ const SERVICES = [
   },
   {
     icon: "✦",
-    badge: "Design",
+    badge: "Multi-Tenant Systems",
     badgeColor: "#8B5CF6",
     title: "CMS & SaaS Platforms",
     desc: "End-to-end development of scalable platforms from content management tools to subscription-based SaaS products with multi-user access.",
@@ -36,7 +36,7 @@ const SERVICES = [
   },
   {
     icon: "✦",
-    badge: "Design",
+    badge: "Real-time Insights",
     badgeColor: "#8B5CF6",
     title: "ERP & Business Dashboards",
     desc: "Custom internal systems to track operations, visualize data, and support decision-making with real-time dashboards.",
@@ -45,7 +45,7 @@ const SERVICES = [
   },
   {
     icon: "✦",
-    badge: "Design",
+    badge: "Interactive Portals",
     badgeColor: "#8B5CF6",
     title: "Custom Web Applications",
     desc: "Fully tailored web apps aligned with your business logic from client portals to booking systems and workflow tools.",
@@ -54,7 +54,7 @@ const SERVICES = [
   },
   {
     icon: "◈",
-    badge: "Development",
+    badge: "Figma & Wireframes",
     badgeColor: "#3B6EF8",
     title: "UX/UI Design",
     desc: "User-first design that enhances functionality and builds trust every screen, flow, and detail crafted for clarity and experience.",
@@ -170,8 +170,9 @@ function ServiceCard({ service, index }) {
 
         {/* Title */}
         <Typography
+          component="h3"
           sx={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "DM Sans",
             fontWeight: 700,
             fontSize: { xs: "1.1rem", md: "1.2rem" },
             color: "#fff",
@@ -204,7 +205,7 @@ function ServiceCard({ service, index }) {
           alignItems="center"
           sx={{ mb: 2.5, position: "relative", zIndex: 1 }}
         >
-        {service.price &&  <Box
+          {service.price && <Box
             sx={{
               px: 2,
               py: 0.75,
@@ -230,7 +231,7 @@ function ServiceCard({ service, index }) {
               / Project
             </Typography>
           </Box>}
-         {service.duration&& <Box
+          {service.duration && <Box
             sx={{
               px: 2,
               py: 0.75,
@@ -355,7 +356,7 @@ export default function ServicesSection() {
   // Framer Motion automatically batches this useTransform with the global smooth scroll update!
   const stickyY = useTransform(scrollY, (currentScrollY) => {
     if (layout.maxScroll === 0) return 0;
-    const topOffset = 0;
+    const topOffset = typeof window !== "undefined" ? window.innerHeight * 0.20 : 150;
     const scrolled = currentScrollY - layout.absoluteTop + topOffset;
     return Math.max(0, Math.min(scrolled, layout.maxScroll));
   });
@@ -462,133 +463,53 @@ export default function ServicesSection() {
               transition={{ duration: 0.65, delay: 0.08 }}
             >
               <Typography
+                component="h2"
                 sx={{
                   fontFamily: "DM Sans",
-                  fontWeight: 400,
+                  fontWeight: 800,
                   fontSize: {
                     xs: "2rem",
-                    sm: "2.5rem",
-                    md: "2.9rem",
-                    xl: "3.3rem",
+                    sm: "2.4rem",
+                    md: "2.8rem",
+                    xl: "3.2rem",
                   },
                   color: "#fff",
-                  lineHeight: 1.1,
-                  mb: 0.4,
+                  lineHeight: 1.15,
+                  mb: 1.5,
                 }}
               >
-                Solutions That Solve,
+                End-to-End Development,
               </Typography>
               <Typography
+                component="h2"
                 sx={{
                   fontFamily: "DM Sans",
-                  fontWeight: 400,
+                  fontWeight: 800,
                   fontSize: {
                     xs: "2rem",
-                    sm: "2.5rem",
-                    md: "2.9rem",
-                    xl: "3.3rem",
+                    sm: "2.4rem",
+                    md: "2.8rem",
+                    xl: "3.2rem",
                   },
-                  color: "#ffffff99",
-                  lineHeight: 1.1,
-                  mb: 2.5,
+                  color: "#3B6EF8",
+                  lineHeight: 1.15,
+                  mb: 3,
                 }}
               >
-                Systems That Scale.
+                From Idea to Deployment
               </Typography>
               <Typography
                 sx={{
-                  fontSize: { xs: 14, md: 15 },
-                  color: "rgba(255,255,255,0.5)",
-                  lineHeight: 1.75,
+                  fontSize: { xs: 14, md: 15.5 },
+                  color: "rgba(255,255,255,0.6)",
+                  lineHeight: 1.8,
                   mb: { xs: 4, lg: 5 },
-                  maxWidth: 420,
-                  fontFamily: "DM Sans",
+                  maxWidth: 460,
+                  fontFamily: "Plus Jakarta Sans, sans-serif",
                 }}
               >
-              
+                Whether you're starting from scratch or scaling an existing product, we cover every layer of the stack — so you work with one trusted team, not a patchwork of vendors.
               </Typography>
-            </motion.div>
-
-            {/* Parallax image */}
-            <motion.div style={{ y: imageY, scale: imageScale }}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{
-                  duration: 0.85,
-                  delay: 0.15,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <Box
-                  sx={{
-                    position: "relative",
-                    borderRadius: "16px",
-                    // overflow: "hidden",
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&auto=format&fit=crop&q=80"
-                    alt="Team at work"
-                    sx={{
-                      width: "100%",
-                      display: "block",
-                      aspectRatio: { xs: "16/9", lg: "4/3" },
-                      objectFit: "cover",
-                      boxShadow:
-                        "0 24px 70px rgba(0,0,24,0.55), 0 0 0 1px rgba(255,255,255,0.06)",
-                    }}
-                  />
-                  {/* Image overlay */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      inset: 0,
-                      background:
-                        "linear-gradient(180deg, transparent 40%, rgba(2,7,24,0.6) 100%)",
-                    }}
-                  />
-                  {/* Floating badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.7, duration: 0.5 }}
-                    style={{
-                      position: "absolute",
-                      bottom: 18,
-                      left: 18,
-                      background: "rgba(6,13,36,0.88)",
-                      backdropFilter: "blur(14px)",
-                      border: "1px solid rgba(59,110,248,0.22)",
-                      borderRadius: 12,
-                      padding: "10px 16px",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: 10,
-                        color: "#7da4ff",
-                        fontWeight: 700,
-                        letterSpacing: 1,
-                        mb: 0.3,
-                      }}
-                    >
-                      CLIENT SATISFACTION
-                    </Typography>
-                    <Typography
-                      sx={{
-
-                        fontWeight: 800,
-                        fontSize: 20,
-                        color: "#fff",
-                      }}
-                    >
-                      98%
-                    </Typography>
-                  </motion.div>
-                </Box>
-              </motion.div>
             </motion.div>
           </Box>
 

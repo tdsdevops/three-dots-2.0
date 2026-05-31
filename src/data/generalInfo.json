@@ -3,22 +3,21 @@
   "phone": "+91 97518 13050",
   "address": {
     "line1": "padappai, Tamil Nadu, 601301",
-    "line2": "49th St. Los Angeles",
+    "line2": "Arampakkam",
     "country": "India"
   },
   "socialLinks": [
     "Twitter (X)",
     "Instagram",
     "Youtube",
-    "Framer"
+    "Linkedin"
   ],
   "templatePages": [
     "Home",
     "About",
     "Portfolio",
     "Blog",
-    "Contact",
-    "FAQ"
+    "Tools"
   ],
   "footerLinks": [
     "Terms & Conditions",
