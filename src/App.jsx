@@ -15,6 +15,7 @@ const Blog = lazy(() => import("./components/blog/Blog"));
 const BlogDetails = lazy(() => import("./components/blog/BlogDetails"));
 const TermsAndConditions = lazy(() => import("./components/terms/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("./components/privacy/PrivacyPolicy"));
+const InvoiceGenerator = lazy(() => import("./components/tools/InvoiceGenerator"));
 
 // Premium dark fallback loader for lazy-loaded route transitions
 const PageLoader = () => (
@@ -46,9 +47,10 @@ function App() {
               <Route path="blog/:id" element={<BlogDetails />} />
               <Route path="terms" element={<TermsAndConditions />} />
               <Route path="privacy" element={<PrivacyPolicy />} />
-              <Route path="*" element={<LandingPage />} /> {/* Fallback to LandingPage for unknown routes */}
               <Route path="tools" element={<ToolsPage />} />
-              <Route path="tools/qr-generator" element={<QrGenerator />} /> 
+              <Route path="tools/qr-generator" element={<QrGenerator />} />
+              <Route path="tools/invoice-generator" element={<InvoiceGenerator />} />
+              <Route path="*" element={<LandingPage />} /> {/* Fallback to LandingPage for unknown routes */}
             </Route>
           </Routes>
         </Suspense>

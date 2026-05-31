@@ -79,6 +79,15 @@
     "ogTitle": "Free QR Code Generator - ThreeDots",
     "ogDescription": "Create QR codes quickly and download them as PNG. Completely free.",
     "ogImage": "https://three-dots.in/threedots-og.png"
+  },
+  "invoice-generator": {
+    "title": "Free Custom Invoice Generator | GST-Compliant PDFs | ThreeDots",
+    "description": "Generate professional, GST-compliant invoices instantly. Download PDF, print, or share. Perfect for Indian freelancers, shops, startups & service providers. No signup required.",
+    "keywords": "free custom invoice generator, gst invoice maker online, invoice pdf generator for freelancers, download invoice pdf free, custom invoice template free india, gst bill creator",
+    "canonical": "https://three-dots.in/tools/invoice-generator",
+    "ogTitle": "Free Custom Invoice Generator - GST-Compliant PDFs | ThreeDots",
+    "ogDescription": "Generate professional, GST-compliant invoices instantly. Download PDF, print, or share. Perfect for Indian freelancers, shops, startups & service providers. No signup required.",
+    "ogImage": "https://three-dots.in/threedots-og.png"
   }
 }
 
