@@ -97,6 +97,7 @@ export default function ContactUs() {
     lastName: "",
     email: "",
     message: "",
+    phone:""
   });
   const { bgVdo } = useContext(ThemeContext);
   const handleChange = (e) =>
@@ -120,6 +121,7 @@ export default function ContactUs() {
           country,
           category,
           message: form.message,
+          phone:form.phone
         })
       };
 
@@ -447,7 +449,29 @@ export default function ContactUs() {
                     inputProps={{ style: { color: "#fff" } }}
                   />
                 </Box>
-
+                   <Box sx={{ mb: 2.5 }}>
+                  <Typography
+                    sx={{
+                      color: "rgba(255,255,255,0.5)",
+                      fontSize: "0.78rem",
+                      mb: 1,
+                      fontWeight: 500,
+                    }}
+                  >
+                    Phone Number*
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    name="phone"
+                    placeholder="+1234567890"
+                    value={form.phone}
+                    onChange={handleChange}
+                    variant="outlined"
+                    size="small"
+                    sx={inputSx}
+                    inputProps={{ style: { color: "#fff" } }}
+                  />
+                </Box>
                 {/* Row 3: Country + Category */}
                 <Grid container spacing={2} sx={{ mb: 2.5 }}>
                   <Grid item xs={12} sm={6}>

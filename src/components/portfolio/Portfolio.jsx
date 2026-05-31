@@ -418,10 +418,10 @@ export default function Portfolio() {
                 const form = e.target;
                 const functionName = import.meta.env.VITE_EDGE_FUNCTION_NAME || "email-services";
                 const payload = {
-                  to: 'info@threedots.com',
-                  from: form.email.value,
+                 to: import.meta.env.VITE_CONTACT_EMAIL,
+        from: import.meta.env.VITE_FROM_EMAIL,
                   subject: `Product Inquiry from ${form.name.value}`,
-                  html: `<p><strong>Company:</strong> ${form.company.value}</p><p><strong>Description:</strong> ${form.description.value}</p>`
+                  html: `<p><strong>Name:</strong> ${form.name.value}</p> <p><strong>Phone:</strong> ${form.phone.value}</p> <p><strong>Company:</strong> ${form.company.value}</p> <p><strong>Email:</strong> ${form.email.value}</p> <p><strong>Description:</strong> ${form.description.value}</p>`
                 };
                 try {
                   await sendEmail(functionName, payload);
@@ -447,6 +447,14 @@ export default function Portfolio() {
                   type="email"
                   margin="dense"
                 />
+                                <TextField
+                  required
+                  fullWidth
+                  label="Phone Number"
+                  name="phone"
+                  margin="dense"
+                  type="number"
+                />  
                 <TextField
                   fullWidth
                   label="Company"

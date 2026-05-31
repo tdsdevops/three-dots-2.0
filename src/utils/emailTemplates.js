@@ -1,4 +1,4 @@
-export const getContactEmailTemplate = ({ firstName, lastName, email, country, category, message }) => {
+export const getContactEmailTemplate = ({ firstName, lastName, email, country, category, message,phone }) => {
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">
       <h2 style="color: #2563EB; border-bottom: 2px solid #eaeaea; padding-bottom: 10px;">New Contact Inquiry</h2>
@@ -6,6 +6,7 @@ export const getContactEmailTemplate = ({ firstName, lastName, email, country, c
       <div style="margin-bottom: 20px;">
         <p style="margin: 5px 0;"><strong>Name:</strong> ${firstName} ${lastName}</p>
         <p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #2563EB;">${email}</a></p>
+        <p style="margin: 5px 0;"><strong>Phone:</strong> ${phone}</p>
         <p style="margin: 5px 0;"><strong>Country:</strong> ${country}</p>
         <p style="margin: 5px 0;"><strong>Category:</strong> ${category}</p>
       </div>
