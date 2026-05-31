@@ -1,0 +1,40 @@
+[33mcommit 0884744d9948668695549569a427654d40e3234d[m
+Merge: 9c13a59 dfe2868
+Author: sairam <ram1711sai@gmail.com>
+Date:   Sun May 31 18:50:06 2026 +0530
+
+    Merge branch 'newchanges' of https://github.com/tdsdevops/three-dots-2.0 into tools2
+
+[1mdiff --cc .env[m
+[1mindex 0000000,0000000..704a5cb[m
+[1mnew file mode 100644[m
+[1m--- /dev/null[m
+[1m+++ b/.env[m
+[36m@@@ -1,0 -1,0 +1,8 @@@[m
+[32m++VITE_SUPABASE_URL=https://hqkeaehopgcodzxayxse.supabase.co[m
+[32m++VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhxa2VhZWhvcGdjb2R6eGF5eHNlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NTY1NzcxMywiZXhwIjoyMDcxMjMzNzEzfQ.sASxLYhfBNkeASpPL92wuEACGaHMJuYb1blmNCNQdQs[m
+[32m++VITE_SUPABASE_AUTH_TOKEN=sb-hqkeaehopgcodzxayxse-auth-token[m
+[32m++VITE_CONTACT_EMAIL=contactus@three-dots.in[m
+[32m++VITE_EDGE_FUNCTION_NAME=email-services[m
+[32m++VITE_FROM_EMAIL=noreply@three-dots.in[m
+[32m++# Instagram API Configuration[m
+[32m++[m
+[1mdiff --cc service-account.json[m
+[1mindex 0000000,0000000..13ca1b3[m
+[1mnew file mode 100644[m
+[1m--- /dev/null[m
+[1m+++ b/service-account.json[m
+[36m@@@ -1,0 -1,0 +1,13 @@@[m
+[32m++{[m
+[32m++  "type": "service_account",[m
+[32m++  "project_id": "threedots-indexing",[m
+[32m++  "private_key_id": "ace32af78fef8fb4e0f9dd76e6ad7c98b82f7453",[m
+[32m++  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCWPMe6syozYTpK\nch5B7oy9C0gh2w1op0REbPzknZ71KE1fk/GWjDtxcLZOYKU9H31e/9kZCXKG2+Uk\niZzxGl8neEkRH9aiadzSSqn7eC847WwvVQHph3meP5clXOMj8UF7Wb95p0+Dn1f+\nlgowp4fstzXyK9nUQblFABEK36fHpEFQPzMWtjXJlH6A5v8B/rU09f6CB8gbppAO\nJkH8K3geKJc/x40IojYgVCtwqsT9XFvnr1jbyHC4oldgzaDzeNGCOkv7lilWcZJx\nBzrl1Ov76ArmURn7kTpyapMSGGQWq847AFxn7yXVP2G1SYdsNUCu5y2UyFAHeavc\nieYmP6rJAgMBAAECggEACLUsJGOXChRUExWLMGoZqSlavG+cVtj/CXJBtCR4np//\n4A7MnVuyZFBSmLdcTG8jTprIo/1asHtVTClXude79ScxIPd18sLtBBlEwekE36lP\nMG0eZ8Es6OGpqoY4OhCVKYeZo/zxDGFzcbOTkp9bLvqte0RUY0uN5/RpiHZPHLCP\nRp4/ktpp3ZFM2zPjabYbfzFyVLqdbEIIS+BqlCujwu/2pL6pbVmxvwLeWmqtC7WS\nMCGN7fh4oDx2o4SY/G2Lw2o8zEFwri3SQ+O2C9LGtZ5JgXXVyv8Q+BupmL0xHHne\n5d9aGWMiETBqpP8yQg3lUn+EDzEMKlpqpcdDSH7hAQKBgQDFO3qOvNXC/7Wbl1Dr\nviUPDoGoNcx6EctMoNb4QRuWatx1VPpL62RFauPZZuCJ0msMA6G8U8b17V9+V8Ss\nn9ZrFME60Fs+9TyTGcI0/Ubyb2a7rC0kWDZTAgz1/j1pIMfOVYpQyQJqlwGlFbpY\nLvqYef+YHtnVXBKqFvZpkBHVQQKBgQDDAJ2KOon3QTdQU/yKpgsaWkj3fq4z/7dw\nc/etb5CcWIBKcPb11Uoh3Axh/dvswukYyCKiddl5Zf575YkbE73iZ0XD3gNaR/er\n9YPFrbsPUxW0eLGbVxLLMEw+3a8dwjvKRGdjjiCyMMNkcVZJM/xTMeqc3DJBJ5J6\nBmqKQBrLiQKBgDrvRfTm6j0Fab/fXDfFLo+sNwQLZ1lGfegc2398/QBaWBvbU5th\n8ClqAkGRIyErtf72CtsacYZE8tbu5P7sGAcRQZgQcGOEpiASf1yUHiINNbZ4gVit\n3zW4lCThXnpOaEX4e4ceOVGeY8hvkKoPB6SON9i9xzug8pbOm7z5ZsrBAoGAfDy2\nIk0tfUQlk54Otd8YD9AZ0OT649I18wVPdUYxIgsYoVTbYsBjHLNviDcOmQeNLubD\nejIPPlMHEbSp54BqaAZX4nReOnTDjOE89QK8vQS4PWTv8wJEzQOWcC8Y1KLdKP7v\nx/PTTPPYaPP0f2sJhY+14/4+Xlhx8CCKXE5/Q9ECgYAaFn1lEsxmDfRQQWHEaGjQ\n149g8S2NQ/TG+xA+rpopD7Ww4l6z0+kOxrPvs/fWY0O3zKCzldo8sFpKFDp3mw9z\nhMa/39Q7HLiVsR2eIi3LhghoU2YUSKM8gZe4Ht2JF6vtjbtFcJHPxSE4bVelYstV\nRE2VYzhZfJ1AVBb0vXKGZA==\n-----END PRIVATE KEY-----\n",[m
+[32m++  "client_email": "threedots-indexer@threedots-indexing.iam.gserviceaccount.com",[m
+[32m++  "client_id": "107334306349649139184",[m
+[32m++  "auth_uri": "https://accounts.google.com/o/oauth2/auth",[m
+[32m++  "token_uri": "https://oauth2.googleapis.com/token",[m
+[32m++  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",[m
+[32m++  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/threedots-indexer%40threedots-indexing.iam.gserviceaccount.com",[m
+[32m++  "universe_domain": "googleapis.com"[m
+[32m++}[m
