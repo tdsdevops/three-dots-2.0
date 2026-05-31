@@ -510,6 +510,14 @@ export default function InvoiceGenerator() {
             color: #000 !important;
           }
 
+          .preview-scroll-wrapper {
+            overflow: visible !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+
           /* Force borders and visibility on printed tables */
           #print-area table {
             border-collapse: collapse !important;
@@ -937,20 +945,63 @@ export default function InvoiceGenerator() {
                   </Button> */}
                 </Box>
 
-                {/* Paper invoice container */}
-                <Paper
-                  ref={previewRef}
-                  id="print-area"
+                {/* Mobile scroll hint */}
+                <Box
+                  className="no-print-section"
                   sx={{
-                    bgcolor: "#fff",
-                    color: "#000",
-                    p: 4,
-                    borderRadius: 2,
-                    boxShadow: "0 10px 40px rgba(0,0,0,0.5)",
-                    fontFamily: "'Inter', sans-serif",
-                    lineHeight: 1.5,
+                    display: { xs: "flex", md: "none" },
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 1,
+                    mb: 1.5,
+                    color: "#aaa",
+                    fontSize: "0.8rem"
                   }}
                 >
+                  <Typography variant="caption" sx={{ opacity: 0.8 }}>
+                    ← Swipe / scroll horizontally to view full preview →
+                  </Typography>
+                </Box>
+
+                {/* Paper invoice container wrapper for horizontal scrolling on mobile */}
+                <Box
+                  className="preview-scroll-wrapper"
+                  sx={{
+                    overflowX: "auto",
+                    width: "100%",
+                    borderRadius: 2,
+                    pb: 1,
+                    "&::-webkit-scrollbar": {
+                      height: "6px",
+                    },
+                    "&::-webkit-scrollbar-track": {
+                      background: "rgba(255, 255, 255, 0.05)",
+                      borderRadius: "10px",
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      background: "rgba(59, 110, 248, 0.4)",
+                      borderRadius: "10px",
+                      "&:hover": {
+                        background: "rgba(59, 110, 248, 0.6)",
+                      }
+                    }
+                  }}
+                >
+                  <Paper
+                    ref={previewRef}
+                    id="print-area"
+                    sx={{
+                      bgcolor: "#fff",
+                      color: "#000",
+                      p: 4,
+                      borderRadius: 2,
+                      boxShadow: "0 10px 40px rgba(0,0,0,0.5)",
+                      fontFamily: "'Inter', sans-serif",
+                      lineHeight: 1.5,
+                      width: "100%",
+                      minWidth: { xs: "800px", md: "100%" },
+                    }}
+                  >
                   {/* Invoice Header */}
                   <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
                     <Box>
@@ -1160,6 +1211,7 @@ export default function InvoiceGenerator() {
                     </Typography>
                   </Box>
                 </Paper>
+              </Box>
               </Box>
             </Grid>
           </Grid>
