@@ -156,7 +156,7 @@ const defaultInvoiceState = {
   hsnEnabled: true
 };
 
-export default function InvoiceGenerator() {
+export default function InvoiceGenerator({ seoKey }) {
   const [invoice, setInvoice] = useState(() => {
     const saved = localStorage.getItem("threedots_invoice");
     return saved ? { ...defaultInvoiceState, ...JSON.parse(saved) } : defaultInvoiceState;
@@ -483,7 +483,7 @@ export default function InvoiceGenerator() {
 
   return (
     <>
-      <SEO pageKey="invoice-generator" />
+      <SEO pageKey={seoKey || "invoice-generator"} />
 
       {/* Embedded print styling for zero margins and clean printing */}
       <style>{`

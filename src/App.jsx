@@ -17,6 +17,12 @@ const TermsAndConditions = lazy(() => import("./components/terms/TermsAndConditi
 const PrivacyPolicy = lazy(() => import("./components/privacy/PrivacyPolicy"));
 const InvoiceGenerator = lazy(() => import("./components/tools/InvoiceGenerator"));
 
+const WarehouseSoftware = lazy(() => import("./components/services/WarehouseSoftware"));
+const FranchiseSoftware = lazy(() => import("./components/services/FranchiseSoftware"));
+const CustomSoftware = lazy(() => import("./components/services/CustomSoftware"));
+const ErpDevelopment = lazy(() => import("./components/services/ErpDevelopment"));
+const InventorySoftware = lazy(() => import("./components/services/InventorySoftware"));
+
 // Premium dark fallback loader for lazy-loaded route transitions
 const PageLoader = () => (
   <Box
@@ -49,7 +55,16 @@ function App() {
               <Route path="privacy" element={<PrivacyPolicy />} />
               <Route path="tools" element={<ToolsPage />} />
               <Route path="tools/qr-generator" element={<QrGenerator />} />
+              <Route path="tools/free-qr-code-generator" element={<QrGenerator seoKey="qr-landing" />} />
               <Route path="tools/invoice-generator" element={<InvoiceGenerator />} />
+              <Route path="tools/gst-invoice-generator" element={<InvoiceGenerator seoKey="gst-invoice-landing" />} />
+              
+              <Route path="services/warehouse-management-software" element={<WarehouseSoftware />} />
+              <Route path="services/franchise-management-software" element={<FranchiseSoftware />} />
+              <Route path="services/custom-software-development" element={<CustomSoftware />} />
+              <Route path="services/erp-development" element={<ErpDevelopment />} />
+              <Route path="services/inventory-management-software" element={<InventorySoftware />} />
+              
               <Route path="*" element={<LandingPage />} /> {/* Fallback to LandingPage for unknown routes */}
             </Route>
           </Routes>

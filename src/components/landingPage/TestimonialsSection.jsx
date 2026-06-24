@@ -251,7 +251,7 @@ const BRANDS = ["MS Industries", "Smatal", "BrandmicMedia", "Velaivendum.com"];
                     alignSelf: "flex-start",
                   }}
               >
-                View About Landin
+                View About
               </Button>
             </motion.div>
           </motion.div>
