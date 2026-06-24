@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import ThreeDotsLogo from "../../assets/threedots.svg";
+import { useNavigate } from "react-router";
 
 // ─── Logo ─────────────────────────────────────────────────────────────────────
 export default function Logo({ width = "auto" }) {
+  const navigate=useNavigate()
   return (
     <Box
       sx={{
@@ -10,6 +12,9 @@ export default function Logo({ width = "auto" }) {
         overflow: "hidden",
         position: "relative",
         textDecoration: "none",
+      }}
+      onClick={()=>{
+        navigate("/")
       }}
     >
       <Box

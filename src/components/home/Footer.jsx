@@ -244,17 +244,8 @@ export default function Footer() {
                 </MotionBox>
               </Grid>
 
-              {/* Spacer on large screens */}
-              <Grid
-                item
-                xs={0}
-                md={1}
-                lg={2}
-                sx={{ display: { xs: "none", md: "block" } }}
-              />
-
               {/* Column 2 – Template Pages */}
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              <Grid item xs={6} sm={4} md={2}>
                 <MotionBox variants={itemVariants}>
                   <Typography
                     variant="body2"
@@ -298,8 +289,107 @@ export default function Footer() {
                 </MotionBox>
               </Grid>
 
-              {/* Column 3 – Social */}
-              <Grid item xs={6} sm={3} md={2} lg={2}>
+              {/* Column 3 – Services */}
+              <Grid item xs={6} sm={4} md={3}>
+                <MotionBox variants={itemVariants}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.primary",
+                      fontWeight: 600,
+                      mb: 2.5,
+                      fontSize: { xs: "0.9rem", md: "0.95rem" },
+                      letterSpacing: "0.01em",
+                    }}
+                  >
+                    Custom Services
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 1.4,
+                    }}
+                  >
+                    {[
+                      { name: "Warehouse WMS Software", path: "/services/warehouse-management-software" },
+                      { name: "Franchise Software", path: "/services/franchise-management-software" },
+                      { name: "Custom Software Dev", path: "/services/custom-software-development" },
+                      { name: "ERP Development", path: "/services/erp-development" },
+                      { name: "Inventory Management", path: "/services/inventory-management-software" }
+                    ].map((srv) => (
+                      <MotionTypography
+                        key={srv.name}
+                        component={RouterLink}
+                        to={srv.path}
+                        whileHover={linkHover}
+                        sx={{
+                          color: "text.secondary",
+                          fontSize: { xs: "0.82rem", md: "0.87rem" },
+                          textDecoration: "none",
+                          display: "inline-block",
+                          cursor: "pointer",
+                          "&:hover": { color: "text.primary" },
+                          transition: "color 0.2s",
+                        }}
+                      >
+                        {srv.name}
+                      </MotionTypography>
+                    ))}
+                  </Box>
+                </MotionBox>
+              </Grid>
+
+              {/* Column 4 – Tools */}
+              <Grid item xs={6} sm={4} md={2.5}>
+                <MotionBox variants={itemVariants}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.primary",
+                      fontWeight: 600,
+                      mb: 2.5,
+                      fontSize: { xs: "0.9rem", md: "0.95rem" },
+                      letterSpacing: "0.01em",
+                    }}
+                  >
+                    Free Tools
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 1.4,
+                    }}
+                  >
+                    {[
+                      { name: "Free QR Code Generator", path: "/tools/free-qr-code-generator" },
+                      { name: "GST Invoice Generator", path: "/tools/gst-invoice-generator" }
+                    ].map((tl) => (
+                      <MotionTypography
+                        key={tl.name}
+                        component={RouterLink}
+                        to={tl.path}
+                        whileHover={linkHover}
+                        sx={{
+                          color: "text.secondary",
+                          fontSize: { xs: "0.82rem", md: "0.87rem" },
+                          textDecoration: "none",
+                          display: "inline-block",
+                          cursor: "pointer",
+                          "&:hover": { color: "text.primary" },
+                          transition: "color 0.2s",
+                        }}
+                      >
+                        {tl.name}
+                      </MotionTypography>
+                    ))}
+                  </Box>
+                </MotionBox>
+              </Grid>
+
+              {/* Column 5 – Social */}
+              <Grid item xs={6} sm={4} md={2}>
                 <MotionBox variants={itemVariants}>
                   <Typography
                     variant="body2"

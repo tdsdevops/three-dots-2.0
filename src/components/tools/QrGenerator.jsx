@@ -15,7 +15,7 @@ const cardStyle = {
   color: "#fff",
 };
 
-export default function QrGenerator() {
+export default function QrGenerator({ seoKey }) {
   const [input, setInput] = useState("https://three-dots.dev"); // default static URL
   const [downloadOpen, setDownloadOpen] = useState(false);
   const [downloadMsg, setDownloadMsg] = useState("");
@@ -84,7 +84,7 @@ export default function QrGenerator() {
 
   return (
     <>
-      <SEO pageKey="qr-generator" />
+      <SEO pageKey={seoKey || "qr-generator"} />
       {/* Hero Section */}
       <Box sx={{ textAlign: "center",padding:{xs:2,}, paddingTop: { xs: 8, md: 10 }, bgcolor: "#020718" }}>
         <Typography variant="h2" sx={{ color: "#fff", fontWeight: 800, mb: 2 }}>
