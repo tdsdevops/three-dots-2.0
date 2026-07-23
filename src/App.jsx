@@ -5,6 +5,7 @@ import { AppointmentProvider } from "./context/AppointmentContext";
 import { Box, CircularProgress } from "@mui/material";
 import DotLoader from './shared/loader/DotLoader'
 import QrGenerator from "./components/tools/QrGenerator";
+import Analytics from "./Analytics";
 // Code splitting / Lazy loading components for page speed & Core Web Vitals optimization
 const LandingPage = lazy(() => import("./components/landingPage/LandingPage"));
 const About = lazy(() => import("./components/about/About"));
@@ -42,6 +43,7 @@ function App() {
   return (
     <AppointmentProvider>
       <BrowserRouter>
+        <Analytics/>
         <Suspense fallback={<DotLoader />}>
           <Routes>
             <Route path="/" element={<HomeLayout />}>
