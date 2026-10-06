@@ -28,6 +28,9 @@ const BRANDS = [
   {
     name: "three dots",
     logo: "TTM_Black Letter-b0a3f4ec.svg"
+  }, {
+    name: "TCES Exports",
+    logo: "tces.png"
   }
 ];
 
@@ -263,7 +266,7 @@ function HeroSection() {
           <Box
             sx={{
               mt: { xs: 6, md: 4 },
-              pt: 4,
+              px: { xs: 2, md: 4 },
               overflow: "hidden",
               position: "relative",
               width: "100%",

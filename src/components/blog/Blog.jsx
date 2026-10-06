@@ -77,7 +77,7 @@ export default function Blog() {
           }}
         />
 
-        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2,px:{xs:2,md:7} }}>
           {/* Header */}
           <MotionBox
             initial={{ opacity: 0, y: -10 }}

@@ -1,34 +1,38 @@
 import { useContext, useRef } from "react";
 import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
 import { motion, useInView, useTransform } from "framer-motion";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import ArchitectureOutlinedIcon from "@mui/icons-material/ArchitectureOutlined";
+import TerminalOutlinedIcon from "@mui/icons-material/TerminalOutlined";
+import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import { ThemeContext } from "../../appConstant";
 import { useAppointment } from "../../context/AppointmentContext";
 // ─── Process / How We Work Section ────────────────────────────────────────────
 const STAGES = [
   {
     number: "01 Discovery & scoping",
-    icon: "◎",
+    icon: <SearchOutlinedIcon sx={{ fontSize: 20 }} />,
     title: "Discovery & scoping",
     desc: "We map your requirements, goals, and constraints into a clear technical brief. No assumptions, no vague estimates.",
     tags: ["Technical Brief", "Clear Requirements", "Zero Assumptions"],
   },
   {
     number: "02 Design & architecture",
-    icon: "⊞",
+    icon: <ArchitectureOutlinedIcon sx={{ fontSize: 20 }} />,
     title: "Design & architecture",
     desc: "Wireframes, system design, and tech stack decisions are made before development begins — keeping costly rework off the table.",
     tags: ["Wireframing", "System Architecture", "Tech Stack Choices"],
   },
   {
     number: "03 Agile development",
-    icon: "⚡",
+    icon: <TerminalOutlinedIcon sx={{ fontSize: 20 }} />,
     title: "Agile development",
     desc: "Two-week sprints with working software at every checkpoint. You see real progress, not status updates.",
     tags: ["2-Week Sprints", "Working Checkpoints", "Real Progress"],
   },
   {
     number: "04 QA, launch & handover",
-    icon: "⟳",
+    icon: <RocketLaunchOutlinedIcon sx={{ fontSize: 20 }} />,
     title: "QA, launch & handover",
     desc: "Rigorous testing, staged deployment, and a clean handover — including documentation, training, and optional ongoing retainer support.",
     tags: ["Rigorous QA", "Staged Launch", "Clean Handover"],

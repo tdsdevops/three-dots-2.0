@@ -131,6 +131,9 @@ export default function SEO({
       items.push({ "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://three-dots.in/about" });
     } else if (pageKey === "portfolio") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
+    } else if (pageKey === "tces-case-study") {
+      items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "TCES Exports Case Study", "item": "https://three-dots.in/portfolio/tces-exports-website-design-development" });
     } else if (pageKey === "contact") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://three-dots.in/contact" });
     } else if (pageKey === "blog") {
@@ -313,8 +316,41 @@ export default function SEO({
     };
   };
 
+  const getCaseStudySchema = () => {
+    if (pageKey !== "tces-case-study") return null;
+    return {
+      "@context": "https://schema.org",
+      "@type": ["CreativeWork", "CaseStudy"],
+      "@id": "https://three-dots.in/portfolio/tces-exports-website-design-development#casestudy",
+      "headline": "From Farmers to the World: Building a Digital Presence for TCES Exports",
+      "name": "TCES Exports Website Design & Development Case Study",
+      "description": "See how Three Dots designed and developed a modern website for TCES Exports, helping present Indian spices, sourcing, quality and export capabilities to global buyers.",
+      "url": "https://three-dots.in/portfolio/tces-exports-website-design-development",
+      "image": "https://three-dots.in/tces-exports-spice-exporter-website.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "ThreeDots",
+        "url": "https://three-dots.in"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ThreeDots",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://three-dots.in/threedots.svg"
+        }
+      },
+      "about": {
+        "@type": "Organization",
+        "name": "TCES Exports",
+        "description": "Indian Spice Exporter connecting carefully sourced spices with buyers across international markets."
+      }
+    };
+  };
+
   const serviceSchemas = getServiceSchema();
   const faqSchema = getFAQSchema();
+  const caseStudySchema = getCaseStudySchema();
 
   return (
     <Helmet>
@@ -371,6 +407,13 @@ export default function SEO({
           {JSON.stringify(s)}
         </script>
       ))}
+
+      {/* CaseStudy Schema */}
+      {caseStudySchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(caseStudySchema)}
+        </script>
+      )}
 
       {/* FAQ Schema */}
       {faqSchema && (

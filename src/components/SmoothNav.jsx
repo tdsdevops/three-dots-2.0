@@ -41,7 +41,7 @@ const pages = [
     title: "Hidden Cafe",
     subtitle: "Tokyo, Japan · 3h ago",
     tag: "Travel",
-    stat: "4.9 ★",
+    stat: "4.9",
     statLabel: "Rating",
     avatar: "https://i.pravatar.cc/150?img=12",
     user: "wanderlust.kai",
@@ -203,11 +203,9 @@ function PageContent({ page }) {
             boxShadow: `0 0 60px ${page.accent}30`,
           }}
         >
-          <Typography sx={{ fontSize: "4rem" }}>
-            {page.id === "home" ? "🏃" : page.id === "explore" ? "☕" : page.id === "create" ? "✦" : page.id === "favorites" ? "📸" : "✦"}
-          </Typography>
-        </Box>
-      </motion.div>
+            {React.createElement(page.icon, { sx: { fontSize: "3.5rem", color: page.accent } })}
+          </Box>
+        </motion.div>
 
       {/* Stat pill */}
       <motion.div custom={2} variants={contentVariants} initial="hidden" animate="visible">

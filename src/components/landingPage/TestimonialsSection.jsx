@@ -60,17 +60,7 @@ function TestimonialCard({ t, index }) {
           alt={t.name}
           sx={{ width: 40, height: 40, borderRadius: "50%", border: "2px solid rgba(59,110,248,0.3)", objectFit: "cover" }}
         />}
-          {/* X / Twitter icon */}
-          <Box sx={{
-            width: 28, height: 28, borderRadius: "6px",
-            background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            color: "rgba(255,255,255,0.35)", fontSize: 12, fontWeight: 700, fontFamily: "monospace",
-            cursor: "pointer",
-            "&:hover": { color: "#fff", background: "rgba(255,255,255,0.1)" },
-          }}>
-            𝕏
-          </Box>
+       
         </Box>
 
         {/* Stars */}
@@ -124,7 +114,7 @@ const TESTIMONIALS = [
   {
     avatar: "",
     stars: 5,
-    quote: "Much awaited and revolutionary change @msindustries.chennai . Thanks to BIM Automation, real-time stock updates & quicker turnarounds are now LIVE! 🛠️ Your orders just got a major upgrade. Amazing work by @threedotssoftwaredevelopment , delivering fast and smart design results"    ,
+    quote: "Much awaited and revolutionary change @msindustries.chennai . Thanks to BIM Automation, real-time stock updates & quicker turnarounds are now LIVE! Your orders just got a major upgrade. Amazing work by @threedotssoftwaredevelopment , delivering fast and smart design results",
     name: "Fatema Anjarwala",
     role: "Director",
     company: "MS Industries",

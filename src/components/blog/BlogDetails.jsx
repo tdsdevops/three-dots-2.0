@@ -95,35 +95,84 @@ export default function BlogDetails() {
             const trimmed = paragraph.trim();
             if (!trimmed) return null;
 
-            // Link formatter helper
-            const renderTextWithLinks = (text) => {
+            // Formatted text helper (handles links, bold, and italic)
+            const renderFormattedText = (text) => {
               const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
               const parts = [];
               let lastIndex = 0;
               let match;
 
+              const formatInlineText = (str, keyPrefix = "") => {
+                // Split by bold (**bold**) and italic (*italic*)
+                const tokens = [];
+                const boldRegex = /\*\*([^*]+)\*\*/g;
+                let bLast = 0;
+                let bMatch;
+
+                while ((bMatch = boldRegex.exec(str)) !== null) {
+                  if (bMatch.index > bLast) {
+                    tokens.push(str.substring(bLast, bMatch.index));
+                  }
+                  tokens.push(
+                    <strong key={`${keyPrefix}-b-${bMatch.index}`} style={{ color: "#fff", fontWeight: 700 }}>
+                      {bMatch[1]}
+                    </strong>
+                  );
+                  bLast = boldRegex.lastIndex;
+                }
+                if (bLast < str.length) {
+                  tokens.push(str.substring(bLast));
+                }
+
+                // Now handle italic on string parts
+                return tokens.map((tok, i) => {
+                  if (typeof tok !== "string") return tok;
+                  const iParts = [];
+                  const italicRegex = /(?:^|[^*])\*([^*]+)\*/g;
+                  let iLast = 0;
+                  let iMatch;
+
+                  while ((iMatch = italicRegex.exec(tok)) !== null) {
+                    const matchStart = iMatch.index + (iMatch[0].startsWith('*') ? 0 : 1);
+                    if (matchStart > iLast) {
+                      iParts.push(tok.substring(iLast, matchStart));
+                    }
+                    iParts.push(
+                      <em key={`${keyPrefix}-i-${i}-${matchStart}`} style={{ color: "rgba(255,255,255,0.9)" }}>
+                        {iMatch[1]}
+                      </em>
+                    );
+                    iLast = italicRegex.lastIndex;
+                  }
+                  if (iLast < tok.length) {
+                    iParts.push(tok.substring(iLast));
+                  }
+                  return iParts.length > 0 ? iParts : tok;
+                });
+              };
+
               while ((match = linkRegex.exec(text)) !== null) {
                 if (match.index > lastIndex) {
-                  parts.push(text.substring(lastIndex, match.index));
+                  parts.push(formatInlineText(text.substring(lastIndex, match.index), `txt-${lastIndex}`));
                 }
                 const url = match[2];
                 const isExternal = url.startsWith("http");
                 parts.push(
                   isExternal ? (
                     <a
-                      key={match.index}
+                      key={`link-${match.index}`}
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: "#3B6EF8", textDecoration: "underline" }}
+                      style={{ color: "#3B6EF8", textDecoration: "underline", fontWeight: 600 }}
                     >
                       {match[1]}
                     </a>
                   ) : (
                     <Link
-                      key={match.index}
+                      key={`link-${match.index}`}
                       to={url}
-                      style={{ color: "#3B6EF8", textDecoration: "underline" }}
+                      style={{ color: "#3B6EF8", textDecoration: "underline", fontWeight: 600 }}
                     >
                       {match[1]}
                     </Link>
@@ -133,11 +182,13 @@ export default function BlogDetails() {
               }
 
               if (lastIndex < text.length) {
-                parts.push(text.substring(lastIndex));
+                parts.push(formatInlineText(text.substring(lastIndex), `txt-end`));
               }
 
               return parts.length > 0 ? parts : text;
             };
+
+            const renderTextWithLinks = renderFormattedText;
 
             if (trimmed.startsWith('### ')) {
               return (
@@ -275,8 +326,110 @@ export default function BlogDetails() {
               </Typography>
             );
           })}
-        </MotionBox>
 
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <Box
+              sx={{
+                mt: 6,
+                pt: 4,
+                borderTop: "1px solid rgba(255,255,255,0.1)",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+              }}
+            >
+              <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", fontWeight: 600, mr: 1 }}>
+                Tags:
+              </Typography>
+              {post.tags.map((tag, idx) => (
+                <Chip
+                  key={idx}
+                  label={tag}
+                  size="small"
+                  sx={{
+                    bgcolor: "rgba(255,255,255,0.06)",
+                    color: "rgba(255,255,255,0.85)",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                    fontSize: "0.8rem",
+                    "&:hover": { bgcolor: "rgba(255,255,255,0.12)" },
+                  }}
+                />
+              ))}
+            </Box>
+          )}
+
+          {/* Bottom Conversion CTA */}
+          <Box
+            sx={{
+              mt: 8,
+              p: { xs: 4, md: 5 },
+              borderRadius: "20px",
+              bgcolor: "rgba(37, 99, 235, 0.08)",
+              border: "1px solid rgba(37, 99, 235, 0.3)",
+              backdropFilter: "blur(10px)",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                width: 250,
+                height: 250,
+                background: "radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%)",
+                pointerEvents: "none",
+              }}
+            />
+            <Typography
+              component="h3"
+              sx={{
+                fontSize: { xs: "1.4rem", md: "1.8rem" },
+                fontWeight: 800,
+                color: "#fff",
+                mb: 1.5,
+                lineHeight: 1.25,
+              }}
+            >
+              Building an Export Business? Your Website Should Be Ready for the World.
+            </Typography>
+            <Typography
+              sx={{
+                color: "rgba(255,255,255,0.75)",
+                fontSize: "1.05rem",
+                lineHeight: 1.7,
+                mb: 3.5,
+                maxWidth: 650,
+              }}
+            >
+              At Three Dots, we design and develop websites for businesses that want to present themselves clearly, build trust and reach the right customers. Have a business that needs a better digital presence?
+            </Typography>
+            <Button
+              variant="contained"
+              component={Link}
+              to="/contact"
+              sx={{
+                bgcolor: "#2563EB",
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: "0.95rem",
+                px: 3.5,
+                py: 1.4,
+                borderRadius: "10px",
+                textTransform: "none",
+                boxShadow: "0 4px 20px rgba(37, 99, 235, 0.4)",
+                "&:hover": {
+                  bgcolor: "#1d4ed8",
+                },
+              }}
+            >
+              Let's talk →
+            </Button>
+          </Box>
+        </MotionBox>
       </Container>
     </Box>
   );
