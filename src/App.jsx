@@ -10,6 +10,7 @@ import Analytics from "./Analytics";
 const LandingPage = lazy(() => import("./components/landingPage/LandingPage"));
 const About = lazy(() => import("./components/about/About"));
 const Portfolio = lazy(() => import("./components/portfolio/Portfolio"));
+const TcesCaseStudy = lazy(() => import("./components/portfolio/TcesCaseStudy"));
 const ToolsPage = lazy(() => import("./components/tools/ToolsPage"));
 const ContactUs = lazy(() => import("./components/contactUs/ContactUs"));
 const Blog = lazy(() => import("./components/blog/Blog"));
@@ -50,6 +51,7 @@ function App() {
               <Route index element={<LandingPage />} />
               <Route path="about" element={<About />} />
               <Route path="portfolio" element={<Portfolio />} />
+              <Route path="portfolio/tces-exports-website-design-development" element={<TcesCaseStudy />} />
               <Route path="contact" element={<ContactUs />} />
               <Route path="blog" element={<Blog />} />
               <Route path="blog/:id" element={<BlogDetails />} />

@@ -26,6 +26,24 @@
     "ogDescription": "See how we help businesses transform and scale with modern web applications, mobile apps, and tailored software solutions.",
     "ogImage": "https://three-dots.in/threedots-og.png"
   },
+  "tces-case-study": {
+    "title": "TCES Exports Website Design & Development | Three Dots",
+    "description": "See how Three Dots designed and developed a modern website for TCES Exports, helping present Indian spices, sourcing, quality and export capabilities to global buyers.",
+    "keywords": "spice exporter website design, Indian spice exporter website, export company website design, spice export website, website design for exporters, Indian spices website, export business website development, TCES Exports website, TCES Exports website design, TCES Exports Chennai",
+    "canonical": "https://three-dots.in/portfolio/tces-exports-website-design-development",
+    "ogTitle": "TCES Exports × Three Dots | From Indian Spices to Global Buyers",
+    "ogDescription": "A closer look at how Three Dots created a buyer-focused digital presence for TCES Exports, from sourcing and products to trust and enquiries.",
+    "ogImage": "https://three-dots.in/tces-exports-spice-exporter-website.webp"
+  },
+  "indian-spice-exporter-website": {
+    "title": "Indian Spice Exporter Website: What Buyers Look For",
+    "description": "Learn what an Indian spice exporter website needs to build buyer trust, showcase products, communicate quality and make international enquiries easier.",
+    "keywords": "Indian spice exporter website, spice exporter website, spice export website design, Indian spices exporter, website for spice exporters, exporter website design, spice business website, Indian spice export company",
+    "canonical": "https://three-dots.in/blog/indian-spice-exporter-website",
+    "ogTitle": "Indian Spice Exporter Website: What Buyers Look For",
+    "ogDescription": "Learn what an Indian spice exporter website needs to build buyer trust, showcase products, communicate quality and make international enquiries easier.",
+    "ogImage": "https://three-dots.in/tces-exports-spice-exporter-website.webp"
+  },
   "contact": {
     "title": "Contact ThreeDots | Software Development Agency in Chennai",
     "description": "Get in touch with ThreeDots, Chennai's top software development team. Contact us for custom web apps, mobile apps, and business automation.",

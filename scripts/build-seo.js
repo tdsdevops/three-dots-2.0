@@ -29,6 +29,7 @@ const pathMap = {
   'home': '',
   'about': '/about',
   'portfolio': '/portfolio',
+  'tces-case-study': '/portfolio/tces-exports-website-design-development',
   'contact': '/contact',
   'blog': '/blog',
   'terms': '/terms',
@@ -42,7 +43,8 @@ const pathMap = {
   'erp-development': '/services/erp-development',
   'inventory-software': '/services/inventory-management-software',
   'gst-invoice-landing': '/tools/gst-invoice-generator',
-  'qr-landing': '/tools/free-qr-code-generator'
+  'qr-landing': '/tools/free-qr-code-generator',
+  'indian-spice-exporter-website': '/blog/indian-spice-exporter-website'
 };
 
 // 2. Generate Sitemap
@@ -100,7 +102,13 @@ function preRenderPages() {
     process.exit(1);
   }
   
-  const template = fs.readFileSync(indexHtmlPath, 'utf8');
+  let rawTemplate = fs.readFileSync(indexHtmlPath, 'utf8');
+  // Strip previous meta, canonical, title, and schema injections to guarantee idempotent clean template
+  const template = rawTemplate
+    .replace(/<title>[\s\S]*?<\/title>/gi, '')
+    .replace(/<meta\s+(?:name|property|robots)="[^"]*"\s+content="[^"]*"\s*\/?>/gi, '')
+    .replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/gi, '')
+    .replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
   
   // Organization Schema
   const organizationSchema = {
@@ -180,6 +188,9 @@ function preRenderPages() {
       items.push({ "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://three-dots.in/about" });
     } else if (pageKey === "portfolio") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
+    } else if (pageKey === "tces-case-study") {
+      items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "TCES Exports Case Study", "item": "https://three-dots.in/portfolio/tces-exports-website-design-development" });
     } else if (pageKey === "contact") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://three-dots.in/contact" });
     } else if (pageKey === "blog") {
@@ -225,6 +236,7 @@ function preRenderPages() {
   }
 
   function getArticleSchema(blogPost) {
+    const fullImg = blogPost.image.startsWith('http') ? blogPost.image : `https://three-dots.in${blogPost.image.startsWith('/') ? '' : '/'}${blogPost.image}`;
     return {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
@@ -234,7 +246,7 @@ function preRenderPages() {
       },
       "headline": blogPost.title,
       "description": blogPost.excerpt,
-      "image": blogPost.image,
+      "image": fullImg,
       "datePublished": blogPost.date ? new Date(blogPost.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       "author": {
         "@type": "Organization",
@@ -360,6 +372,38 @@ function preRenderPages() {
     };
   }
 
+  function getCaseStudySchema(pageKey, meta) {
+    if (pageKey !== 'tces-case-study') return null;
+    return {
+      "@context": "https://schema.org",
+      "@type": ["CreativeWork", "CaseStudy"],
+      "@id": `${meta.canonical}#casestudy`,
+      "headline": "From Farmers to the World: Building a Digital Presence for TCES Exports",
+      "name": "TCES Exports Website Design & Development Case Study",
+      "description": meta.description,
+      "url": meta.canonical,
+      "image": meta.ogImage,
+      "author": {
+        "@type": "Organization",
+        "name": "ThreeDots",
+        "url": "https://three-dots.in"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ThreeDots",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://three-dots.in/threedots.svg"
+        }
+      },
+      "about": {
+        "@type": "Organization",
+        "name": "TCES Exports",
+        "description": "Indian Spice Exporter connecting carefully sourced spices with buyers across international markets."
+      }
+    };
+  }
+
   function injectMeta(html, meta, pageKey, blogPost = null) {
     const title = meta.title;
     const description = meta.description;
@@ -377,6 +421,11 @@ function preRenderPages() {
       localBusinessSchema,
       breadcrumbs
     ];
+
+    const caseStudySchema = getCaseStudySchema(pageKey, meta);
+    if (caseStudySchema) {
+      schemas.push(caseStudySchema);
+    }
 
     if (isArticle && blogPost) {
       schemas.push(getArticleSchema(blogPost));
@@ -416,11 +465,8 @@ function preRenderPages() {
 ${schemaTags}
 `;
 
-    // Replace the title tag and add other metadata tags
-    let result = html;
-    if (result.includes('<title>')) {
-      result = result.replace(/<title>.*?<\/title>/, `<title>${title}</title>`);
-    }
+    // Remove any existing <title> from the template so there is exactly one
+    let result = html.replace(/<title>.*?<\/title>/gi, '');
     
     // Inject before </head>
     result = result.replace('</head>', `${metaTags}\n</head>`);
@@ -454,12 +500,13 @@ ${schemaTags}
 
   // Pre-render dynamic blog posts
   blogs.forEach(post => {
+    const fullOgImg = post.image.startsWith('http') ? post.image : `https://three-dots.in${post.image.startsWith('/') ? '' : '/'}${post.image}`;
     const meta = {
       title: `${post.title} | ThreeDots`,
       description: post.excerpt,
       keywords: `blog, ${post.category.toLowerCase()}, threedots, ${post.title.toLowerCase()}`,
       canonical: `https://three-dots.in/blog/${post.id}`,
-      ogImage: post.image,
+      ogImage: fullOgImg,
       ogTitle: `${post.title} | ThreeDots`,
       ogDescription: post.excerpt
     };

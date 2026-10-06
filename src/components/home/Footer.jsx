@@ -257,7 +257,7 @@ export default function Footer() {
                       letterSpacing: "0.01em",
                     }}
                   >
-                    Template Pages
+                    Quick Links
                   </Typography>
                   <Box
                     sx={{

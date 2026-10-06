@@ -106,7 +106,7 @@ function Header() {
            px:{lg:7,md:7}
           }}
         >
-          <Container maxWidth="xl" >
+          <Container maxWidth="xl" sx={{px:{xs:2,md:0}}} >
             <Toolbar
               disableGutters
               sx={{ py: { xs: 1.2, md: 1.5 ,}, justifyContent: "space-between" }}

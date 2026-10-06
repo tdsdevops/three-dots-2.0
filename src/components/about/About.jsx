@@ -12,6 +12,7 @@ import {
   CssBaseline,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import bgVdo from "../../assets/bgVdo.mp4";
 import CtaBanner from "../../shared/components/CtaBanner";
 import { useAppointment } from "../../context/AppointmentContext";
@@ -611,22 +612,21 @@ function AboutContent() {
           <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
             Why Choose Three Dots?
           </Typography>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1, ml: 2 }}>
-            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
-              ✔ Quality-driven solutions
-            </Typography>
-            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
-              ✔ Creative thinking with practical results
-            </Typography>
-            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
-              ✔ Transparent communication
-            </Typography>
-            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
-              ✔ Customer-first approach
-            </Typography>
-            <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
-              ✔ Continuous innovation
-            </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 1.2, ml: 1 }}>
+            {[
+              "Quality-driven solutions",
+              "Creative thinking with practical results",
+              "Transparent communication",
+              "Customer-first approach",
+              "Continuous innovation"
+            ].map((text) => (
+              <Box key={text} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <CheckCircleOutlineIcon sx={{ color: "#3B6EF8", fontSize: 18, flexShrink: 0 }} />
+                <Typography sx={{ color: "#9ca3af", fontFamily: "DM Sans", fontSize: { xs: "0.9rem", md: "1rem" } }}>
+                  {text}
+                </Typography>
+              </Box>
+            ))}
           </Box>
           <Typography component="h2" sx={{ fontWeight: 800, fontSize: { xs: "2rem", md: "2.6rem" }, color: "#fff", mt: 4, mb: 2 }}>
             Our Story

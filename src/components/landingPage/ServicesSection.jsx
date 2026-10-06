@@ -2,13 +2,19 @@ import { useEffect, useRef, useState, useContext } from "react";
 import { Box, Button, Container, Typography, Stack, Chip } from "@mui/material";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import LanguageIcon from "@mui/icons-material/Language";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import DevicesOutlinedIcon from "@mui/icons-material/DevicesOutlined";
+import DesignServicesOutlinedIcon from "@mui/icons-material/DesignServicesOutlined";
 import { ThemeContext } from "../../appConstant";
 import { useAppointment } from "../../context/AppointmentContext";
 
 // ─── Services Data ─────────────────────────────────────────────────────────────
 const SERVICES = [
   {
-    icon: "⚡",
+    icon: <LanguageIcon sx={{ fontSize: 19 }} />,
     badge: "React & Next.js",
     badgeColor: "#3B6EF8",
     title: "Website Development",
@@ -17,7 +23,7 @@ const SERVICES = [
     cta: false,
   },
   {
-    icon: "✦",
+    icon: <ShoppingCartOutlinedIcon sx={{ fontSize: 19 }} />,
     badge: "Shopify & Custom",
     badgeColor: "#8B5CF6",
     title: "E-commerce Solutions",
@@ -26,7 +32,7 @@ const SERVICES = [
     cta: false,
   },
   {
-    icon: "✦",
+    icon: <DnsOutlinedIcon sx={{ fontSize: 19 }} />,
     badge: "Multi-Tenant Systems",
     badgeColor: "#8B5CF6",
     title: "CMS & SaaS Platforms",
@@ -35,7 +41,7 @@ const SERVICES = [
     cta: false,
   },
   {
-    icon: "✦",
+    icon: <BarChartOutlinedIcon sx={{ fontSize: 19 }} />,
     badge: "Real-time Insights",
     badgeColor: "#8B5CF6",
     title: "ERP & Business Dashboards",
@@ -44,7 +50,7 @@ const SERVICES = [
     cta: false,
   },
   {
-    icon: "✦",
+    icon: <DevicesOutlinedIcon sx={{ fontSize: 19 }} />,
     badge: "Interactive Portals",
     badgeColor: "#8B5CF6",
     title: "Custom Web Applications",
@@ -53,7 +59,7 @@ const SERVICES = [
     cta: false,
   },
   {
-    icon: "◈",
+    icon: <DesignServicesOutlinedIcon sx={{ fontSize: 19 }} />,
     badge: "Figma & Wireframes",
     badgeColor: "#3B6EF8",
     title: "UX/UI Design",
