@@ -95,6 +95,14 @@ Sitemap: https://three-dots.in/sitemap.xml
   console.log('✓ robots.txt generated successfully in dist/ and public/.');
 }
 
+// 3b. Generate CNAME
+function generateCNAME() {
+  const cname = 'three-dots.in\n';
+  fs.writeFileSync(path.join(distDir, 'CNAME'), cname, 'utf8');
+  fs.writeFileSync(path.join(publicDir, 'CNAME'), cname, 'utf8');
+  console.log('✓ CNAME generated successfully in dist/ and public/.');
+}
+
 // 4. Pre-render HTML
 function preRenderPages() {
   if (!fs.existsSync(indexHtmlPath)) {
@@ -103,10 +111,10 @@ function preRenderPages() {
   }
   
   let rawTemplate = fs.readFileSync(indexHtmlPath, 'utf8');
-  // Strip previous meta, canonical, title, and schema injections to guarantee idempotent clean template
+  // Strip previous SEO meta, canonical, title, and schema injections, but PRESERVE viewport, charset, and theme-color!
   const template = rawTemplate
     .replace(/<title>[\s\S]*?<\/title>/gi, '')
-    .replace(/<meta\s+(?:name|property|robots)="[^"]*"\s+content="[^"]*"\s*\/?>/gi, '')
+    .replace(/<meta\s+(?:name|property|robots)="(?!(?:viewport|charset|theme-color)\b)[^"]*"\s+content="[^"]*"\s*\/?>/gi, '')
     .replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/gi, '')
     .replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
   
@@ -465,11 +473,17 @@ function preRenderPages() {
 ${schemaTags}
 `;
 
+    // Ensure viewport meta tag is always present in all pre-rendered pages
+    let finalMetaTags = metaTags;
+    if (!html.includes('name="viewport"')) {
+      finalMetaTags = `  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n` + finalMetaTags;
+    }
+
     // Remove any existing <title> from the template so there is exactly one
     let result = html.replace(/<title>.*?<\/title>/gi, '');
     
     // Inject before </head>
-    result = result.replace('</head>', `${metaTags}\n</head>`);
+    result = result.replace('</head>', `${finalMetaTags}\n</head>`);
     return result;
   }
 
@@ -523,5 +537,6 @@ ${schemaTags}
 ensureDirExists(distDir);
 generateSitemap();
 generateRobots();
+generateCNAME();
 preRenderPages();
 console.log('★ All SEO assets generated and page pre-rendering complete!');
