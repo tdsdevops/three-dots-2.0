@@ -335,7 +335,7 @@ export default function ServicesSection() {
     [1.04, 1, 1.04],
   );
 
-  const { scrollY } = useContext(ThemeContext);
+  const { scrollY, isMobile } = useContext(ThemeContext);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
   const [layout, setLayout] = useState({ absoluteTop: 0, maxScroll: 0 });
@@ -420,12 +420,12 @@ export default function ServicesSection() {
           <Box
             component={motion.div}
             ref={leftRef}
-            style={{ y: stickyY }}
+            style={{ y: isMobile ? 0 : stickyY }}
             sx={{
               flex: "0 0 auto",
               width: { xs: "100%", lg: "42%", xl: "44%" },
               alignSelf: "flex-start",
-              willChange: "transform",
+              willChange: isMobile ? "auto" : "transform",
             }}
           >
             {/* Label */}

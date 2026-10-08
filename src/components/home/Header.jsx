@@ -45,7 +45,9 @@ function Header() {
     if (mobileOpen) {
       const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
-      const currentScrollY = scrollY?.get() ?? 0;
+      const currentScrollY = isMobile
+        ? (window.scrollY || window.pageYOffset || 0)
+        : (scrollY?.get() ?? 0);
       document.body.style.position = "fixed";
       document.body.style.top = `-${currentScrollY}px`;
       document.body.style.left = "0";
@@ -67,7 +69,7 @@ function Header() {
       document.body.style.right = "";
       document.body.style.paddingRight = "";
     };
-  }, [mobileOpen]);
+  }, [mobileOpen, isMobile, scrollY]);
 
   const links = generalInfo.templatePages;
   const navigate = useNavigate();
