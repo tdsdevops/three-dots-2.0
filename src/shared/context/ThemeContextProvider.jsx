@@ -41,15 +41,23 @@ const theme = createTheme({
   },
 });
 function useSmoothScroll() {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return (
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.innerWidth < 1024
+    );
+  });
+
   const [content, setContent] = useState(null);
   const [proxy, setProxy] = useState(null);
 
   const contentRef = useCallback((node) => {
-    if (node) setContent(node);
+    setContent(node);
   }, []);
 
   const proxyRef = useCallback((node) => {
-    if (node) setProxy(node);
+    setProxy(node);
   }, []);
 
   const scrollY = useMotionValue(0);
@@ -58,15 +66,43 @@ function useSmoothScroll() {
   const currentY = useRef(0);
   const rafId = useRef(null);
 
-  const resetScroll = useCallback(() => {
-    targetY.current = 0;
-    currentY.current = 0;
-    scrollY.set(0);
-    if (proxy) proxy.scrollTop = 0;
-  }, [proxy, scrollY]);
-
   useEffect(() => {
-    if (!content || !proxy) return;
+    const handleResize = () => {
+      const mobile =
+        window.matchMedia("(pointer: coarse)").matches ||
+        window.innerWidth < 1024;
+      setIsMobile(mobile);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const resetScroll = useCallback(() => {
+    if (isMobile) {
+      window.scrollTo(0, 0);
+      scrollY.set(0);
+    } else {
+      targetY.current = 0;
+      currentY.current = 0;
+      scrollY.set(0);
+      if (proxy) proxy.scrollTop = 0;
+    }
+  }, [isMobile, proxy, scrollY]);
+
+  // Mobile: sync native window scrolling into scrollY MotionValue
+  useEffect(() => {
+    if (!isMobile) return;
+    const onNativeScroll = () => {
+      scrollY.set(window.scrollY || window.pageYOffset || 0);
+    };
+    onNativeScroll();
+    window.addEventListener("scroll", onNativeScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onNativeScroll);
+  }, [isMobile, scrollY]);
+
+  // Desktop: custom proxy lerp smooth scrolling
+  useEffect(() => {
+    if (isMobile || !content || !proxy) return;
 
     const getMax = () => Math.max(0, content.scrollHeight - window.innerHeight);
 
@@ -171,9 +207,9 @@ function useSmoothScroll() {
       cancelAnimationFrame(rafId.current);
       ro.disconnect();
     };
-  }, [content, proxy]);
+  }, [isMobile, content, proxy]);
 
-  return { scrollY, contentRef, proxyRef, resetScroll };
+  return { scrollY, contentRef, proxyRef, resetScroll, isMobile };
 }
 function Cursor() {
   const [showCursor, setShowCursor] = useState(false);
@@ -181,8 +217,8 @@ function Cursor() {
   const cursorY = useSpring(0, { stiffness: 1000, damping: 60 });
 
   useEffect(() => {
-    const isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
-    if (isMobile) {
+    const isMobileDevice = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
+    if (isMobileDevice) {
       setShowCursor(false);
       return;
     }
@@ -234,13 +270,13 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 function ThemeContextProvider({ children }) {
-  const { scrollY, contentRef, proxyRef, resetScroll } = useSmoothScroll();
+  const { scrollY, contentRef, proxyRef, resetScroll, isMobile } = useSmoothScroll();
   const contentY = useTransform(scrollY, (v) => -v);
 
   return (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider
-        value={{ scrollY, contentRef, proxyRef, theme, contentY, resetScroll, fadeUp, stagger, bgVdo }}
+        value={{ scrollY, contentRef, proxyRef, theme, contentY, resetScroll, fadeUp, stagger, bgVdo, isMobile }}
       >
         <Cursor />
 

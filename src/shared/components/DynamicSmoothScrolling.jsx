@@ -6,9 +6,8 @@ import Footer from "../../components/home/Footer";
 import { ThemeContext } from "../../appConstant";
 
 function DynamicSmoothScrolling({ children }) {
-  const { proxyRef, contentRef, contentY, resetScroll } = useContext(ThemeContext);
+  const { proxyRef, contentRef, contentY, resetScroll, isMobile } = useContext(ThemeContext);
   const location = useLocation();
-  const [isMobile, setIsMobile] = useState(false);
 
   // Reset scroll to top when pathname/route changes
   useEffect(() => {
@@ -16,16 +15,6 @@ function DynamicSmoothScrolling({ children }) {
       resetScroll();
     }
   }, [location.pathname, resetScroll]);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      const mobileMatch = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
-      setIsMobile(mobileMatch);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   if (isMobile) {
     return (
