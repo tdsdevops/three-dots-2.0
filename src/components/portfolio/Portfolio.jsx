@@ -40,7 +40,7 @@ const portfolioItems = [
     title: "TCES Exports - Indian Spice Exporter Website",
     categoryLabel: "Website",
     year: "2026",
-    image: "/tces-exports-spice-exporter-website.webp",
+    image: "/tces-exports-desktop-mobile-mockup.jpg",
     link: "/portfolio/tces-exports-website-design-development",
     isFeatured: true,
     tag: "Case Study",

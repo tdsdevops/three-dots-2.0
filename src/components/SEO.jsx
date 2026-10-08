@@ -326,7 +326,7 @@ export default function SEO({
       "name": "TCES Exports Website Design & Development Case Study",
       "description": "See how Three Dots designed and developed a modern website for TCES Exports, helping present Indian spices, sourcing, quality and export capabilities to global buyers.",
       "url": "https://three-dots.in/portfolio/tces-exports-website-design-development",
-      "image": "https://three-dots.in/tces-exports-spice-exporter-website.webp",
+      "image": "https://three-dots.in/tces-exports-desktop-mobile-mockup.jpg",
       "author": {
         "@type": "Organization",
         "name": "ThreeDots",
