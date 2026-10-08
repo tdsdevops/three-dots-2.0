@@ -237,8 +237,8 @@ export default function TcesCaseStudy() {
           >
             <Box
               component="img"
-              src="/tces-exports-spice-exporter-website.webp"
-              alt="TCES Exports spice export website design and development by Three Dots"
+              src="/tces-exports-desktop-mobile-mockup.jpg"
+              alt="TCES Exports desktop and mobile website design and development by Three Dots"
               sx={{
                 width: "100%",
                 height: "auto",
@@ -255,7 +255,7 @@ export default function TcesCaseStudy() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          sx={{ maxWidth: 880, mx: "auto", mb: { xs: 8, md: 12 } }}
+          sx={{ mb: { xs: 8, md: 12 } }}
         >
           <Typography
             sx={{
@@ -367,34 +367,124 @@ export default function TcesCaseStudy() {
               A buyer should not have to search through several pages to understand what the company does, what it supplies, where its products come from or how to start a conversation. So we looked at the website from the buyer's perspective:
             </Typography>
 
-            <Grid container spacing={2.5}>
+            {/* Zig-Zag Aligned Buyer Perspective Cards */}
+            <Box
+              sx={{
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                gap: { xs: 2.5, md: 3.5 },
+                mt: 4,
+                "&::before": {
+                  content: '""',
+                  position: "absolute",
+                  top: "30px",
+                  bottom: "30px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: "2px",
+                  background: "linear-gradient(180deg, rgba(234, 88, 12, 0.5) 0%, rgba(234, 88, 12, 0.15) 100%)",
+                  display: { xs: "none", md: "block" },
+                  pointerEvents: "none",
+                },
+              }}
+            >
               {[
                 { q: "Where does the product come from?", desc: "Direct origin tracing from farmers and agricultural belts across India." },
                 { q: "What does TCES actually supply?", desc: "Clear distinction between whole export spices and custom-formulated ground powders." },
                 { q: "How does the company approach quality?", desc: "Certifications, laboratory testing, grading, and moisture-controlled packaging." },
                 { q: "Can I find the product I need?", desc: "Instant search and effortless category navigation with detailed export specs." },
                 { q: "What happens if I want a quotation or sample?", desc: "A frictionless enquiry journey tailored to volume, destination, and product." }
-              ].map((item, idx) => (
-                <Grid item xs={12} sm={6} md={4} key={idx}>
+              ].map((item, idx) => {
+                const isLeft = idx % 2 === 0;
+                return (
                   <Box
+                    key={idx}
                     sx={{
-                      p: 3,
-                      height: "100%",
-                      borderRadius: "16px",
-                      bgcolor: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.08)",
+                      width: { xs: "100%", md: "calc(50% - 32px)" },
+                      alignSelf: { xs: "stretch", md: isLeft ? "flex-start" : "flex-end" },
+                      position: "relative",
                     }}
                   >
-                    <Typography sx={{ color: "#EA580C", fontWeight: 700, fontSize: "1.05rem", mb: 1 }}>
-                      {item.q}
-                    </Typography>
-                    <Typography sx={{ color: "rgba(255,255,255,0.65)", fontSize: "0.9rem", lineHeight: 1.6 }}>
-                      {item.desc}
-                    </Typography>
+                    {/* Horizontal Connector to Center Line */}
+                    <Box
+                      sx={{
+                        display: { xs: "none", md: "flex" },
+                        position: "absolute",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        ...(isLeft
+                          ? { right: "-32px", justifyContent: "flex-end" }
+                          : { left: "-32px", justifyContent: "flex-start" }),
+                        width: "32px",
+                        height: "2px",
+                        bgcolor: "rgba(234, 88, 12, 0.35)",
+                        alignItems: "center",
+                        pointerEvents: "none",
+                        "&::after": {
+                          content: '""',
+                          width: "10px",
+                          height: "10px",
+                          borderRadius: "50%",
+                          bgcolor: "#EA580C",
+                          border: "2px solid #111",
+                          boxShadow: "0 0 10px rgba(234, 88, 12, 0.8)",
+                          transform: isLeft ? "translateX(5px)" : "translateX(-5px)",
+                        },
+                      }}
+                    />
+
+                    {/* Uniform Shape & Size Card */}
+                    <Box
+                      sx={{
+                        p: { xs: 2.5, sm: 3 },
+                        minHeight: { xs: "auto", md: 140 },
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        borderRadius: "16px",
+                        bgcolor: "rgba(255,255,255,0.03)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        backdropFilter: "blur(10px)",
+                        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                        boxSizing: "border-box",
+                        "&:hover": {
+                          bgcolor: "rgba(255,255,255,0.05)",
+                          borderColor: "rgba(234, 88, 12, 0.4)",
+                          transform: "translateY(-3px)",
+                          boxShadow: "0 14px 30px rgba(0,0,0,0.5), 0 0 20px rgba(234, 88, 12, 0.15)",
+                        },
+                      }}
+                    >
+                      <Box sx={{ display: "inline-flex", alignItems: "center", gap: 1, mb: 1.2 }}>
+                        <Box
+                          sx={{
+                            px: 1,
+                            py: 0.25,
+                            borderRadius: "6px",
+                            bgcolor: "rgba(234, 88, 12, 0.15)",
+                            border: "1px solid rgba(234, 88, 12, 0.3)",
+                            color: "#FB923C",
+                            fontSize: "0.72rem",
+                            fontWeight: 800,
+                            letterSpacing: "0.06em",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          Step 0{idx + 1}
+                        </Box>
+                      </Box>
+                      <Typography sx={{ color: "#EA580C", fontWeight: 700, fontSize: "1.05rem", mb: 0.8, lineHeight: 1.35 }}>
+                        {item.q}
+                      </Typography>
+                      <Typography sx={{ color: "rgba(255,255,255,0.7)", fontSize: "0.92rem", lineHeight: 1.6 }}>
+                        {item.desc}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Grid>
-              ))}
-            </Grid>
+                );
+              })}
+            </Box>
           </Box>
         </MotionBox>
 
@@ -463,28 +553,7 @@ export default function TcesCaseStudy() {
                 This gave the website a more human identity and helped move the conversation away from simply selling spices towards showing where the business comes from and how it works.
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Box
-                sx={{
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  boxShadow: "0 20px 50px rgba(0,0,0,0.7)",
-                }}
-              >
-                <Box
-                  component="img"
-                  src="/tces-exports-indian-spices-website.webp"
-                  alt="TCES Exports Indian spices product listing website"
-                  sx={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    objectFit: "cover",
-                  }}
-                />
-              </Box>
-            </Grid>
+   
           </Grid>
         </MotionBox>
 
@@ -508,7 +577,7 @@ export default function TcesCaseStudy() {
               >
                 <Box
                   component="img"
-                  src="/tces-exports-product-page.webp"
+                  src="/tces-exports-product-pageFIgma.png"
                   alt="TCES Exports Indian spices product listing website"
                   sx={{
                     width: "100%",
@@ -552,19 +621,7 @@ export default function TcesCaseStudy() {
               >
                 The website therefore needed to make product discovery quick and uncomplicated. We structured the product experience around <strong>whole spices</strong> and <strong>spice powders</strong>, with individual product pages designed to give buyers useful information before they make an enquiry.
               </Typography>
-              <Box
-                sx={{
-                  p: 2.5,
-                  borderRadius: "12px",
-                  bgcolor: "rgba(37, 99, 235, 0.1)",
-                  border: "1px solid rgba(37, 99, 235, 0.3)",
-                  mb: 2,
-                }}
-              >
-                <Typography sx={{ color: "#93C5FD", fontWeight: 700, fontSize: "1.05rem", textAlign: "center" }}>
-                  Product → Information → Requirement → Conversation
-                </Typography>
-              </Box>
+          
               <Typography sx={{ color: "rgba(255,255,255,0.65)", fontSize: "0.95rem" }}>
                 Instead of overwhelming visitors with unnecessary fluff, the focus stayed on what actually helps a buyer move forward.
               </Typography>
@@ -719,63 +776,10 @@ export default function TcesCaseStudy() {
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} md={5}>
-                <Box
-                  sx={{
-                    borderRadius: "20px",
-                    overflow: "hidden",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    boxShadow: "0 20px 50px rgba(0,0,0,0.7)",
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src="/tces-exports-mobile-website-design.webp"
-                    alt="Responsive mobile website design for TCES Exports"
-                    sx={{
-                      width: "100%",
-                      height: "auto",
-                      display: "block",
-                      objectFit: "cover",
-                    }}
-                  />
-                </Box>
-              </Grid>
+         
             </Grid>
 
-            {/* Full Homepage Showcase */}
-            <Box sx={{ mt: 6, pt: 6, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-              <Typography
-                sx={{
-                  fontSize: { xs: "1.2rem", md: "1.4rem" },
-                  fontWeight: 700,
-                  color: "#fff",
-                  mb: 3,
-                  textAlign: "center",
-                }}
-              >
-                Homepage Interface Design
-              </Typography>
-              <Box
-                sx={{
-                  borderRadius: "20px",
-                  overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  boxShadow: "0 20px 50px rgba(0,0,0,0.7)",
-                }}
-              >
-                <Box
-                  component="img"
-                  src="/tces-exports-website-homepage.webp"
-                  alt="TCES Exports Indian spice exporter website homepage designed by Three Dots"
-                  sx={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                  }}
-                />
-              </Box>
-            </Box>
+         
           </Box>
         </MotionBox>
 
@@ -848,85 +852,7 @@ export default function TcesCaseStudy() {
           </Box>
         </MotionBox>
 
-        {/* Section 8: Related SEO Blog Cross-Link */}
-        <MotionBox
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          sx={{
-            mb: 8,
-            p: { xs: 3.5, md: 4.5 },
-            borderRadius: "20px",
-            bgcolor: "rgba(255, 255, 255, 0.03)",
-            border: "1px solid rgba(255, 255, 255, 0.12)",
-            backdropFilter: "blur(12px)",
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: { xs: "flex-start", md: "center" },
-            justifyContent: "space-between",
-            gap: 3,
-          }}
-        >
-          <Box>
-            <Typography
-              sx={{
-                color: "#3B6EF8",
-                fontWeight: 700,
-                fontSize: "0.85rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                mb: 0.5,
-              }}
-            >
-              Industry Perspective & Guide
-            </Typography>
-            <Typography
-              sx={{
-                color: "#fff",
-                fontWeight: 700,
-                fontSize: { xs: "1.15rem", md: "1.35rem" },
-                mb: 1,
-              }}
-            >
-              Building a website for an export business?
-            </Typography>
-            <Typography
-              sx={{
-                color: "rgba(255, 255, 255, 0.7)",
-                fontSize: "0.95rem",
-                maxWidth: 620,
-                lineHeight: 1.6,
-              }}
-            >
-              We also wrote about the key things international buyers look for when visiting an Indian spice exporter website.
-            </Typography>
-          </Box>
-
-          <Button
-            component={Link}
-            to="/blog/indian-spice-exporter-website"
-            variant="outlined"
-            endIcon={<ArrowForwardIcon />}
-            sx={{
-              color: "#fff",
-              borderColor: "rgba(255, 255, 255, 0.3)",
-              textTransform: "none",
-              fontWeight: 700,
-              fontSize: "0.95rem",
-              px: 3,
-              py: 1.3,
-              borderRadius: "10px",
-              whiteSpace: "nowrap",
-              "&:hover": {
-                borderColor: "#3B6EF8",
-                bgcolor: "rgba(59, 110, 248, 0.1)",
-              },
-            }}
-          >
-            Read: What Makes a Good Website for an Indian Spice Exporter?
-          </Button>
-        </MotionBox>
+  
 
         {/* Section 9: CTA Section */}
         <MotionBox
