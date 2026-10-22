@@ -134,6 +134,9 @@ export default function SEO({
     } else if (pageKey === "tces-case-study") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
       items.push({ "@type": "ListItem", "position": 3, "name": "TCES Exports Case Study", "item": "https://three-dots.in/portfolio/tces-exports-website-design-development" });
+    } else if (pageKey === "ms-industries-ecommerce-website-redesign") {
+      items.push({ "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://three-dots.in/portfolio" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "MS Industries E-commerce Redesign", "item": "https://three-dots.in/case-studies/ms-industries-ecommerce-website-redesign" });
     } else if (pageKey === "contact") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://three-dots.in/contact" });
     } else if (pageKey === "blog") {
@@ -193,8 +196,8 @@ export default function SEO({
       "image": blogPost.image || ogImage,
       "datePublished": blogPost.date ? new Date(blogPost.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       "author": {
-        "@type": "Organization",
-        "name": "ThreeDots Team",
+        "@type": blogPost.author ? "Person" : "Organization",
+        "name": blogPost.author || "ThreeDots Team",
         "url": "https://three-dots.in"
       },
       "publisher": {

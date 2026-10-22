@@ -173,9 +173,16 @@ export default function Blog() {
                       />
                     </Box>
                     <Box sx={{ p: 3 }}>
-                      <Typography sx={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", mb: 1 }}>
-                        {post.date}
-                      </Typography>
+                      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+                        <Typography sx={{ color: "rgba(255,255,255,0.5)", fontSize: "0.8rem" }}>
+                          {post.date}
+                        </Typography>
+                        {post.author && (
+                          <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: "0.8rem", fontWeight: 500 }}>
+                            By {post.author}
+                          </Typography>
+                        )}
+                      </Box>
                       <Typography
                         sx={{
                           fontSize: "1.2rem",
