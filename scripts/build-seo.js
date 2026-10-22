@@ -44,7 +44,8 @@ const pathMap = {
   'inventory-software': '/services/inventory-management-software',
   'gst-invoice-landing': '/tools/gst-invoice-generator',
   'qr-landing': '/tools/free-qr-code-generator',
-  'indian-spice-exporter-website': '/blog/indian-spice-exporter-website'
+  'indian-spice-exporter-website': '/blog/indian-spice-exporter-website',
+  'ms-industries-ecommerce-website-redesign': '/case-studies/ms-industries-ecommerce-website-redesign'
 };
 
 // 2. Generate Sitemap
@@ -199,6 +200,9 @@ function preRenderPages() {
     } else if (pageKey === "tces-case-study") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
       items.push({ "@type": "ListItem", "position": 3, "name": "TCES Exports Case Study", "item": "https://three-dots.in/portfolio/tces-exports-website-design-development" });
+    } else if (pageKey === "ms-industries-ecommerce-website-redesign") {
+      items.push({ "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://three-dots.in/portfolio" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "MS Industries E-commerce Redesign", "item": "https://three-dots.in/case-studies/ms-industries-ecommerce-website-redesign" });
     } else if (pageKey === "contact") {
       items.push({ "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://three-dots.in/contact" });
     } else if (pageKey === "blog") {
@@ -257,8 +261,8 @@ function preRenderPages() {
       "image": fullImg,
       "datePublished": blogPost.date ? new Date(blogPost.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       "author": {
-        "@type": "Organization",
-        "name": "ThreeDots Team",
+        "@type": blogPost.author ? "Person" : "Organization",
+        "name": blogPost.author || "ThreeDots Team",
         "url": "https://three-dots.in"
       },
       "publisher": {

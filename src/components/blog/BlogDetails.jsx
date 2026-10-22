@@ -71,15 +71,26 @@ export default function BlogDetails() {
           transition={{ duration: 0.7, delay: 0.2 }}
           sx={{ mb: 6 }}
         >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+          <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2, mb: 3 }}>
             <Chip label={post.category} sx={{ bgcolor: "#2563EB", color: "#fff", fontWeight: 700 }} />
+            {post.author && (
+              <Typography sx={{ color: "rgba(255,255,255,0.75)", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: 0.6 }}>
+                <span style={{ color: "rgba(255,255,255,0.45)" }}>By</span>
+                <span style={{ color: "#fff", fontWeight: 600 }}>{post.author}</span>
+              </Typography>
+            )}
             <Typography sx={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>
               {post.date}
             </Typography>
           </Box>
-          <Typography component="h1" sx={{ fontSize: { xs: "2.5rem", md: "4rem" }, fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.03em", mb: 3 }}>
+          <Typography component="h1" sx={{ fontSize: { xs: "2.5rem", md: "4rem" }, fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.03em", mb: post.subtitle ? 2 : 3 }}>
             {post.title}
           </Typography>
+          {post.subtitle && (
+            <Typography sx={{ fontSize: { xs: "1.15rem", md: "1.4rem" }, color: "#3B6EF8", fontWeight: 600, mb: 3 }}>
+              {post.subtitle}
+            </Typography>
+          )}
           <Typography sx={{ color: "rgba(255,255,255,0.7)", fontSize: "1.2rem", lineHeight: 1.6, borderLeft: "4px solid #3B6EF8", pl: 3 }}>
             {post.excerpt}
           </Typography>
@@ -226,6 +237,113 @@ export default function BlogDetails() {
                   {renderTextWithLinks(trimmed.replace('## ', ''))}
                 </Typography>
               );
+            }
+
+            // Blockquote handling (> or quote blocks)
+            if (trimmed.startsWith('> ') || (trimmed.startsWith('“') && trimmed.endsWith('”'))) {
+              const quoteText = trimmed.replace(/^>\s*/, '');
+              return (
+                <Box
+                  key={index}
+                  sx={{
+                    my: 4,
+                    p: { xs: 3, md: 3.5 },
+                    borderLeft: "4px solid #2563EB",
+                    bgcolor: "rgba(37, 99, 235, 0.08)",
+                    borderRadius: "0 14px 14px 0",
+                    position: "relative",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "1.15rem", md: "1.3rem" },
+                      fontStyle: "italic",
+                      color: "#fff",
+                      lineHeight: 1.6,
+                      fontWeight: 500,
+                    }}
+                  >
+                    {renderTextWithLinks(quoteText)}
+                  </Typography>
+                </Box>
+              );
+            }
+
+            // Markdown Table handling
+            if (trimmed.startsWith('|')) {
+              const tableLines = trimmed.split('\n').filter(l => l.trim().startsWith('|'));
+              if (tableLines.length >= 2) {
+                const headerLine = tableLines[0];
+                const dataLines = tableLines.slice(1).filter(l => !/^[\|\-\s:]+$/.test(l.trim()));
+                const parseRow = (row) => row.split('|').map(c => c.trim()).filter((c, i, arr) => i > 0 && i < arr.length - 1);
+                const headers = parseRow(headerLine);
+                const rows = dataLines.map(parseRow);
+
+                return (
+                  <Box
+                    key={index}
+                    sx={{
+                      my: 4,
+                      overflowX: "auto",
+                      borderRadius: "14px",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      bgcolor: "rgba(255,255,255,0.02)",
+                    }}
+                  >
+                    <Box component="table" sx={{ width: "100%", borderCollapse: "collapse", minWidth: 400 }}>
+                      {headers.length > 0 && (
+                        <Box component="thead" sx={{ bgcolor: "rgba(37, 99, 235, 0.15)", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+                          <Box component="tr">
+                            {headers.map((h, hIdx) => (
+                              <Box
+                                component="th"
+                                key={hIdx}
+                                sx={{
+                                  p: 2,
+                                  textAlign: "left",
+                                  color: "#fff",
+                                  fontWeight: 700,
+                                  fontSize: "0.95rem",
+                                  letterSpacing: "0.02em",
+                                }}
+                              >
+                                {renderTextWithLinks(h)}
+                              </Box>
+                            ))}
+                          </Box>
+                        </Box>
+                      )}
+                      <Box component="tbody">
+                        {rows.map((row, rIdx) => (
+                          <Box
+                            component="tr"
+                            key={rIdx}
+                            sx={{
+                              borderBottom: rIdx < rows.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                              "&:hover": { bgcolor: "rgba(255,255,255,0.03)" },
+                            }}
+                          >
+                            {row.map((cell, cIdx) => (
+                              <Box
+                                component="td"
+                                key={cIdx}
+                                sx={{
+                                  p: 2,
+                                  color: cIdx === 0 ? "#fff" : "rgba(255,255,255,0.8)",
+                                  fontWeight: cIdx === 0 ? 600 : 400,
+                                  fontSize: "0.95rem",
+                                }}
+                              >
+                                {renderTextWithLinks(cell)}
+                              </Box>
+                            ))}
+                          </Box>
+                        ))}
+                      </Box>
+                    </Box>
+                  </Box>
+                );
+              }
             }
 
             // Check if paragraph contains list items (lines starting with • or -)
@@ -394,7 +512,7 @@ export default function BlogDetails() {
                 lineHeight: 1.25,
               }}
             >
-              Building an Export Business? Your Website Should Be Ready for the World.
+              {post.ctaTitle || (post.id === "indian-spice-exporter-website" ? "Building an Export Business? Your Website Should Be Ready for the World." : "Ready to Transform Your Digital Presence?")}
             </Typography>
             <Typography
               sx={{
@@ -405,7 +523,7 @@ export default function BlogDetails() {
                 maxWidth: 650,
               }}
             >
-              At Three Dots, we design and develop websites for businesses that want to present themselves clearly, build trust and reach the right customers. Have a business that needs a better digital presence?
+              {post.ctaDescription || (post.id === "indian-spice-exporter-website" ? "At Three Dots, we design and develop websites for businesses that want to present themselves clearly, build trust and reach the right customers. Have a business that needs a better digital presence?" : "At Three Dots, we design and build modern websites and scalable software tailored to your business needs. Let's discuss your next project.")}
             </Typography>
             <Button
               variant="contained"
@@ -426,7 +544,7 @@ export default function BlogDetails() {
                 },
               }}
             >
-              Let's talk →
+              {post.ctaButtonText || "Let's talk →"}
             </Button>
           </Box>
         </MotionBox>

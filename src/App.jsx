@@ -55,6 +55,7 @@ function App() {
               <Route path="contact" element={<ContactUs />} />
               <Route path="blog" element={<Blog />} />
               <Route path="blog/:id" element={<BlogDetails />} />
+              <Route path="case-studies/:id" element={<BlogDetails />} />
               <Route path="terms" element={<TermsAndConditions />} />
               <Route path="privacy" element={<PrivacyPolicy />} />
               <Route path="tools" element={<ToolsPage />} />
