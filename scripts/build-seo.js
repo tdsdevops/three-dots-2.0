@@ -24,6 +24,9 @@ function ensureDirExists(dirPath) {
 const seoData = JSON.parse(fs.readFileSync(seoMetadataPath, 'utf8'));
 const blogs = JSON.parse(fs.readFileSync(blogsPath, 'utf8'));
 
+// Canonical domain: standardize to preferred www domain matching DNS & server 301 redirects
+const domain = 'https://www.three-dots.in';
+
 // Path mapping to match client-side routes
 const pathMap = {
   'home': '',
@@ -50,7 +53,6 @@ const pathMap = {
 
 // 2. Generate Sitemap
 function generateSitemap() {
-  const domain = 'https://three-dots.in';
   const currentDate = new Date().toISOString().split('T')[0];
   
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -62,8 +64,8 @@ function generateSitemap() {
     sitemap += `  <url>\n`;
     sitemap += `    <loc>${domain}${p}</loc>\n`;
     sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
-    sitemap += `    <changefreq>monthly</changefreq>\n`;
-    sitemap += `    <priority>${p === '' ? '1.0' : p.startsWith('/services') ? '0.9' : '0.8'}</priority>\n`;
+    sitemap += `    <changefreq>weekly</changefreq>\n`;
+    sitemap += `    <priority>${p === '' ? '1.0' : p.startsWith('/services') ? '0.9' : p.startsWith('/tools') ? '0.85' : '0.8'}</priority>\n`;
     sitemap += `  </url>\n`;
   });
   
@@ -73,7 +75,7 @@ function generateSitemap() {
     sitemap += `    <loc>${domain}/blog/${post.id}</loc>\n`;
     sitemap += `    <lastmod>${currentDate}</lastmod>\n`;
     sitemap += `    <changefreq>monthly</changefreq>\n`;
-    sitemap += `    <priority>0.6</priority>\n`;
+    sitemap += `    <priority>0.7</priority>\n`;
     sitemap += `  </url>\n`;
   });
   
@@ -89,7 +91,7 @@ function generateRobots() {
   const robots = `User-agent: *
 Allow: /
 
-Sitemap: https://three-dots.in/sitemap.xml
+Sitemap: https://www.three-dots.in/sitemap.xml
 `;
   fs.writeFileSync(path.join(distDir, 'robots.txt'), robots, 'utf8');
   fs.writeFileSync(path.join(publicDir, 'robots.txt'), robots, 'utf8');
@@ -98,7 +100,7 @@ Sitemap: https://three-dots.in/sitemap.xml
 
 // 3b. Generate CNAME
 function generateCNAME() {
-  const cname = 'three-dots.in\n';
+  const cname = 'www.three-dots.in\n';
   fs.writeFileSync(path.join(distDir, 'CNAME'), cname, 'utf8');
   fs.writeFileSync(path.join(publicDir, 'CNAME'), cname, 'utf8');
   console.log('✓ CNAME generated successfully in dist/ and public/.');
@@ -119,14 +121,17 @@ function preRenderPages() {
     .replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/gi, '')
     .replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
   
-  // Organization Schema
+  // Organization Schema - Authentic company data matching visible website details
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://three-dots.in/#organization",
-    "name": "ThreeDots",
-    "url": "https://three-dots.in",
-    "logo": "https://three-dots.in/threedots.svg",
+    "@id": "https://www.three-dots.in/#organization",
+    "name": "Three Dots",
+    "legalName": "Three Dots Software Development",
+    "url": "https://www.three-dots.in",
+    "logo": "https://www.three-dots.in/threedots.svg",
+    "email": "contactus@three-dots.in",
+    "telephone": "+919751813050",
     "sameAs": [
       "https://github.com/three-dots-devops",
       "https://www.linkedin.com/company/threedots-software"
@@ -137,37 +142,33 @@ function preRenderPages() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://three-dots.in/#website",
-    "url": "https://three-dots.in",
-    "name": "ThreeDots Software",
-    "description": "Premium Custom Software and Web Development Agency",
+    "@id": "https://www.three-dots.in/#website",
+    "url": "https://www.three-dots.in",
+    "name": "Three Dots",
+    "description": "Custom Software Development, WMS, and ERP Solutions in Chennai, India",
     "publisher": {
-      "@id": "https://three-dots.in/#organization"
+      "@id": "https://www.three-dots.in/#organization"
     }
   };
 
-  // LocalBusiness Schema
+  // LocalBusiness Schema - Authentic location details (Padappai, Chennai/Tamil Nadu)
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://three-dots.in/#localbusiness",
-    "name": "ThreeDots Software Development Company",
-    "image": "https://three-dots.in/threedots-og.png",
-    "url": "https://three-dots.in",
-    "telephone": "+919444300000",
+    "@id": "https://www.three-dots.in/#localbusiness",
+    "name": "Three Dots Software Development Company",
+    "image": "https://www.three-dots.in/threedots-og.png",
+    "url": "https://www.three-dots.in",
+    "telephone": "+919751813050",
+    "email": "contactus@three-dots.in",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "3rd Floor, Chennai Technology Hub, Old Mahabalipuram Rd",
+      "streetAddress": "Arampakkam, Padappai",
       "addressLocality": "Chennai",
       "addressRegion": "Tamil Nadu",
-      "postalCode": "600096",
+      "postalCode": "601301",
       "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "12.9716",
-      "longitude": "80.2474"
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -175,7 +176,10 @@ function preRenderPages() {
       "opens": "09:00",
       "closes": "18:00"
     },
-    "sameAs": ["https://www.linkedin.com/company/threedots-software"],
+    "sameAs": [
+      "https://github.com/three-dots-devops",
+      "https://www.linkedin.com/company/threedots-software"
+    ],
     "areaServed": [
       { "@type": "AdministrativeArea", "name": "Chennai" },
       { "@type": "AdministrativeArea", "name": "Tamil Nadu" },
@@ -189,55 +193,60 @@ function preRenderPages() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://three-dots.in"
+        "item": "https://www.three-dots.in"
       }
     ];
 
     if (pageKey === "about") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://three-dots.in/about" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://www.three-dots.in/about" });
     } else if (pageKey === "portfolio") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.three-dots.in/portfolio" });
     } else if (pageKey === "tces-case-study") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://three-dots.in/portfolio" });
-      items.push({ "@type": "ListItem", "position": 3, "name": "TCES Exports Case Study", "item": "https://three-dots.in/portfolio/tces-exports-website-design-development" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.three-dots.in/portfolio" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "TCES Exports Case Study", "item": "https://www.three-dots.in/portfolio/tces-exports-website-design-development" });
     } else if (pageKey === "ms-industries-ecommerce-website-redesign") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://three-dots.in/portfolio" });
-      items.push({ "@type": "ListItem", "position": 3, "name": "MS Industries E-commerce Redesign", "item": "https://three-dots.in/case-studies/ms-industries-ecommerce-website-redesign" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://www.three-dots.in/portfolio" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "MS Industries E-commerce Redesign", "item": "https://www.three-dots.in/case-studies/ms-industries-ecommerce-website-redesign" });
     } else if (pageKey === "contact") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://three-dots.in/contact" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://www.three-dots.in/contact" });
     } else if (pageKey === "blog") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://three-dots.in/blog" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.three-dots.in/blog" });
     } else if (pageKey === "blogDetails" && blogPost) {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://three-dots.in/blog" });
-      items.push({ "@type": "ListItem", "position": 3, "name": blogPost.title, "item": `https://three-dots.in/blog/${blogPost.id}` });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.three-dots.in/blog" });
+      items.push({ "@type": "ListItem", "position": 3, "name": blogPost.title, "item": `https://www.three-dots.in/blog/${blogPost.id}` });
     } else if (pageKey === "terms") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Terms & Conditions", "item": "https://three-dots.in/terms" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Terms & Conditions", "item": "https://www.three-dots.in/terms" });
     } else if (pageKey === "privacy") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://three-dots.in/privacy" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://www.three-dots.in/privacy" });
     } else if (pageKey === "tools") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://three-dots.in/tools" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.three-dots.in/tools" });
     } else if (pageKey === "qr-generator") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://three-dots.in/tools" });
-      items.push({ "@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://three-dots.in/tools/qr-generator" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.three-dots.in/tools" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://www.three-dots.in/tools/qr-generator" });
     } else if (pageKey === "invoice-generator") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://three-dots.in/tools" });
-      items.push({ "@type": "ListItem", "position": 3, "name": "Invoice Generator", "item": "https://three-dots.in/tools/invoice-generator" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.three-dots.in/tools" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "Invoice Generator", "item": "https://www.three-dots.in/tools/invoice-generator" });
     } else if (pageKey === "warehouse-software") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Warehouse Management Software", "item": "https://three-dots.in/services/warehouse-management-software" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.three-dots.in/" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "Warehouse Management Software", "item": "https://www.three-dots.in/services/warehouse-management-software" });
     } else if (pageKey === "franchise-software") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Franchise Management Software", "item": "https://three-dots.in/services/franchise-management-software" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.three-dots.in/" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "Franchise Management Software", "item": "https://www.three-dots.in/services/franchise-management-software" });
     } else if (pageKey === "custom-software") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Custom Software Development", "item": "https://three-dots.in/services/custom-software-development" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.three-dots.in/" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "Custom Software Development", "item": "https://www.three-dots.in/services/custom-software-development" });
     } else if (pageKey === "erp-development") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "ERP Development", "item": "https://three-dots.in/services/erp-development" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.three-dots.in/" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "ERP Development", "item": "https://www.three-dots.in/services/erp-development" });
     } else if (pageKey === "inventory-software") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Inventory Management Software", "item": "https://three-dots.in/services/inventory-management-software" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.three-dots.in/" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "Inventory Management Software", "item": "https://www.three-dots.in/services/inventory-management-software" });
     } else if (pageKey === "gst-invoice-landing") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://three-dots.in/tools" });
-      items.push({ "@type": "ListItem", "position": 3, "name": "GST Invoice Generator", "item": "https://three-dots.in/tools/gst-invoice-generator" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.three-dots.in/tools" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "Free GST Invoice Generator", "item": "https://www.three-dots.in/tools/gst-invoice-generator" });
     } else if (pageKey === "qr-landing") {
-      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://three-dots.in/tools" });
-      items.push({ "@type": "ListItem", "position": 3, "name": "Free QR Code Generator", "item": "https://three-dots.in/tools/free-qr-code-generator" });
+      items.push({ "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.three-dots.in/tools" });
+      items.push({ "@type": "ListItem", "position": 3, "name": "Free QR Code Generator", "item": "https://www.three-dots.in/tools/free-qr-code-generator" });
     }
 
     return {
@@ -248,13 +257,13 @@ function preRenderPages() {
   }
 
   function getArticleSchema(blogPost) {
-    const fullImg = blogPost.image.startsWith('http') ? blogPost.image : `https://three-dots.in${blogPost.image.startsWith('/') ? '' : '/'}${blogPost.image}`;
+    const fullImg = blogPost.image.startsWith('http') ? blogPost.image : `https://www.three-dots.in${blogPost.image.startsWith('/') ? '' : '/'}${blogPost.image}`;
     return {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `https://three-dots.in/blog/${blogPost.id}`
+        "@id": `https://www.three-dots.in/blog/${blogPost.id}`
       },
       "headline": blogPost.title,
       "description": blogPost.excerpt,
@@ -262,15 +271,15 @@ function preRenderPages() {
       "datePublished": blogPost.date ? new Date(blogPost.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
       "author": {
         "@type": blogPost.author ? "Person" : "Organization",
-        "name": blogPost.author || "ThreeDots Team",
-        "url": "https://three-dots.in"
+        "name": blogPost.author || "Three Dots Team",
+        "url": "https://www.three-dots.in"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "ThreeDots",
+        "name": "Three Dots",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://three-dots.in/threedots.svg"
+          "url": "https://www.three-dots.in/threedots.svg"
         }
       }
     };
@@ -283,22 +292,22 @@ function preRenderPages() {
 
     if (pageKey === "warehouse-software") {
       serviceName = "Warehouse Management Software (WMS) Development";
-      serviceDesc = "Custom cloud-based WMS development including barcode scanning, real-time inventory levels, stock audits, and ERP integrations.";
+      serviceDesc = "Custom cloud-based WMS development for Indian businesses including receiving, barcode scanning, bin allocation, stock audits, and ERP integrations.";
       appCategory = "BusinessApplication";
     } else if (pageKey === "franchise-software") {
       serviceName = "Franchise Management Software Solutions";
-      serviceDesc = "Centralized franchise software covering student dashboards, multi-branch reporting, automatic royalty payments, and invoicing.";
+      serviceDesc = "Centralized franchise software covering branch reporting, multi-branch royalty automation, staff coordination, and centralized visibility.";
       appCategory = "BusinessApplication";
     } else if (pageKey === "custom-software") {
       serviceName = "Custom Software & Web Application Development";
-      serviceDesc = "Tailor-made software solutions, secure client portals, automated business workflows, and full-stack React platforms.";
+      serviceDesc = "Tailor-made software engineering in Chennai: scalable web applications, business portals, process automation, and full-stack solutions.";
     } else if (pageKey === "erp-development") {
       serviceName = "Enterprise Resource Planning (ERP) Software Development";
       serviceDesc = "Tailored ERP systems designed to automate operations, manage resources, and streamline reporting for Indian enterprises.";
       appCategory = "BusinessApplication";
     } else if (pageKey === "inventory-software") {
       serviceName = "Inventory Management Software Systems";
-      serviceDesc = "Real-time stock tracking, SKU control, HSN lookup, and purchase order automation.";
+      serviceDesc = "Real-time stock tracking, SKU control, auto-reorder thresholds, HSN lookup, and multi-location inventory synchronization.";
       appCategory = "BusinessApplication";
     } else {
       return null;
@@ -311,9 +320,11 @@ function preRenderPages() {
       "name": serviceName,
       "description": serviceDesc,
       "provider": {
-        "@id": "https://three-dots.in/#organization"
+        "@id": "https://www.three-dots.in/#organization"
       },
       "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Chennai" },
+        { "@type": "AdministrativeArea", "name": "Tamil Nadu" },
         { "@type": "Country", "name": "India" }
       ]
     };
@@ -330,7 +341,7 @@ function preRenderPages() {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "INR",
-          "description": "Contact us for a custom project quote."
+          "description": "Contact Three Dots for a custom project quote."
         }
       };
       return [serviceSchema, appSchema];
@@ -345,25 +356,79 @@ function preRenderPages() {
       faqs = [
         {
           "q": "What is a Warehouse Management System (WMS)?",
-          "a": "A WMS is software designed to optimize and manage warehouse operations, tracking inventory from arrival to dispatch."
+          "a": "A Warehouse Management System (WMS) is specialized software designed to optimize and manage day-to-day warehouse operations, tracking inventory from receiving and bin allocation to picking, packing, and dispatch."
         },
         {
-          "q": "Can custom warehouse software integrate with Tally or Zoho?",
-          "a": "Yes, our custom WMS integrates with major accounting and ERP platforms like Tally, Zoho Books, and SAP through secure API protocols."
+          "q": "Can custom warehouse software integrate with Tally, Zoho Books, or SAP?",
+          "a": "Yes. Our custom WMS solutions integrate seamlessly with accounting and ERP platforms like Tally, Zoho Books, and SAP through secure REST API protocols."
+        },
+        {
+          "q": "Do you support barcode and QR code scanners for warehouse picking?",
+          "a": "Yes, our custom WMS supports barcode and QR code generation, thermal label printing, and integration with handheld Android barcode scanners and mobile cameras."
+        },
+        {
+          "q": "Can the WMS manage multiple warehouse locations and 3PL operations?",
+          "a": "Yes. We engineer multi-warehouse systems supporting distinct locations, inter-warehouse stock transfers, client-segregated inventory, and role-based permissions."
         }
       ];
     } else if (pageKey === "franchise-software") {
       faqs = [
         {
-          "q": "What features are included in franchise management software?",
-          "a": "Key features include branch revenue analytics, centralized operations dashboards, student/staff portals, and royalty billing."
+          "q": "What features are included in custom franchise management software?",
+          "a": "Key features include centralized branch monitoring, automated royalty and fee calculation, branch inventory coordination, staff portals, and consolidated financial reporting."
+        },
+        {
+          "q": "Can individual franchise branches be restricted to their own data?",
+          "a": "Yes. The platform uses strict Role-Based Access Control (RBAC). Branch managers and franchisees only access their location's data, while brand owners have complete network-wide oversight."
+        },
+        {
+          "q": "Can the software handle student, member, or customer data across branches?",
+          "a": "Yes, we build centralized databases that manage student admissions, member subscriptions, batch allocations, or customer records consistently across all franchise outlets."
         }
       ];
-    } else if (pageKey === "erp-development") {
+    } else if (pageKey === "custom-software") {
       faqs = [
         {
-          "q": "Why choose custom ERP over off-the-shelf software?",
-          "a": "Custom ERP matches your exact operational workflows, avoids licensing fees per user, and scales seamlessly as your business grows."
+          "q": "How does Three Dots approach custom software development in Chennai?",
+          "a": "We follow an agile lifecycle starting with business requirement mapping and interactive Figma wireframes, followed by two-week sprint releases, continuous client testing, automated QA, and cloud deployment."
+        },
+        {
+          "q": "Who owns the source code and IP after the project is completed?",
+          "a": "You own 100% of the source code, design assets, and intellectual property upon project handover and final settlement."
+        },
+        {
+          "q": "What tech stacks do you specialize in for custom business software?",
+          "a": "We specialize in modern JavaScript/TypeScript ecosystems including React, Node.js, Next.js, PostgreSQL/Supabase, REST/GraphQL APIs, and cloud services (AWS, Render, Cloudflare)."
+        }
+      ];
+    } else if (pageKey === "inventory-software") {
+      faqs = [
+        {
+          "q": "How does the auto-reorder threshold system work?",
+          "a": "You can configure minimum safety stock levels for each SKU. When current inventory falls below that threshold, the system flags the product and can automatically generate purchase order drafts."
+        },
+        {
+          "q": "Does your inventory software support GST HSN and SAC codes?",
+          "a": "Yes, items are tagged with HSN/SAC codes, tax slabs (5%, 12%, 18%, 28%), and SKU identifiers for straightforward GST compliance and tax filing."
+        },
+        {
+          "q": "What is the difference between Inventory Management Software and WMS?",
+          "a": "Inventory software tracks stock quantities, costs, and reorder levels across businesses. A WMS goes deeper inside the physical warehouse, managing bin/rack locations, pick routes, and packing workflows."
+        }
+      ];
+    } else if (pageKey === "gst-invoice-landing") {
+      faqs = [
+        {
+          "q": "Is this GST invoice generator free to use?",
+          "a": "Yes, the Three Dots GST Invoice Generator is 100% free with no sign-up required, no watermarks, and no usage limit."
+        },
+        {
+          "q": "How does the tool calculate CGST, SGST, and IGST?",
+          "a": "Select the supplier state and recipient state. If both states match (intra-state), CGST and SGST are calculated equally. If states differ (inter-state), IGST is calculated automatically."
+        },
+        {
+          "q": "Is my invoice financial data stored on your servers?",
+          "a": "No, invoice generation happens client-side directly in your browser. Your financial figures, customer details, and invoices remain private."
         }
       ];
     } else {
@@ -397,15 +462,15 @@ function preRenderPages() {
       "image": meta.ogImage,
       "author": {
         "@type": "Organization",
-        "name": "ThreeDots",
-        "url": "https://three-dots.in"
+        "name": "Three Dots",
+        "url": "https://www.three-dots.in"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "ThreeDots",
+        "name": "Three Dots",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://three-dots.in/threedots.svg"
+          "url": "https://www.three-dots.in/threedots.svg"
         }
       },
       "about": {
@@ -468,7 +533,7 @@ function preRenderPages() {
   <meta property="og:title" content="${ogTitle}" />
   <meta property="og:description" content="${ogDescription}" />
   <meta property="og:image" content="${ogImage}" />
-  <meta property="og:site_name" content="ThreeDots" />
+  <meta property="og:site_name" content="Three Dots" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="${canonical}" />
   <meta name="twitter:title" content="${ogTitle}" />
@@ -518,14 +583,14 @@ ${schemaTags}
 
   // Pre-render dynamic blog posts
   blogs.forEach(post => {
-    const fullOgImg = post.image.startsWith('http') ? post.image : `https://three-dots.in${post.image.startsWith('/') ? '' : '/'}${post.image}`;
+    const fullOgImg = post.image.startsWith('http') ? post.image : `https://www.three-dots.in${post.image.startsWith('/') ? '' : '/'}${post.image}`;
     const meta = {
-      title: `${post.title} | ThreeDots`,
+      title: `${post.title} | Three Dots`,
       description: post.excerpt,
       keywords: `blog, ${post.category.toLowerCase()}, threedots, ${post.title.toLowerCase()}`,
-      canonical: `https://three-dots.in/blog/${post.id}`,
+      canonical: `https://www.three-dots.in/blog/${post.id}`,
       ogImage: fullOgImg,
-      ogTitle: `${post.title} | ThreeDots`,
+      ogTitle: `${post.title} | Three Dots`,
       ogDescription: post.excerpt
     };
     
@@ -535,6 +600,20 @@ ${schemaTags}
     fs.writeFileSync(path.join(postDir, 'index.html'), renderedHtml, 'utf8');
     console.log(`✓ Pre-rendered blog post: ${post.id} (blog/${post.id}/index.html)`);
   });
+
+  // Pre-render 404 error page for static hosting
+  const notFoundMeta = {
+    title: "Page Not Found (404) | Three Dots",
+    description: "The page you are looking for does not exist. Browse custom software development services, WMS, ERP, and free business tools at Three Dots.",
+    keywords: "404 not found, threedots",
+    canonical: "https://www.three-dots.in/404",
+    ogImage: "https://www.three-dots.in/threedots-og.png",
+    ogTitle: "Page Not Found | Three Dots",
+    ogDescription: "The page you are looking for does not exist. Browse our custom software and tools."
+  };
+  const rendered404 = injectMeta(template, notFoundMeta, 'home').replace('name="robots" content="index, follow"', 'name="robots" content="noindex, follow"');
+  fs.writeFileSync(path.join(distDir, '404.html'), rendered404, 'utf8');
+  console.log('✓ Pre-rendered 404 page (404.html)');
 }
 
 // Execute

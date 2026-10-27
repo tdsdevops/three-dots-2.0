@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes,Navigate } from "react-router";
 import HomeLayout from "./components/home/HomeLayout";
 import { AppointmentProvider } from "./context/AppointmentContext";
 import { Box, CircularProgress } from "@mui/material";
@@ -24,6 +24,7 @@ const FranchiseSoftware = lazy(() => import("./components/services/FranchiseSoft
 const CustomSoftware = lazy(() => import("./components/services/CustomSoftware"));
 const ErpDevelopment = lazy(() => import("./components/services/ErpDevelopment"));
 const InventorySoftware = lazy(() => import("./components/services/InventorySoftware"));
+const NotFound = lazy(() => import("./components/common/NotFound"));
 
 // Premium dark fallback loader for lazy-loaded route transitions
 const PageLoader = () => (
@@ -70,8 +71,9 @@ function App() {
               <Route path="services/erp-development" element={<ErpDevelopment />} />
               <Route path="services/inventory-management-software" element={<InventorySoftware />} />
               
-              <Route path="*" element={<LandingPage />} /> {/* Fallback to LandingPage for unknown routes */}
+              <Route path="*" element={<NotFound />} />
             </Route>
+            <Route path="home"   element={<Navigate to="/" replace />}   />
           </Routes>
         </Suspense>
       </BrowserRouter>

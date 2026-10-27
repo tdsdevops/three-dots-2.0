@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import { Box, Button, Container, Typography, Stack, Chip } from "@mui/material";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { Link as RouterLink } from "react-router";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import LanguageIcon from "@mui/icons-material/Language";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -8,64 +9,79 @@ import DnsOutlinedIcon from "@mui/icons-material/DnsOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import DevicesOutlinedIcon from "@mui/icons-material/DevicesOutlined";
 import DesignServicesOutlinedIcon from "@mui/icons-material/DesignServicesOutlined";
+import WarehouseOutlinedIcon from "@mui/icons-material/WarehouseOutlined";
+import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
+import InventoryOutlinedIcon from "@mui/icons-material/InventoryOutlined";
 import { ThemeContext } from "../../appConstant";
 import { useAppointment } from "../../context/AppointmentContext";
 
 // ─── Services Data ─────────────────────────────────────────────────────────────
 const SERVICES = [
   {
-    icon: <LanguageIcon sx={{ fontSize: 19 }} />,
-    badge: "React & Next.js",
+    icon: <WarehouseOutlinedIcon sx={{ fontSize: 19 }} />,
+    badge: "WMS & Logistics",
     badgeColor: "#3B6EF8",
-    title: "Website Development",
-    desc: "High-performance websites that reflect your brand and convert users optimized for speed, security, and scalability.",
-    features: ["Design + Framer Development", "Interactive Elements"],
+    title: "Warehouse Management Software (WMS)",
+    desc: "Custom cloud-based WMS for Indian supply chains: barcode picking, dynamic bin slotting, stock audits, and automated GST e-Way bills.",
+    features: ["Barcode & QR Picking", "Real-Time Bin Tracking", "Tally & ERP Sync"],
+    link: "/services/warehouse-management-software",
+    linkText: "Explore WMS Solutions →",
     cta: false,
   },
   {
-    icon: <ShoppingCartOutlinedIcon sx={{ fontSize: 19 }} />,
-    badge: "Shopify & Custom",
+    icon: <StorefrontOutlinedIcon sx={{ fontSize: 19 }} />,
+    badge: "Multi-Branch Platform",
     badgeColor: "#8B5CF6",
-    title: "E-commerce Solutions",
-    desc: "Robust online stores with seamless shopping experiences, custom features, and backend systems built to grow with your business.",
-    features: ["Files + Branding Assets", "Easy to Edit and Access"],
-    cta: false,
-  },
-  {
-    icon: <DnsOutlinedIcon sx={{ fontSize: 19 }} />,
-    badge: "Multi-Tenant Systems",
-    badgeColor: "#8B5CF6",
-    title: "CMS & SaaS Platforms",
-    desc: "End-to-end development of scalable platforms from content management tools to subscription-based SaaS products with multi-user access.",
-    features: ["Files + Branding Assets", "Easy to Edit and Access"],
-    cta: false,
-  },
-  {
-    icon: <BarChartOutlinedIcon sx={{ fontSize: 19 }} />,
-    badge: "Real-time Insights",
-    badgeColor: "#8B5CF6",
-    title: "ERP & Business Dashboards",
-    desc: "Custom internal systems to track operations, visualize data, and support decision-making with real-time dashboards.",
-    features: ["Branding Assets", "User-Friendly Interface"],
+    title: "Franchise Management Software",
+    desc: "Centralized platforms for training academies, institutes, and retail franchises to manage branches, student admissions, and automated royalty billing.",
+    features: ["Branch RBAC Security", "Automated Royalty Billing", "Central Student Portals"],
+    link: "/services/franchise-management-software",
+    linkText: "Explore Franchise Software →",
     cta: false,
   },
   {
     icon: <DevicesOutlinedIcon sx={{ fontSize: 19 }} />,
-    badge: "Interactive Portals",
-    badgeColor: "#8B5CF6",
-    title: "Custom Web Applications",
-    desc: "Fully tailored web apps aligned with your business logic from client portals to booking systems and workflow tools.",
-    features: ["Files + Branding Assets", "Easy to Edit and Access"],
+    badge: "Tailored Architecture",
+    badgeColor: "#3B6EF8",
+    title: "Custom Software Development",
+    desc: "Bespoke enterprise applications, secure client portals, and automation workflows engineered in Chennai to match your unique operational rules.",
+    features: ["Clean Code Architecture", "Direct Engineer Access", "100% IP Ownership"],
+    link: "/services/custom-software-development",
+    linkText: "Explore Custom Software in Chennai →",
     cta: false,
   },
   {
-    icon: <DesignServicesOutlinedIcon sx={{ fontSize: 19 }} />,
-    badge: "Figma & Wireframes",
-    badgeColor: "#3B6EF8",
-    title: "UX/UI Design",
-    desc: "User-first design that enhances functionality and builds trust every screen, flow, and detail crafted for clarity and experience.",
-    features: ["HTML + JavaScript + React Code", "Database and Back-End"],
+    icon: <BarChartOutlinedIcon sx={{ fontSize: 19 }} />,
+    badge: "Enterprise Resource Planning",
+    badgeColor: "#8B5CF6",
+    title: "Custom ERP & Business Dashboards",
+    desc: "Bespoke ERP software connecting sales, inventory, vendor purchasing, automated GST billing, and executive real-time reporting.",
+    features: ["Automated GST Invoicing", "Cross-Department Hub", "Real-Time KPIs"],
+    link: "/services/erp-development",
+    linkText: "Explore ERP Development →",
     cta: false,
+  },
+  {
+    icon: <InventoryOutlinedIcon sx={{ fontSize: 19 }} />,
+    badge: "Stock Control & SKU",
+    badgeColor: "#3B6EF8",
+    title: "Inventory Management Software",
+    desc: "Real-time stock velocity tracking, automated safety stock thresholds, inter-store transfer logs, and GST HSN compliance master.",
+    features: ["Auto-Reorder Alerts", "Multi-Store Visibility", "HSN/SAC Master"],
+    link: "/services/inventory-management-software",
+    linkText: "Explore Inventory Software →",
+    cta: false,
+  },
+  {
+    icon: <LanguageIcon sx={{ fontSize: 19 }} />,
+    badge: "React & Next.js",
+    badgeColor: "#8B5CF6",
+    title: "High-Performance Web Platforms",
+    desc: "Modern, responsive websites, e-commerce redesigns, and custom SaaS products engineered for speed, conversion, and SEO excellence.",
+    features: ["Figma to Production Code", "Core Web Vitals Optimized", "B2B Lead Generation"],
+    link: "/portfolio",
+    linkText: "View Our Portfolio →",
+    cta: true,
   },
 ];
 
@@ -281,6 +297,33 @@ function ServiceCard({ service, index }) {
           ))}
         </Stack>
 
+        {/* Contextual service page link */}
+        {service.link && (
+          <Box sx={{ mt: 2.2, position: "relative", zIndex: 1 }}>
+            <Typography
+              component={RouterLink}
+              to={service.link}
+              sx={{
+                color: isPurple ? "#b794ff" : "#7da4ff",
+                fontSize: 13,
+                fontWeight: 600,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 0.5,
+                transition: "color 0.2s, transform 0.2s",
+                "&:hover": {
+                  color: "#fff",
+                  transform: "translateX(3px)",
+                  textDecoration: "underline"
+                }
+              }}
+            >
+              {service.linkText || "Learn More →"}
+            </Typography>
+          </Box>
+        )}
+
         {/* CTA — only on last card */}
         {service.cta && (
           <motion.div
@@ -481,28 +524,13 @@ export default function ServicesSection() {
                   },
                   color: "#fff",
                   lineHeight: 1.15,
-                  mb: 1.5,
-                }}
-              >
-                End-to-End Development,
-              </Typography>
-              <Typography
-                component="h2"
-                sx={{
-                  fontFamily: "DM Sans",
-                  fontWeight: 800,
-                  fontSize: {
-                    xs: "2rem",
-                    sm: "2.4rem",
-                    md: "2.8rem",
-                    xl: "3.2rem",
-                  },
-                  color: "#3B6EF8",
-                  lineHeight: 1.15,
                   mb: 3,
                 }}
               >
-                From Idea to Deployment
+                End-to-End Development,{" "}
+                <Box component="span" sx={{ color: "#3B6EF8", display: "inline" }}>
+                  From Idea to Deployment
+                </Box>
               </Typography>
               <Typography
                 sx={{
