@@ -29,8 +29,27 @@ import {
   Alert,
   Divider,
   Switch,
+  Card,
+  CardContent,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Chip,
+  Stack,
 } from "@mui/material";
-import { Add as AddIcon, Delete as DeleteIcon, Print as PrintIcon, PictureAsPdf as PdfIcon, Share as ShareIcon, RotateLeft as ResetIcon, CloudUpload as UploadIcon } from "@mui/icons-material";
+import {
+  Add as AddIcon,
+  Delete as DeleteIcon,
+  Print as PrintIcon,
+  PictureAsPdf as PdfIcon,
+  Share as ShareIcon,
+  RotateLeft as ResetIcon,
+  CloudUpload as UploadIcon,
+  ExpandMore as ExpandMoreIcon,
+  CheckCircleOutline as CheckCircleOutlineIcon,
+  ArrowForward as ArrowForwardIcon
+} from "@mui/icons-material";
+import { Link as RouterLink } from "react-router";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import html2canvas from "html2canvas";
@@ -475,7 +494,8 @@ export default function InvoiceGenerator({ seoKey }) {
 
   // Web Share / WhatsApp Share
   const handleShare = () => {
-    const shareText = `Hi, please find the details of Invoice #${invoice.invoiceNumber} for ₹${totals.grandTotal.toFixed(2)}. Direct Link: https://three-dots.in/tools/invoice-generator`;
+    const currentPath = seoKey === "gst-invoice-landing" ? "/tools/gst-invoice-generator" : "/tools/invoice-generator";
+    const shareText = `Hi, please find the details of Invoice #${invoice.invoiceNumber} for ₹${totals.grandTotal.toFixed(2)}. Direct Link: https://www.three-dots.in${currentPath}`;
     const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     window.open(whatsappUrl, "_blank");
@@ -559,11 +579,13 @@ export default function InvoiceGenerator({ seoKey }) {
         <Container maxWidth="xl">
           {/* Hero Details */}
           <Box className="no-print-section" sx={{ textAlign: "center", mb: 6 }}>
-            <Typography variant="h3" sx={{ fontWeight: 800, mb: 1, color: "#fff", fontFamily: "DM Sans" }}>
-              Free Custom Invoice Generator
+            <Typography component="h1" variant="h3" sx={{ fontWeight: 800, mb: 1.5, color: "#fff", fontFamily: "DM Sans", fontSize: { xs: "2rem", md: "2.75rem" } }}>
+              {seoKey === "gst-invoice-landing" ? "Free GST Invoice Generator Online (India)" : "Free Custom Invoice Generator"}
             </Typography>
-            <Typography variant="subtitle1" sx={{ color: "#aaa", maxWidth: "700px", mx: "auto" }}>
-              Create GST-compliant invoices in seconds. Customize with your logo, calculate CGST/SGST/IGST automatically, download as a high-fidelity PDF, and print.
+            <Typography variant="subtitle1" sx={{ color: "#aaa", maxWidth: "750px", mx: "auto", fontSize: { xs: 15, md: 17 }, lineHeight: 1.6 }}>
+              {seoKey === "gst-invoice-landing"
+                ? "Create professional, GST-compliant invoices in seconds. Automatically calculate CGST, SGST, IGST, add HSN/SAC codes, download instant high-fidelity PDFs, and print with your custom logo. 100% free with no sign-up required."
+                : "Create professional, GST-compliant invoices in seconds. Customize with your logo, calculate CGST/SGST/IGST automatically, download as a high-fidelity PDF, and print."}
             </Typography>
           </Box>
 
@@ -1226,7 +1248,7 @@ export default function InvoiceGenerator({ seoKey }) {
                   {/* Branding Footer */}
                   <Box sx={{ mt: 5, pt: 2, borderTop: "1px solid #eee", textAlign: "center" }}>
                     <Typography variant="caption" sx={{ color: "#999" }}>
-                      Generated using the Free Custom Invoice Generator by <a href="https://three-dots.in" target="_blank" rel="noopener noreferrer" style={{ color: "#3B6EF8", textDecoration: "none", fontWeight: 700 }}>ThreeDots</a>
+                      Generated using the Free Custom Invoice Generator by <a href="https://www.three-dots.in/" target="_blank" rel="noopener noreferrer" style={{ color: "#3B6EF8", textDecoration: "none", fontWeight: 700 }}>Three Dots</a>
                     </Typography>
                   </Box>
                 </Paper>
@@ -1234,6 +1256,161 @@ export default function InvoiceGenerator({ seoKey }) {
               </Box>
             </Grid>
           </Grid>
+
+          {/* Educational GST Guide & SEO Information (no-print) */}
+          <Box className="no-print-section" sx={{ mt: 10, pt: 6, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+            <Box sx={{ textAlign: "center", mb: 6 }}>
+              <Typography variant="overline" sx={{ color: "#3B6EF8", fontWeight: 700, letterSpacing: 1.5 }}>
+                GST BILLING GUIDE
+              </Typography>
+              <Typography variant="h2" sx={{ fontSize: { xs: "1.8rem", md: "2.4rem" }, fontWeight: 800, mt: 1, mb: 2, fontFamily: "DM Sans" }}>
+                How to Create a GST-Compliant Tax Invoice in India
+              </Typography>
+              <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.65)", maxWidth: 750, mx: "auto", fontFamily: "Plus Jakarta Sans" }}>
+                A GST tax invoice is a legal document required under the Central Goods and Services Tax (CGST) Act. It enables registered buyers to claim Input Tax Credit (ITC) and ensures transparent accounting.
+              </Typography>
+            </Box>
+
+            <Grid container spacing={4} sx={{ mb: 8 }}>
+              <Grid item xs={12} md={4} width="100%">
+                <Card sx={{ bgcolor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 3, p: 2.5, height: "100%" }}>
+                  <Typography variant="h3" sx={{ fontSize: "1.15rem", fontWeight: 700, mb: 1.5, color: "#fff", fontFamily: "DM Sans" }}>
+                    1. Mandatory Invoice Fields
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7, fontSize: 14 }}>
+                    According to Indian GST rules, valid tax invoices must feature: Supplier GSTIN, Buyer name & GSTIN, consecutive invoice number (under 16 characters), date of issue, Place of Supply, and HSN/SAC codes for each item.
+                  </Typography>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={4} width="100%">
+                <Card sx={{ bgcolor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 3, p: 2.5, height: "100%" }}>
+                  <Typography variant="h3" sx={{ fontSize: "1.15rem", fontWeight: 700, mb: 1.5, color: "#fff", fontFamily: "DM Sans" }}>
+                    2. Intra-State vs Inter-State
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7, fontSize: 14 }}>
+                    <strong>Intra-State:</strong> When supplier and buyer are in the same state (e.g., Chennai to Madurai), tax divides into CGST + SGST (e.g., 9% + 9%).<br />
+                    <strong>Inter-State:</strong> When states differ (e.g., Tamil Nadu to Karnataka), IGST applies in full (e.g., 18%).
+                  </Typography>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={4} width="100%">
+                <Card sx={{ bgcolor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 3, p: 2.5, height: "100%" }}>
+                  <Typography variant="h3" sx={{ fontSize: "1.15rem", fontWeight: 700, mb: 1.5, color: "#fff", fontFamily: "DM Sans" }}>
+                    3. Standard GST Slabs in India
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7, fontSize: 14 }}>
+                    Standard rates include 0% (exempt goods), 5% (essential commodities), 12% (processed foods), 18% (most commercial services, IT, consulting), and 28% (luxury items, automobiles).
+                  </Typography>
+                </Card>
+              </Grid>
+            </Grid>
+
+            {/* GST FAQs */}
+            <Box sx={{ maxWidth: 850, mx: "auto", mb: 10 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: "1.6rem", md: "2rem" }, fontWeight: 800, mb: 3, textAlign: "center", fontFamily: "DM Sans" }}>
+                Frequently Asked Questions
+              </Typography>
+              {[
+                {
+                  q: "Is this GST invoice generator free to use?",
+                  a: "Yes, the Three Dots invoice generator is 100% free with no sign-up required, no watermarks, and no document limits. You can generate unlimited professional PDF invoices."
+                },
+                {
+                  q: "How does the tool calculate CGST, SGST, and IGST automatically?",
+                  a: "The tool checks your selected Supplier State and Client State of Supply. If both states match, it applies CGST and SGST equally. If the states differ, it automatically computes IGST based on your item tax rates."
+                },
+                {
+                  q: "Is my invoice financial data stored on external servers?",
+                  a: "No. The invoice calculation and PDF compilation run entirely client-side in your web browser. Your private billing figures and customer records are not stored on remote servers."
+                },
+                {
+                  q: "What is an HSN or SAC code?",
+                  a: "HSN (Harmonized System of Nomenclature) is a 4-to-8 digit code classifying physical goods under GST. SAC (Services Accounting Code) classifies services. Adding these codes ensures correct tax slabs and compliant filing."
+                }
+              ].map((faq, idx) => (
+                <Accordion
+                  key={idx}
+                  sx={{
+                    bgcolor: "rgba(255,255,255,0.02)",
+                    color: "#fff",
+                    border: "1px solid rgba(255,255,255,0.05)",
+                    borderRadius: "8px",
+                    mb: 1.5,
+                    boxShadow: "none",
+                    "&:before": { display: "none" }
+                  }}
+                >
+                  <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: "#fff" }} />}>
+                    <Typography sx={{ fontWeight: 700, fontSize: 15, fontFamily: "DM Sans" }}>{faq.q}</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails sx={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                    <Typography sx={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7, fontSize: 14.5, fontFamily: "Plus Jakarta Sans" }}>
+                      {faq.a}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Box>
+
+            {/* Commercial Business Software Cross-Promotion Banner */}
+            <Box
+              sx={{
+                bgcolor: "linear-gradient(135deg, rgba(59,110,248,0.08) 0%, rgba(13,22,60,0.4) 100%)",
+                border: "1px solid rgba(59,110,248,0.2)",
+                borderRadius: 4,
+                p: { xs: 3, md: 5 },
+                textAlign: "center"
+              }}
+            >
+              <Typography variant="overline" sx={{ color: "#3B6EF8", fontWeight: 700, letterSpacing: 1.2 }}>
+                NEED AUTOMATED BILLING & INVENTORY?
+              </Typography>
+              <Typography variant="h2" sx={{ fontSize: { xs: "1.6rem", md: "2.1rem" }, fontWeight: 800, mt: 1, mb: 2, fontFamily: "DM Sans" }}>
+                Custom ERP & Warehouse Management Software by Three Dots
+              </Typography>
+              <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.7)", maxWidth: 700, mx: "auto", mb: 4, fontFamily: "Plus Jakarta Sans" }}>
+                Creating invoices manually works for small billings. When order volumes expand, our team in Chennai builds integrated ERPs and Warehouse Management Systems (WMS) that automate invoicing, barcode picking, and Tally/Zoho accounting in real time.
+              </Typography>
+              <Grid container spacing={2.5} justifyContent="center" sx={{ mb: 2 }}>
+                <Grid item xs={12} sm={4}>
+                  <Card sx={{ bgcolor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", p: 2, borderRadius: 2 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 0.5 }}>
+                      <RouterLink to="/services/erp-development" style={{ color: "#3B6EF8", textDecoration: "none" }}>
+                        Custom ERP Development →
+                      </RouterLink>
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.6)" }}>
+                      Central billing, automated GST invoicing, and financial accounting.
+                    </Typography>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Card sx={{ bgcolor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", p: 2, borderRadius: 2 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 0.5 }}>
+                      <RouterLink to="/services/warehouse-management-software" style={{ color: "#3B6EF8", textDecoration: "none" }}>
+                        Warehouse Management (WMS) →
+                      </RouterLink>
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.6)" }}>
+                      Barcode scanning, bin slotting, dispatch manifests, and e-Way bills.
+                    </Typography>
+                  </Card>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Card sx={{ bgcolor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", p: 2, borderRadius: 2 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 0.5 }}>
+                      <RouterLink to="/services/custom-software-development" style={{ color: "#3B6EF8", textDecoration: "none" }}>
+                        Custom Software in Chennai →
+                      </RouterLink>
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.6)" }}>
+                      Tailored web applications, client portals, and automation workflows.
+                    </Typography>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
         </Container>
       </Box>
 

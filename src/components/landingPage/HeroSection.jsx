@@ -192,10 +192,10 @@ function HeroSection() {
             >
               <Typography
                 sx={{
-                  fontSize: { xs: 14, md: 16 },
+                  fontSize: { xs: 14.5, md: 16.5 },
                   color: "text.secondary",
                   maxWidth: 720,
-                  lineHeight: 1.7,
+                  lineHeight: 1.75,
                   mb: 4,
                   fontWeight: 400,
                   fontFamily: "Plus Jakarta Sans, sans-serif",
@@ -203,7 +203,7 @@ function HeroSection() {
                   margin: "1rem auto"
                 }}
               >
-                Three Dots is a product-focused software development company helping startups and growing businesses ship reliable, scalable digital products — on time and without the guesswork.
+                Three Dots is a custom software development company in Chennai helping growing businesses build reliable, scalable software — including Warehouse Management Systems (WMS), ERP platforms, and modern web applications.
               </Typography>
             </motion.div>
             <motion.div
@@ -219,38 +219,38 @@ function HeroSection() {
                 justifyContent={"center"}
                 margin={"1rem 0"}
               >
-                {/* <Button
-                  variant="contained"
-                  onClick={handleScrollToQuote}
-                  fullWidth={isMobile ? true : false}
-                  sx={{
-                    px: 4,
-                    py: 1.4,
-                    fontSize: 14,
-                    background: "#3B6EF8",
-                    "&:hover": { background: "#2a5ce8" },
-                    alignSelf: "flex-start",
-                  }}
-                >
-                  Request a quote
-                </Button> */}
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   onClick={openDialog}
-                  fullWidth={false}
                   sx={{
-                    borderColor: "#3B6EF8",
-                    color: "#3B6EF8",
                     px: { xs: 3.5, md: 4 },
                     py: 1.4,
                     fontSize: 14.5,
+                    fontWeight: 700,
+                    bgcolor: "#3B6EF8",
+                    "&:hover": { bgcolor: "#2a5ce8" }
+                  }}
+                >
+                  Book Free Consultation
+                </Button>
+                <Button
+                  component="a"
+                  href="#features"
+                  variant="outlined"
+                  sx={{
+                    borderColor: "rgba(255,255,255,0.2)",
+                    color: "#fff",
+                    px: { xs: 3, md: 3.5 },
+                    py: 1.4,
+                    fontSize: 14.5,
+                    fontWeight: 600,
                     "&:hover": {
                       borderColor: "#3B6EF8",
-                      background: "rgba(255,255,255,0.06)",
+                      background: "rgba(59,110,248,0.06)",
                     },
                   }}
                 >
-                  Book free consultation
+                  Explore Services
                 </Button>
               </Stack>
             </motion.div>

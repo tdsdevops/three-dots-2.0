@@ -14,9 +14,12 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Stack,
+  Divider
 } from "@mui/material";
 import { motion } from "framer-motion";
+import { Link as RouterLink } from "react-router";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -24,6 +27,8 @@ import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import WebIcon from "@mui/icons-material/Web";
 import SecurityIcon from "@mui/icons-material/Security";
 import BoltIcon from "@mui/icons-material/Bolt";
+import CodeIcon from "@mui/icons-material/Code";
+import StorageIcon from "@mui/icons-material/Storage";
 import SEO from "../SEO";
 import { useAppointment } from "../../context/AppointmentContext";
 
@@ -45,44 +50,92 @@ export default function CustomSoftware() {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const features = [
+  const solutionTypes = [
     {
-      icon: <WebIcon sx={{ fontSize: 40, color: "#3B6EF8" }} />,
+      icon: <WebIcon sx={{ fontSize: 36, color: "#3B6EF8" }} />,
       title: "Scalable Web Applications",
-      desc: "High-performance business portals, SaaS products, and workflow solutions built on modern tech stacks like React, Node.js, and Supabase."
+      desc: "High-performance business portals, client management hubs, and customer-facing web platforms built with React, Node.js, and modern cloud databases."
     },
     {
-      icon: <SettingsSuggestIcon sx={{ fontSize: 40, color: "#3B6EF8" }} />,
+      icon: <SettingsSuggestIcon sx={{ fontSize: 36, color: "#3B6EF8" }} />,
       title: "Business Process Automation",
-      desc: "Replace error-prone spreadsheets and manual procedures with automated digital pipelines designed around your workflows."
+      desc: "Replace fragmented spreadsheets and repetitive manual workflows with reliable digital pipelines tailored specifically to your company's operational rules."
     },
     {
-      icon: <SecurityIcon sx={{ fontSize: 40, color: "#3B6EF8" }} />,
+      icon: <SecurityIcon sx={{ fontSize: 36, color: "#3B6EF8" }} />,
       title: "Secure Client & Partner Portals",
-      desc: "Provide customers, staff, and external partners with role-based, password-protected portals to access documents, bills, and data."
+      desc: "Empower customers, suppliers, and field teams with password-protected, role-based portals to track orders, download invoices, and exchange documentation."
     },
     {
-      icon: <BoltIcon sx={{ fontSize: 40, color: "#3B6EF8" }} />,
+      icon: <StorageIcon sx={{ fontSize: 36, color: "#3B6EF8" }} />,
+      title: "Enterprise WMS & ERP Systems",
+      desc: "Purpose-built inventory, warehouse, and resource planning software that fits your exact physical storage layout, billing cycles, and reporting needs."
+    },
+    {
+      icon: <BoltIcon sx={{ fontSize: 36, color: "#3B6EF8" }} />,
       title: "API Integrations & Pipelines",
-      desc: "Synchronize data between SMS gateways, payment gateways (Razorpay), CRM hubs, accounting systems, and custom databases."
+      desc: "Connect your core software with Indian payment gateways (Razorpay), SMS/WhatsApp providers, accounting tools (Tally, Zoho Books), and courier platforms."
+    },
+    {
+      icon: <CodeIcon sx={{ fontSize: 36, color: "#3B6EF8" }} />,
+      title: "SaaS MVP Engineering",
+      desc: "Turn your software product concept into a market-ready MVP with clean multi-tenant architecture, subscription billing, and enterprise security."
+    }
+  ];
+
+  const developmentSteps = [
+    {
+      num: "01",
+      title: "Discovery & Technical Architecture",
+      desc: "We analyze your existing workflows, document core business rules, design database schemas, and define precise milestone deliverables."
+    },
+    {
+      num: "02",
+      title: "Interactive UI/UX Wireframing",
+      desc: "We prototype every user journey in Figma so you can review, test, and approve interface layouts and interactions before writing code."
+    },
+    {
+      num: "03",
+      title: "Agile Sprint Development",
+      desc: "Our Chennai engineering team builds software in 2-week iterations. You have continuous access to an active staging environment to test progress."
+    },
+    {
+      num: "04",
+      title: "Quality Assurance & Security Checks",
+      desc: "Rigorous manual and automated test suites verify functional correctness, data validation, response speed, and access security."
+    },
+    {
+      num: "05",
+      title: "Deployment & Knowledge Handover",
+      desc: "We configure production cloud infrastructure, automate backups, provide team training, and transfer 100% source code ownership."
     }
   ];
 
   const faqs = [
     {
       id: "panel1",
-      question: "How do you charge for custom software development?",
-      answer: "We offer both fixed-price project quotes and time-and-materials engagement models. After mapping out your exact system architecture, we provide a detailed proposal detailing phase deliverables and pricing."
+      question: "How does Three Dots approach custom software development in Chennai?",
+      answer: "We are a hands-on, product-focused development team in Chennai. Rather than handing off projects to junior contractors, your software is built directly by experienced full-stack engineers who collaborate with you through weekly status reviews, live staging builds, and transparent sprint milestones."
     },
     {
       id: "panel2",
-      question: "Do I own the source code of the developed software?",
-      answer: "Yes, 100%. Upon final project delivery and payment settlement, full copyright and source code ownership are transferred to your business."
+      question: "Do I own the source code and intellectual property of the software?",
+      answer: "Yes, 100%. Upon project completion and final milestone settlement, all repository code, database designs, assets, and intellectual property belong entirely to your business. We never lock you into proprietary hosting."
     },
     {
       id: "panel3",
-      question: "What is your typical software development lifecycle?",
-      answer: "We follow an agile development lifecycle: 1. Requirement gathering & interactive Figma wireframing; 2. Sprints & builds; 3. Security audits & QA checks; 4. Deployment and monthly maintenance."
+      question: "How do you charge for custom software projects?",
+      answer: "We primarily work on structured, fixed-price milestone agreements based on an agreed functional scope. For evolving enterprise products, we also offer dedicated monthly agile sprint engagements with transparent delivery schedules."
+    },
+    {
+      id: "panel4",
+      question: "What technologies do you use for building custom software?",
+      answer: "We build on battle-tested, high-performance tech stacks: React, Next.js, Node.js, PostgreSQL/Supabase, REST/GraphQL APIs, and secure cloud environments on AWS, Render, and Cloudflare. This ensures your software loads fast, scales easily, and remains maintainable."
+    },
+    {
+      id: "panel5",
+      question: "How do we get started with a consultation?",
+      answer: "Simply click 'Consult an Expert' or contact us through our website. We will arrange a free technical discovery call to review your workflow requirements, explain possible system architectures, and deliver a detailed project proposal."
     }
   ];
 
@@ -96,7 +149,7 @@ export default function CustomSoftware() {
           <Grid item xs={12} md={7}>
             <MBox {...fadeUp(0)}>
               <Chip
-                label="● SOFTWARE DEVELOPMENT"
+                label="● SOFTWARE DEVELOPMENT CHENNAI"
                 sx={{
                   bgcolor: "rgba(59,110,248,0.1)",
                   color: "#3B6EF8",
@@ -107,9 +160,9 @@ export default function CustomSoftware() {
                 }}
               />
               <Typography
-                variant="h1"
+                component="h1"
                 sx={{
-                  fontSize: { xs: "2.5rem", sm: "3.5rem", md: "4rem" },
+                  fontSize: { xs: "2.3rem", sm: "3.2rem", md: "3.8rem" },
                   fontWeight: 800,
                   lineHeight: 1.15,
                   mb: 3,
@@ -119,21 +172,37 @@ export default function CustomSoftware() {
                   WebkitTextFillColor: "transparent"
                 }}
               >
-                Custom Software Development Company Chennai
+                Custom Software Development Company in Chennai
               </Typography>
               <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.7)", fontSize: { xs: 16, md: 18 }, lineHeight: 1.8, mb: 4, fontFamily: "Plus Jakarta Sans" }}>
-                Crafting software engineered to scale your operations. From modern customer portals to customized automation pipelines, we design robust software tailored exactly to your workflow logic.
+                Engineered to match your business workflows. Three Dots is a custom software development company in Chennai building bespoke web applications, enterprise operations platforms, WMS, and client portals that scale without unnecessary bloat.
               </Typography>
-              <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mb: 2 }}>
                 <Button
                   variant="contained"
                   onClick={openDialog}
                   endIcon={<ArrowForwardIcon />}
-                  sx={{ bgcolor: "#3B6EF8", px: 4, py: 1.5, fontSize: 15, fontWeight: 700, "&:hover": { bgcolor: "#2a5ce8" } }}
+                  sx={{ bgcolor: "#3B6EF8", px: 4, py: 1.6, fontSize: 15, fontWeight: 700, "&:hover": { bgcolor: "#2a5ce8" } }}
                 >
                   Consult an Expert
                 </Button>
-              </Box>
+                <Button
+                  component={RouterLink}
+                  to="/portfolio"
+                  variant="outlined"
+                  sx={{
+                    borderColor: "rgba(255,255,255,0.2)",
+                    color: "#fff",
+                    px: 3,
+                    py: 1.6,
+                    fontSize: 15,
+                    fontWeight: 600,
+                    "&:hover": { borderColor: "#3B6EF8", bgcolor: "rgba(59,110,248,0.05)" }
+                  }}
+                >
+                  View Client Work
+                </Button>
+              </Stack>
             </MBox>
           </Grid>
           <Grid item xs={12} md={5} width={"100%"}>
@@ -143,27 +212,27 @@ export default function CustomSoftware() {
                 position: "relative",
                 borderRadius: "24px",
                 border: "1px solid rgba(59,110,248,0.2)",
-                background: "linear-gradient(145deg, rgba(59,110,248,0.05) 0%, rgba(13,22,60,0.4) 100%)",
-                p: 4,
+                background: "linear-gradient(145deg, rgba(59,110,248,0.06) 0%, rgba(13,22,60,0.5) 100%)",
+                p: { xs: 3, md: 4 },
                 boxShadow: "0 20px 50px rgba(0,0,0,0.5)"
               }}
             >
-              <Typography variant="h5" sx={{ fontWeight: 800, mb: 2, color: "#fff", fontFamily: "DM Sans" }}>
-                The Three Dots Difference
+              <Typography variant="h2" sx={{ fontSize: "1.4rem", fontWeight: 800, mb: 2, color: "#fff", fontFamily: "DM Sans" }}>
+                The Three Dots Engineering Advantage
               </Typography>
               <List sx={{ p: 0 }}>
                 {[
-                  "Clean code architecture with zero boilerplate",
-                  "Direct communication with core technical engineers",
-                  "Mobile-first responsive layouts on every screen",
-                  "Comprehensive manual and automated QA tests",
-                  "Robust cloud deployment & devops automation"
+                  "Clean, modular architecture with zero boilerplate debt",
+                  "Direct communication with core technical developers",
+                  "Weekly sprint demos on active test staging environments",
+                  "100% source code and intellectual property ownership",
+                  "Continuous post-launch support and security maintenance"
                 ].map((item, idx) => (
                   <ListItem key={idx} sx={{ px: 0, py: 1 }}>
-                    <ListItemIcon sx={{ minWidth: 36 }}>
-                      <CheckCircleOutlineIcon sx={{ color: "#3B6EF8" }} />
+                    <ListItemIcon sx={{ minWidth: 32 }}>
+                      <CheckCircleOutlineIcon sx={{ color: "#3B6EF8", fontSize: 20 }} />
                     </ListItemIcon>
-                    <ListItemText primary={item} primaryTypographyProps={{ style: { fontSize: 15, fontFamily: "Plus Jakarta Sans" } }} />
+                    <ListItemText primary={item} primaryTypographyProps={{ style: { fontSize: 14.5, fontFamily: "Plus Jakarta Sans" } }} />
                   </ListItem>
                 ))}
               </List>
@@ -172,38 +241,43 @@ export default function CustomSoftware() {
         </Grid>
       </Container>
 
-      {/* Services Section */}
+      {/* Solution Types Section */}
       <Box id="features" sx={{ bgcolor: "rgba(255,255,255,0.01)", borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)", py: 10 }}>
         <Container maxWidth="lg">
           <Box sx={{ textAlign: "center", mb: 8 }}>
             <Typography variant="h2" sx={{ fontSize: { xs: "2.2rem", md: "3rem" }, fontWeight: 800, mb: 2, fontFamily: "DM Sans" }}>
-              Our Software Engineering Offerings
+              Custom Software Development Services
             </Typography>
-            <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.6)", maxWidth: 650, mx: "auto", fontFamily: "Plus Jakarta Sans" }}>
-              Whether you need to modernize legacy code or build a new software product, our team delivers robust execution.
+            <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.6)", maxWidth: 680, mx: "auto", fontFamily: "Plus Jakarta Sans" }}>
+              Whether replacing legacy spreadsheets, modernizing outdated systems, or building a new product from scratch, our team provides reliable execution.
             </Typography>
           </Box>
 
-          <Grid container spacing={4}>
-            {features.map((feature, idx) => (
-              <Grid item xs={12} sm={6} key={idx} width={"100%"}>
+          <Grid container spacing={3.5}>
+            {solutionTypes.map((feature, idx) => (
+              <Grid item xs={12} sm={6} md={4} key={idx} width={"100%"}>
                 <MCard
-                  {...fadeUp(idx * 0.1)}
+                  {...fadeUp(idx * 0.08)}
                   sx={{
                     height: "100%",
                     bgcolor: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.07)",
                     borderRadius: "16px",
-                    p: 2,
-                    boxShadow: "none"
+                    p: 1.5,
+                    boxShadow: "none",
+                    transition: "transform 0.2s ease, border-color 0.2s ease",
+                    "&:hover": {
+                      borderColor: "rgba(59,110,248,0.4)",
+                      transform: "translateY(-4px)"
+                    }
                   }}
                 >
                   <CardContent>
                     <Box sx={{ mb: 2 }}>{feature.icon}</Box>
-                    <Typography variant="h5" sx={{ color: "#fff", fontWeight: 700, mb: 1.5, fontFamily: "DM Sans" }}>
+                    <Typography variant="h3" sx={{ color: "#fff", fontWeight: 700, fontSize: "1.25rem", mb: 1.5, fontFamily: "DM Sans" }}>
                       {feature.title}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.6, fontFamily: "Plus Jakarta Sans" }}>
+                    <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.65)", lineHeight: 1.7, fontFamily: "Plus Jakarta Sans" }}>
                       {feature.desc}
                     </Typography>
                   </CardContent>
@@ -214,40 +288,88 @@ export default function CustomSoftware() {
         </Container>
       </Box>
 
-      {/* EEAT Block: Expertise & Process */}
+      {/* Engineering Process Steps */}
       <Container maxWidth="lg" sx={{ py: 10 }}>
-        <Grid container spacing={6} alignItems="center" sx={{ bgcolor: "linear-gradient(135deg, rgba(2,7,24,0.8) 0%, rgba(13,22,60,0.5) 100%)", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="overline" sx={{ color: "#3B6EF8", fontWeight: 700, letterSpacing: 1.5 }}>
-              OUR METHODOLOGY
-            </Typography>
-            <Typography variant="h3" sx={{ fontWeight: 800, mt: 1, mb: 3, fontFamily: "DM Sans" }}>
-              High-Velocity Agile Development
-            </Typography>
-            <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.8, mb: 3, fontFamily: "Plus Jakarta Sans" }}>
-              We build iterative releases in 2-week sprints. You can test and monitor the active staging branch anytime. No black boxes, just transparent delivery.
-            </Typography>
-            <Box sx={{ display: "flex", gap: 4 }}>
-              <Box>
-                <Typography variant="h2" sx={{ color: "#3B6EF8", fontWeight: 800, fontFamily: "DM Sans" }}>100%</Typography>
-                <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)" }}>Staging Visibility</Typography>
-              </Box>
-              <Box>
-                <Typography variant="h2" sx={{ color: "#3B6EF8", fontWeight: 800, fontFamily: "DM Sans" }}>Weekly</Typography>
-                <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)" }}>Status Calls</Typography>
-              </Box>
-            </Box>
+        <Box sx={{ textAlign: "center", mb: 7 }}>
+          <Typography variant="overline" sx={{ color: "#3B6EF8", fontWeight: 700, letterSpacing: 1.5 }}>
+            STRUCTURED METHODOLOGY
+          </Typography>
+          <Typography variant="h2" sx={{ fontSize: { xs: "2rem", md: "2.7rem" }, fontWeight: 800, mt: 1, mb: 2, fontFamily: "DM Sans" }}>
+            How We Build Software: Our 5-Stage Process
+          </Typography>
+          <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.65)", maxWidth: 650, mx: "auto", fontFamily: "Plus Jakarta Sans" }}>
+            Transparent delivery with no surprises. Every project is broken down into structured, verifiable stages.
+          </Typography>
+        </Box>
+
+        <Grid container spacing={3}>
+          {developmentSteps.map((step, idx) => (
+            <Grid item xs={12} sm={6} md={2.4} key={idx} width="100%">
+              <Card sx={{ bgcolor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, p: 2, height: "100%" }}>
+                <Typography variant="h2" sx={{ fontSize: "2rem", fontWeight: 900, color: "#3B6EF8", mb: 1, fontFamily: "DM Sans" }}>
+                  {step.num}
+                </Typography>
+                <Typography variant="h3" sx={{ fontSize: "1.1rem", fontWeight: 700, mb: 1.5, color: "#fff", fontFamily: "DM Sans" }}>
+                  {step.title}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.6, fontSize: 13.5 }}>
+                  {step.desc}
+                </Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      {/* Internal Links & Contextual Resources */}
+      <Container maxWidth="lg" sx={{ py: 4 }}>
+        <Typography variant="h3" sx={{ fontSize: "1.5rem", fontWeight: 800, mb: 3, textAlign: "center", fontFamily: "DM Sans" }}>
+          Explore Specific Software Capabilities
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={4} width="100%">
+            <Card sx={{ bgcolor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", p: 2.5, borderRadius: 2 }}>
+              <Typography variant="h4" sx={{ fontSize: "1.1rem", fontWeight: 700, mb: 1, color: "#fff" }}>
+                <RouterLink to="/services/warehouse-management-software" style={{ color: "#3B6EF8", textDecoration: "none" }}>
+                  Warehouse Management Software →
+                </RouterLink>
+              </Typography>
+              <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)" }}>
+                Receiving, dynamic bin allocation, barcode scanner picking, and dispatch workflow automation.
+              </Typography>
+            </Card>
           </Grid>
-          <Grid width={"100%"} item xs={12} md={6} sx={{ display: "flex", justifyContent: "center" }}>
-            <Box component="img" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&q=80" alt="Agile developer planning custom software UI UX" sx={{ width: "100%", maxWidth: 450, borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.6)" }} />
+          <Grid item xs={12} sm={4} width="100%">
+            <Card sx={{ bgcolor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", p: 2.5, borderRadius: 2 }}>
+              <Typography variant="h4" sx={{ fontSize: "1.1rem", fontWeight: 700, mb: 1, color: "#fff" }}>
+                <RouterLink to="/services/franchise-management-software" style={{ color: "#3B6EF8", textDecoration: "none" }}>
+                  Franchise Management Software →
+                </RouterLink>
+              </Typography>
+              <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)" }}>
+                Centralized multi-branch control, automated royalty billing, student records, and branch reporting.
+              </Typography>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={4} width="100%">
+            <Card sx={{ bgcolor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", p: 2.5, borderRadius: 2 }}>
+              <Typography variant="h4" sx={{ fontSize: "1.1rem", fontWeight: 700, mb: 1, color: "#fff" }}>
+                <RouterLink to="/services/inventory-management-software" style={{ color: "#3B6EF8", textDecoration: "none" }}>
+                  Inventory Management Software →
+                </RouterLink>
+              </Typography>
+              <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)" }}>
+                Real-time SKU visibility, automated safety stock thresholds, and HSN compliance.
+              </Typography>
+            </Card>
           </Grid>
         </Grid>
       </Container>
 
       {/* FAQ Section */}
-      <Container maxWidth="md" sx={{ pb: 12 }}>
+      <Container maxWidth="md" sx={{ pb: 12, pt: 4 }}>
         <Box sx={{ textAlign: "center", mb: 6 }}>
-          <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, fontFamily: "DM Sans" }}>
+          <Typography variant="h2" sx={{ fontSize: { xs: "2rem", md: "2.5rem" }, fontWeight: 800, mb: 2, fontFamily: "DM Sans" }}>
             Frequently Asked Questions
           </Typography>
           <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.6)", fontFamily: "Plus Jakarta Sans" }}>
@@ -284,6 +406,23 @@ export default function CustomSoftware() {
               </AccordionDetails>
             </Accordion>
           ))}
+        </Box>
+
+        {/* Bottom CTA Block */}
+        <Box sx={{ textAlign: "center", mt: 6, p: 4, bgcolor: "rgba(255,255,255,0.02)", borderRadius: 3, border: "1px solid rgba(255,255,255,0.06)" }}>
+          <Typography variant="h3" sx={{ fontSize: "1.4rem", fontWeight: 700, mb: 1.5, fontFamily: "DM Sans" }}>
+            Have a Software Idea or Business Workflow to Automate?
+          </Typography>
+          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.65)", mb: 3, maxWidth: 500, mx: "auto" }}>
+            Talk directly to our software engineering team in Chennai. We will evaluate your technical requirements and provide an actionable roadmap.
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={openDialog}
+            sx={{ bgcolor: "#3B6EF8", px: 4, py: 1.4, fontWeight: 700, "&:hover": { bgcolor: "#2a5ce8" } }}
+          >
+            Request Free Technical Consultation
+          </Button>
         </Box>
       </Container>
     </Box>
