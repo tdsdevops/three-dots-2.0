@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes,Navigate } from "react-router";
 import HomeLayout from "./components/home/HomeLayout";
 import { AppointmentProvider } from "./context/AppointmentContext";
 import { Box, CircularProgress } from "@mui/material";
@@ -73,6 +73,7 @@ function App() {
               
               <Route path="*" element={<NotFound />} />
             </Route>
+            <Route path="home"   element={<Navigate to="/" replace />}   />
           </Routes>
         </Suspense>
       </BrowserRouter>
